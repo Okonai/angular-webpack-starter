@@ -31,8 +31,6 @@ import { routes } from './app.routing';
 
 import { AppComponent } from './app.component';
 
-import { AppState } from './reducers';
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,27 +53,32 @@ import { AppState } from './reducers';
 })
 
 export class AppModule {
-  constructor(public appRef: ApplicationRef,
-    private _store: Store<AppState>) { }
+  constructor(
+    public appRef: ApplicationRef,
+    // private _store: Store<AppState>
+  ) { }
 
   hmrOnInit(store) {
     if (!store || !store.rootState) return;
 
     // restore state by dispatch a SET_ROOT_STATE action
+    /*
     if (store.rootState) {
       this._store.dispatch({
         type: 'SET_ROOT_STATE',
         payload: store.rootState
       });
     }
+    */
 
     if ('restoreInputValues' in store) { store.restoreInputValues(); }
     this.appRef.tick();
     Object.keys(store).forEach(prop => delete store[prop]);
   }
+
   hmrOnDestroy(store) {
     const cmpLocation = this.appRef.components.map(cmp => cmp.location.nativeElement);
-    this._store.pipe(take(1)).subscribe(s => store.rootState = s);
+    // this._store.pipe(take(1)).subscribe(s => store.rootState = s);
     store.disposeOldHosts = createNewHosts(cmpLocation);
     store.restoreInputValues = createInputTransfer();
     removeNgStyles();
