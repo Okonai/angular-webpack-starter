@@ -19,7 +19,7 @@ import {
   AuthServiceConfig,
   GoogleLoginProvider,
   FacebookLoginProvider,
-} from 'angular5-social-login';
+} from 'angular-6-social-login';
 import { SearchComponent } from './components/search/search.component';
 import { NotFoundPageComponent } from './containers/not-found-page/not-found-page.component';
 import { CurrencyFormatPipeModule } from './pipes/currency.pipe';

@@ -1,3 +1,5 @@
+
+import {skip} from 'rxjs/operators';
 import * as fromStore from '../store';
 import { Meta, Title } from '@angular/platform-browser';
 import { Store } from '@ngrx/store';
@@ -18,7 +20,7 @@ export class SeoResolver implements Resolve<ResolvedUrl> {
     const slug = (route.params.slug) ? route.params.slug.toString().replace(/\-([csarp])([0-9]+)$/i, '') : 'alma';
     this._store.dispatch(new fromStore.LoadSeoAction({ slug: slug }));
     return new Promise<ResolvedUrl>(resolve => {
-      this._store.select(fromStore.getSeo).skip(1).subscribe((tags) => {
+      this._store.select(fromStore.getSeo).pipe(skip(1)).subscribe((tags) => {
         let self = this;
         Object.keys(tags).forEach(function (key) {
           if (tags[key].tag === 'meta') {

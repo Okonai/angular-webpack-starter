@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { Tile } from '@core/store/models/tiles.model';
 import * as fromStore from '@core/store/index';
 import { Store } from '@ngrx/store';

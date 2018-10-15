@@ -1,5 +1,7 @@
+
+import {debounceTime} from 'rxjs/operators';
 import { Component, OnInit, ViewEncapsulation, Input } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import * as fromStore from '@core/store/index';
 import { Store } from '@ngrx/store';
 import { Filter } from '@models/filter.model';
@@ -39,7 +41,7 @@ export class SidebarComponent implements OnInit {
   }
 
   onChanges() {
-    this.filterForm.valueChanges.debounceTime(300).subscribe(filters => {
+    this.filterForm.valueChanges.pipe(debounceTime(300)).subscribe(filters => {
       console.log(filters)
       this.store.dispatch(new fromStore.SetFiltersAction(filters));
     });    

@@ -1,6 +1,8 @@
+
+import {map} from 'rxjs/operators';
 import {Injectable} from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/throw';
+import { Observable } from 'rxjs';
+
 import { Store } from '@ngrx/store';
 
 import * as fromStore from '@store/index';
@@ -23,57 +25,57 @@ export class AuthService {
 
   public authLoadUser(): Observable<UserResponse> {
     return this._http
-    .Get<UserResponse>(API_PATH.base + `get-user`)
-    .map(response => {
+    .Get<UserResponse>(API_PATH.base + `get-user`).pipe(
+    map(response => {
       return response;
-    });
+    }));
   }
 
   public authLogin(payload): Observable<LoginResponse> {
     return this._http
-    .Post<LoginResponse>(API_PATH.base + `user-sign-in`, payload['auth_form'])
-    .map(response => {
+    .Post<LoginResponse>(API_PATH.base + `user-sign-in`, payload['auth_form']).pipe(
+    map(response => {
       return response;
-    });
+    }));
   }
 
   public authLoad(payload): Observable<LoadResponse> {
     return this._http
-    .Post<LoadResponse>(API_PATH.base + `get-user`, { params: payload })
-    .map(response => {
+    .Post<LoadResponse>(API_PATH.base + `get-user`, { params: payload }).pipe(
+    map(response => {
       return response;
-    });
+    }));
   }
 
   public authIsUser(payload): Observable<IsUserResponse> {
     return this._http
-    .Post<IsUserResponse>(API_PATH.base + `is-user`, { params: payload })
-    .map(response => {
+    .Post<IsUserResponse>(API_PATH.base + `is-user`, { params: payload }).pipe(
+    map(response => {
       return response;
-    });
+    }));
   }
 
   public authRegister(payload): Observable<RegisterResponse> {
     return this._http
-    .Post<RegisterResponse>(API_PATH.base + `user-register`, { params: payload })
-    .map(response => {
+    .Post<RegisterResponse>(API_PATH.base + `user-register`, { params: payload }).pipe(
+    map(response => {
       return response;
-    });
+    }));
   }
 
   public authForgotPassword(payload): Observable<ForgotResponse> {
     return this._http
-    .Post<ForgotResponse>(API_PATH.base + `forgot-password`, { params: payload })
-    .map(response => {
+    .Post<ForgotResponse>(API_PATH.base + `forgot-password`, { params: payload }).pipe(
+    map(response => {
       return response;
-    });
+    }));
   }
 
   public authForgotPasswordUpdate(payload): Observable<ForgotResponse> {
     return this._http
-    .Post<ForgotResponse>(API_PATH.base + `forgot-password-update`, { params: payload })
-    .map(response => {
+    .Post<ForgotResponse>(API_PATH.base + `forgot-password-update`, { params: payload }).pipe(
+    map(response => {
       return response;
-    });
+    }));
   }
 }

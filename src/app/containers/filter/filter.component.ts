@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, SimpleChanges, ViewEncapsulation } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import * as fromStore from '@core/store/index';
 import { Store } from '@ngrx/store';
 import { loaderAnimation } from '@core/animations/loader.animation';

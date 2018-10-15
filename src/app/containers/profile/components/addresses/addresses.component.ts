@@ -3,7 +3,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Address } from '../../../../core/store/models/user.model';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import swal from 'sweetalert2';
 
 @Component({

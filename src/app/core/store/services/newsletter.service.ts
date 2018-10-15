@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
-import {Observable} from 'rxjs/Observable';
-import 'rxjs/add/observable/of';
-import 'rxjs/add/observable/throw';
+import {Observable} from 'rxjs';
+
+
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {SubscribeForm} from '@models/newsletter.model';
 import {ApiResponse} from '@models/apiresponse.model';

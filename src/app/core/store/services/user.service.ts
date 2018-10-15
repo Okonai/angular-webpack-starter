@@ -1,7 +1,9 @@
+
+import {map} from 'rxjs/operators';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/of';
-import 'rxjs/add/observable/throw';
+import { Observable } from 'rxjs';
+
+
 import { Order, Address, Password } from '../models/user.model';
 import { ApplicationHttpClient } from '../../services/http.service';
 import { API_PATH } from '../../constants';
@@ -30,26 +32,26 @@ export class UserService {
 
     loadAddresses(): Observable<Address[]> {
         return this.http
-            .Get<{ addresses: Address[] }>(API_PATH.profile + 'get-distributor-addresses')
-            .map(response => {
+            .Get<{ addresses: Address[] }>(API_PATH.profile + 'get-distributor-addresses').pipe(
+            map(response => {
                 return response.addresses;
-            });
+            }));
     }
 
     loadOrders(): Observable<Order[]> {
         return this.http
-            .Get<{ orders: Order[] }>(API_PATH.profile + 'get-user-orders')
-            .map(response => {
+            .Get<{ orders: Order[] }>(API_PATH.profile + 'get-user-orders').pipe(
+            map(response => {
                 return response.orders;
-            });
+            }));
     }
 
     loadOrderDetails(payload: { id: number }): Observable<Order> {
         return this.http
-            .Get<{ order: Order }>(API_PATH.profile + 'get-user-order-details?id=' + payload.id)
-            .map(response => {
+            .Get<{ order: Order }>(API_PATH.profile + 'get-user-order-details?id=' + payload.id).pipe(
+            map(response => {
                 return response.order;
-            });
+            }));
     }
 
     /**
@@ -85,15 +87,15 @@ export class UserService {
             case 'shipping':
                 return this.http.Get<Address>(
                     API_PATH.profile + 'remove-distributor-shipping-address?id=' + payload.id
-                ).map(response => {
+                ).pipe(map(response => {
                     return response;
-                });
+                }));
             case 'billing':
                 return this.http.Get<Address>(
                     API_PATH.profile + 'remove-distributor-billing-address?id=' + payload.id
-                ).map(response => {
+                ).pipe(map(response => {
                     return response;
-                });
+                }));
             default:
                 return ;
         }

@@ -1,6 +1,8 @@
+
+import {map} from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { Seo } from '@models/seo.model';
 
 import { ApplicationHttpClient } from '@core/services/http.service';
@@ -12,7 +14,7 @@ export class SeoService {
 
   get(slug: string): Observable<Seo> {
     return this.http
-    .Get<{ tags: Seo } >(`base/get-meta?slug=${slug}`)
-    .map(res => res.tags);
+    .Get<{ tags: Seo } >(`base/get-meta?slug=${slug}`).pipe(
+    map(res => res.tags));
   }
 }

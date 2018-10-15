@@ -1,9 +1,10 @@
+
+import {combineLatest as observableCombineLatest,  Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 
 import * as fromStore from '@core/store/index';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/combineLatest';
+
 import { loaderAnimation } from '../../core/animations/loader.animation';
 
 @Component({
@@ -29,7 +30,7 @@ export class FrontpageComponent implements OnInit {
 
   ngOnInit() {
 
-    this.loadingFinished = Observable.combineLatest(
+    this.loadingFinished = observableCombineLatest(
       this.store.select(fromStore.getSliderLoaded),
       this.store.select(fromStore.getTilesLoaded),
       this.store.select(fromStore.getNewsLoaded),

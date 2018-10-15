@@ -1,7 +1,8 @@
+
+import {map} from 'rxjs/operators';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Observable ,  empty } from 'rxjs';
 import { ApplicationHttpClient } from '@core/services/http.service';
-import { empty } from 'rxjs/Observer';
 import { StaticPage } from '@models/static.model';
 import { API_PATH } from '@core/constants';
 
@@ -15,8 +16,8 @@ export class StaticService {
 
   loadStaticPage(id: string): Observable<StaticPage> {
     return this.http
-    .Get<{ staticPage: StaticPage}>(API_PATH.base + `get-static-page?id=${id}`)
-    .map((res) => res.staticPage);
+    .Get<{ staticPage: StaticPage}>(API_PATH.base + `get-static-page?id=${id}`).pipe(
+    map((res) => res.staticPage));
   }
 }
 

@@ -1,6 +1,7 @@
+
+import {combineLatest as observableCombineLatest,  Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { CanLoad, Route, Router, ActivatedRoute, Params } from '@angular/router';
-import { Observable } from 'rxjs';
 import * as fromStore from "../../store";
 import { Store } from '@ngrx/store';
 
@@ -23,7 +24,7 @@ export class SiteGuard implements CanLoad {
     let storeSite:Observable<string> = this.store.select(fromStore.getStoreSite);
     
     return new Promise<boolean>(resolve => {
-      Observable.combineLatest(
+      observableCombineLatest(
         isAuthenticated,
         storeSite
       ).subscribe(

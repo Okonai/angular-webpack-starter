@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import * as fromStore from '@store/index';
 import { Store } from '@ngrx/store';
 import {  ProductServiceGroup } from '@models/product.model';

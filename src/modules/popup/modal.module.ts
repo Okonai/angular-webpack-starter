@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import {CommonModule} from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import * as fromStore from '@store/index';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { Modal, SwalModal } from '@store/models/modal.model';
 

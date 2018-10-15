@@ -1,3 +1,5 @@
+
+import {filter} from 'rxjs/operators';
 import { Component, ChangeDetectionStrategy, Renderer2, HostListener, ViewEncapsulation } from '@angular/core';
 import * as fromStore from '../store';
 import { NavbarService } from '../services/navbar.service';
@@ -41,8 +43,8 @@ export class AppComponent {
       });
     });
 
-    this.router.events
-      .filter((event) => event instanceof NavigationStart)
+    this.router.events.pipe(
+      filter((event) => event instanceof NavigationStart))
       .subscribe((event) => {
         if (event['url'].indexOf('/auth') !== -1)
           this.nav.hide();

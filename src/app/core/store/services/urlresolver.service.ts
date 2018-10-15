@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/throw';
+import { Observable } from 'rxjs';
+
 
 import { ResolvedUrl, ParentCrumb } from '@models/urlresolver.model';
 import { ApplicationHttpClient } from '@core/services/http.service';

@@ -3,7 +3,7 @@ import { FormControl, Validators, FormGroup, FormBuilder, AbstractControl, FormG
 import { ErrorStateMatcher } from '@angular/material/core';
 
 
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { AuthForm } from '../../../../core/store/models/auth.model';
 import * as fromStore from "../../../../core/store/index";
 import { Store } from '@ngrx/store';

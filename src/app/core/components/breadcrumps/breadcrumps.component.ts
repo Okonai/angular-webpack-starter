@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
 
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import * as fromStore from '@store/index';
 import { Store, State } from '@ngrx/store';
 import { Product, ProductCard, ProductImage, ProductBreadcrumps, ProductAttribute } from '@models/product.model';

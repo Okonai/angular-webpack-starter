@@ -2,7 +2,7 @@ import { Component, OnInit, SimpleChanges, Input, NgModule } from '@angular/core
 import { Store, State } from '@ngrx/store';
 import * as fromStore from '../../../core/store/index'
 import { Banner } from '../../store/models/banner.model';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 

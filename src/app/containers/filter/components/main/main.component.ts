@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation, Input } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { Product } from '@models/product.model';
 import * as fromStore from '@core/store/index';
 import { Store } from '@ngrx/store';

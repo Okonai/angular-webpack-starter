@@ -3,7 +3,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import * as fromStore from '@store/index';
 import { shippingAddressFormGroup } from '@store/models/user.model';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 
 
 @Component({

@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewEncapsulation, Input, SimpleChanges, SimpleChange } from '@angular/core';
 import { Price } from '../../../../../../core/store/models/filter.model';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import * as fromStore from '../../../../../../core/store/index';
 import { Store } from '@ngrx/store';
 import wNumb from 'wnumb';

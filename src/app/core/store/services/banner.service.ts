@@ -1,5 +1,7 @@
+
+import {map} from 'rxjs/operators';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { ApplicationHttpClient } from '@core/services/http.service';
 import { Banner } from '@models/banner.model';
 import { API_PATH } from '@core/constants';
@@ -12,7 +14,7 @@ export class BannerService {
 
   get(payload): Observable<Banner> {
     return this.http
-    .Get<{ banners: Banner } >(API_PATH.base + `get-banner`, {params: payload})
-    .map(res => res.banners);
+    .Get<{ banners: Banner } >(API_PATH.base + `get-banner`, {params: payload}).pipe(
+    map(res => res.banners));
   }
 }

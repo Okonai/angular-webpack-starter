@@ -1,8 +1,9 @@
+
+import {merge as observableMerge, Observable} from 'rxjs';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import * as fromStore from '../../../../core/store';
 import {Store} from '@ngrx/store';
 import {Order} from '../../../../core/store/models/user.model';
-import {Observable} from 'rxjs/Observable';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import * as _ from 'lodash';
 
@@ -62,7 +63,7 @@ export class OrdersComponent implements OnInit {
         this.store.dispatch(new fromStore.SetOrderFiltersAction(this.filterForm.value));
       });
 
-      Observable.merge(
+      observableMerge(
         this.filterForm.get('date').valueChanges, 
         this.filterForm.get('status').valueChanges
       ).subscribe((date) => {

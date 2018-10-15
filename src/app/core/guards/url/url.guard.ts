@@ -1,10 +1,11 @@
+
+import {take, skip,  last } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 
 import * as fromStore from '../../../core/store/index';
 import { Store } from '@ngrx/store';
-import { last } from 'rxjs/operators';
 import { FilterModule } from '../../../containers/filter/filter.module';
 import { ProductModule } from '../../../containers/product/product.module';
 import { StaticModule } from '../../../containers/static/static.module';
@@ -26,8 +27,8 @@ export class UrlGuard implements CanActivate {
     this.store.dispatch(new fromStore.ResolveUrlAction({slug: slug}));
 
     return new Promise<boolean>(resolve => {
-      this.store.select(fromStore.getResolvedUrl)
-      .skip(1).take(1)
+      this.store.select(fromStore.getResolvedUrl).pipe(
+      skip(1),take(1),)
       .subscribe(resolvedUrl => {
         // console.log(resolvedUrl);
         // console.log(this.router.config)

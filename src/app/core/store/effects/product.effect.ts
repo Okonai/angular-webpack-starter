@@ -1,32 +1,31 @@
+
+import {of as observableOf,  Observable ,  forkJoin } from 'rxjs';
+
+import {switchMap, map, catchError,  mergeMap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 
 // import @ngrx
 import { Effect, Actions } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
 
-// import rxjs
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/of';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/debounceTime';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/switchMap';
+
+
+
+
 
 import * as productActions from '@actions/product.action';
 import * as filterActions from '@actions/filter.action';
 
 import { ProductService } from '@services/product.service';
-import { mergeMap } from 'rxjs/operators';
-import { forkJoin } from 'rxjs/observable/forkJoin';
 
 @Injectable()
 export class ProductEffects {
 
   @Effect()
   loadProducts$ = this.actions$
-    .ofType<productActions.LoadProductsAction>(productActions.productActionTypes.LOAD_PRODUCTS)
-    .map((action: productActions.LoadProductsAction) => action.payload)
-    .switchMap(payload => {
+    .ofType<productActions.LoadProductsAction>(productActions.productActionTypes.LOAD_PRODUCTS).pipe(
+    map((action: productActions.LoadProductsAction) => action.payload),
+    switchMap(payload => {
       return this.productService.loadProducts(payload).pipe(
         mergeMap(response => {
           return [
@@ -35,18 +34,18 @@ export class ProductEffects {
           ];
         })
       )
-    })
-    .catch(error => Observable.of(new productActions.ProductUpdateErrorAction({ error: error })));
+    }),
+    catchError(error => observableOf(new productActions.ProductUpdateErrorAction({ error: error }))),);
 
   @Effect()
   loadProduct$ = this.actions$
-    .ofType<productActions.LoadProductAction>(productActions.productActionTypes.LOAD_PRODUCT)
-    .map((action: productActions.ProductActions) => action.payload)
-    .switchMap(payload => {
-      return this.productService.loadProduct(payload.id)
-        .map( response => new productActions.LoadProductSuccessAction(response))
-        .catch(error => Observable.of(new productActions.LoadProductErrorAction({ error: error })));
-    });
+    .ofType<productActions.LoadProductAction>(productActions.productActionTypes.LOAD_PRODUCT).pipe(
+    map((action: productActions.ProductActions) => action.payload),
+    switchMap(payload => {
+      return this.productService.loadProduct(payload.id).pipe(
+        map( response => new productActions.LoadProductSuccessAction(response)),
+        catchError(error => observableOf(new productActions.LoadProductErrorAction({ error: error }))),);
+    }),);
 
 /*
   @Effect()

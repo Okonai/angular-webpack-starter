@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { Tags } from '../../../../../../core/store/models/filter.model';
 import * as fromStore from "../../../../../../core/store/index";
 import { Store } from '@ngrx/store';

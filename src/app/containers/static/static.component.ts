@@ -1,8 +1,10 @@
+
+import {distinctUntilChanged, take} from 'rxjs/operators';
 import { Component, OnInit, SimpleChanges, ViewEncapsulation  } from '@angular/core';
 import * as fromStore from '../../core/store/index';
 import { Store } from '@ngrx/store';
 import { StaticPage } from '../../core/store/models/static.model';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { loaderAnimation } from '../../core/animations/loader.animation';
 
 @Component({
@@ -29,7 +31,7 @@ export class StaticComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.store.select(fromStore.getResolvedUrl).take(1).distinctUntilChanged()
+    this.store.select(fromStore.getResolvedUrl).pipe(take(1),distinctUntilChanged(),)
     .subscribe(resolvedUrl => {
       this.store.dispatch(new fromStore.LoadStaticAction({staticId: resolvedUrl.id}));
     })

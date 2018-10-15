@@ -523,6 +523,10 @@ amqplib@^0.5.2:
     readable-stream "1.x >=1.1.9"
     safe-buffer "^5.0.1"
 
+angular-6-social-login@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/angular-6-social-login/-/angular-6-social-login-1.1.1.tgz#272f09b0a4be48bd367df9dad14e1b03ef844c9f"
+
 angular-router-loader@~0.8.5:
   version "0.8.5"
   resolved "https://registry.yarnpkg.com/angular-router-loader/-/angular-router-loader-0.8.5.tgz#42b378d0914c1ce412b851c1d92b80dbbe4f2fc5"
@@ -534,10 +538,6 @@ angular2-template-loader@~0.6.2:
   resolved "https://registry.yarnpkg.com/angular2-template-loader/-/angular2-template-loader-0.6.2.tgz#c0d44e90fff0fac95e8b23f043acda7fd1c51d7c"
   dependencies:
     loader-utils "^0.2.15"
-
-angular5-social-login@^1.0.9:
-  version "1.0.9"
-  resolved "https://registry.yarnpkg.com/angular5-social-login/-/angular5-social-login-1.0.9.tgz#6e4808da883da273c52618decca8c2274158fabf"
 
 ansi-align@^2.0.0:
   version "2.0.0"
@@ -8694,11 +8694,11 @@ rxjs@^6.0.0, rxjs@^6.1.0:
   dependencies:
     tslib "^1.9.0"
 
-rxjs@~5.5.6:
-  version "5.5.12"
-  resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-5.5.12.tgz#6fa61b8a77c3d793dbaf270bee2f43f652d741cc"
+rxjs@~6.2.0:
+  version "6.2.2"
+  resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-6.2.2.tgz#eb75fa3c186ff5289907d06483a77884586e1cf9"
   dependencies:
-    symbol-observable "1.0.1"
+    tslib "^1.9.0"
 
 safe-buffer@5.1.1:
   version "5.1.1"

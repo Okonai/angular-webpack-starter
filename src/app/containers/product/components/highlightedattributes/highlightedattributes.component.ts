@@ -1,9 +1,8 @@
 import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Observable ,  BehaviorSubject } from 'rxjs';
 import * as fromStore from '@store/index';
 import { Store, State } from '@ngrx/store';
 import { Product, ProductAttribute } from '@models/product.model';
-import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-product-highlighted-attributes',

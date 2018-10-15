@@ -1,6 +1,8 @@
+
+import {map} from 'rxjs/operators';
 import {Injectable} from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/throw';
+import { Observable } from 'rxjs';
+
 import { PromotionResponse } from '@models/promotion.model';
 import { ApplicationHttpClient } from '@core/services/http.service';
 import { API_PATH } from '@core/constants';
@@ -12,7 +14,7 @@ export class PromotionService {
 
   getFrontpagePromotion(): Observable<PromotionResponse> {
     return this.http
-      .Get<PromotionResponse>(API_PATH.product + `get-frontpage-promotion`)
-      .map(res => res);
+      .Get<PromotionResponse>(API_PATH.product + `get-frontpage-promotion`).pipe(
+      map(res => res));
   }
 }

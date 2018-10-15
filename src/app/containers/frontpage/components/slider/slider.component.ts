@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import {Observable} from "rxjs/Observable";
+import {Observable} from "rxjs";
 import {Store} from "@ngrx/store";
 import {Slide} from "../../../../core/store/models/slider.model";
 import * as fromStore from "../../../../core/store/index";

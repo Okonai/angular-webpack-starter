@@ -1,3 +1,5 @@
+
+import {switchMap} from 'rxjs/operators';
 import { Injectable} from '@angular/core';
 
 import { Effect, Actions } from '@ngrx/effects';
@@ -10,13 +12,13 @@ import * as fromServices from '../services';
 export class PromotionEffects {
   @Effect()
   loadFrontpagePromotion$ = this.actions$
-    .ofType<promotionAcions.LoadFrontpagePromotion>(promotionAcions.LOAD_FRONTPAGE_PROMOTION)
-    .switchMap(() => this.promotionService.getFrontpagePromotion())
-    .switchMap(res => [
+    .ofType<promotionAcions.LoadFrontpagePromotion>(promotionAcions.LOAD_FRONTPAGE_PROMOTION).pipe(
+    switchMap(() => this.promotionService.getFrontpagePromotion()),
+    switchMap(res => [
       new productActions.LoadProductsSuccessAction(res),
       // new productActions.ProductUpdateSuccessAction({ productVariables: res.productBasics }),
       new promotionAcions.LoadFrontpagePromotionSuccess(res)
-    ]);
+    ]),);
     /*.catch(
       new promotionAcions.LoadFrontpagePromotionFail({status: res.status})
     );*/

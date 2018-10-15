@@ -1,8 +1,10 @@
+
+import {take} from 'rxjs/operators';
 import { Component, OnInit, ViewChild, ElementRef, ViewEncapsulation } from '@angular/core';
 import {SearchCategory, SearchProduct} from "../../store/models/search.model";
 
 import {Store} from "@ngrx/store";
-import {Observable} from "rxjs/Observable";
+import {Observable} from "rxjs";
 import * as fromStore from "../../store";
 import { Router } from '@angular/router';
 import { Navigation } from '../../store/models/navigation.model';
@@ -37,7 +39,7 @@ export class SearchComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.searchQuery$ = this.store.select(fromStore.getSearchQuery).take(1);
+    this.searchQuery$ = this.store.select(fromStore.getSearchQuery).pipe(take(1));
     this.searchCategories$ = this.store.select(fromStore.getSearchResultCategories);
     this.searchProducts$ = this.store.select(fromStore.getSearchResultProducts);
     this.searchLoading$ = this.store.select(fromStore.getSearchLoading);

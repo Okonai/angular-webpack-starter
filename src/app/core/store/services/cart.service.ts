@@ -1,6 +1,8 @@
+
+import {map} from 'rxjs/operators';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/throw';
+import { Observable } from 'rxjs';
+
 
 import { ApplicationHttpClient } from '@core/services/http.service';
 
@@ -22,11 +24,11 @@ export class CartService {
   public syncCart(cart: CartState): Observable<RootCart> {
     console.log(cart);
     return this._http
-      .Post<RootCart>(API_PATH.cart + `merge-cart`, cart)
-      .map(response => {
+      .Post<RootCart>(API_PATH.cart + `merge-cart`, cart).pipe(
+      map(response => {
         console.log(response);
         return response;
-      });
+      }));
   }
   /**
    * DEPRECATED
@@ -34,10 +36,10 @@ export class CartService {
    */
   public addProduct(product: CartItem): Observable<RootCart> {
     return this._http
-      .Post<RootCart>(API_PATH.cart + `add-product`, product)
-      .map(response => {
+      .Post<RootCart>(API_PATH.cart + `add-product`, product).pipe(
+      map(response => {
         return response;
-      });
+      }));
   }
 
   /**
@@ -47,10 +49,10 @@ export class CartService {
   public removeProduct(product: CartItem): Observable<RootCart> {
 
     return this._http
-      .Post<RootCart>(API_PATH.cart + `remove-product`, product)
-      .map(response => {
+      .Post<RootCart>(API_PATH.cart + `remove-product`, product).pipe(
+      map(response => {
         return response;
-      });
+      }));
   }
 
 }

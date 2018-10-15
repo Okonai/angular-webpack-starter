@@ -2,8 +2,7 @@ import { Component, OnInit, NgModule, Input, SimpleChanges } from '@angular/core
 import * as fromStore from '@store/index'
 import { Store, State } from '@ngrx/store';
 import { Product } from '@models/product.model';
-import { Observable } from 'rxjs/Observable';
-import { BehaviorSubject } from 'rxjs';
+import { Observable ,  BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-related',

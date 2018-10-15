@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { FormGroup, Validators, FormBuilder, FormControl } from '@angular/forms';
 import { User } from '../../../../core/store/models/auth.model';
 import * as fromStore from '../../../../core/store';

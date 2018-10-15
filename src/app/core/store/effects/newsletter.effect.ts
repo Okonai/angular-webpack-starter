@@ -1,16 +1,17 @@
+
+import {of as observableOf, Observable} from 'rxjs';
+
+import {catchError, map, switchMap} from 'rxjs/operators';
 import {Injectable} from '@angular/core';
 
 // import @ngrx
 import { Effect, Actions } from '@ngrx/effects';
 import {Action} from '@ngrx/store';
 
-// import rxjs
-import {Observable} from 'rxjs/Observable';
-import 'rxjs/add/observable/of';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/debounceTime';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/switchMap';
+
+
+
+
 
 // import services
 import {UserService} from '../services/user.service';
@@ -53,27 +54,27 @@ export class NewsletterEffect {
      */
     @Effect()
     public subscribe: Observable<Action> = this.actions
-        .ofType(newsletterActions.newsletterActionTypes.SUBSCRIBE)
-        .map((action: newsletterActions.NewsletterActions) => action.payload)
-        .switchMap((payload: SubscribePayload) => {
+        .ofType(newsletterActions.newsletterActionTypes.SUBSCRIBE).pipe(
+        map((action: newsletterActions.NewsletterActions) => action.payload),
+        switchMap((payload: SubscribePayload) => {
 
             let isValid = payload.formControlManager.IsValid();
             if (isValid) {
-                return this.newsletterService.subscribe(payload.subscribeForm)
-                    .map((newsletter) => {
+                return this.newsletterService.subscribe(payload.subscribeForm).pipe(
+                    map((newsletter) => {
 
                         return new newsletterActions.SubscribeSuccessAction(payload);
-                    })
-                    .catch(
+                    }),
+                    catchError(
                         (httpErrorResponse: HttpErrorResponse) => {
                             let errorMessageServerSide = payload.formControlManager.GetErrorForMessage(httpErrorResponse);
 
-                            return Observable.of(new newsletterActions.SubscribeErrorAction({
+                            return observableOf(new newsletterActions.SubscribeErrorAction({
                                 error: httpErrorResponse.error,
                                 errorMessage: errorMessageServerSide
                             }));
                         }
-                    );
+                    ),);
             } else {
                 let clientSideErrors = payload.formControlManager.GetAllClientAndServerSideErrorsForState();
 
@@ -81,13 +82,13 @@ export class NewsletterEffect {
                 let errorMessageClientSide = payload.formControlManager.GetErrorForMessage();
 
                 // belerakom a statebe a kliensoldali hibákat is
-                return Observable.of(new newsletterActions.SubscribeErrorAction(<SubscribeErrorActionPayload>{
+                return observableOf(new newsletterActions.SubscribeErrorAction(<SubscribeErrorActionPayload>{
                     error: clientSideErrors ? clientSideErrors.error : {},
                     errorMessage: errorMessageClientSide
                 }));
             }
 
-        });
+        }),);
 
     /**
      * @constructor
