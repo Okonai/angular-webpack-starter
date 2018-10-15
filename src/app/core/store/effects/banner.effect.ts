@@ -7,9 +7,6 @@ import { Actions, Effect } from '@ngrx/effects';
 import { BannerService } from '../services/banner.service';
 import * as bannerActions from '../actions/banner.action';
 
-
-
-
 @Injectable()
 export class BannerEffects {
   @Effect()
@@ -19,9 +16,9 @@ export class BannerEffects {
     switchMap(payload => {
       return this.bannerService.get(payload).pipe(
         map(res => new bannerActions.LoadBannerSuccessAction(res)),
-        catchError(error => observableOf(new bannerActions.LoadBannerErrorAction({error: error}))),);
-    }),);
-  constructor(
+        catchError(error => observableOf(new bannerActions.LoadBannerErrorAction({error: error}))));
+    }));
+  constructor (
     private bannerService: BannerService,
     private actions$: Actions
   ) { }

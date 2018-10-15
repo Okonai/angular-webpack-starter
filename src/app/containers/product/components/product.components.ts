@@ -29,7 +29,6 @@ export const COMPONENTS = [
   RelatedComponent,
 ];
 
-
 @NgModule({
   imports: [
     MaterialModule,

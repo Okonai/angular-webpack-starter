@@ -33,7 +33,7 @@ const initialState: SearchState = {
  * @param {State} state Current state
  * @param {Actions} action Incoming action
  */
-export function reducer(state: any = initialState, action: SearchActions): SearchState {
+export function reducer (state: any = initialState, action: SearchActions): SearchState {
 
   switch (action.type) {
     case searchActionTypes.SEARCH:
@@ -63,7 +63,6 @@ export function reducer(state: any = initialState, action: SearchActions): Searc
       return state;
   }
 }
-
 
 export const getSearchLoading = (state: SearchState) => state.loading;
 export const getSearchLoaded = (state: SearchState) => state.loaded;

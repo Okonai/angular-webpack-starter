@@ -80,6 +80,18 @@ exports.MY_CLIENT_PRODUCTION_PLUGINS = [
 
 exports.MY_CLIENT_RULES = [
   // use this to import your own rules for Client webpack config.
+  {
+    test: /\.(gif|png|jpe?g|svg)$/i,
+    use: [
+      'file-loader',
+      {
+        loader: 'image-webpack-loader',
+        options: {
+          bypassOnDebug: true
+        },
+      },
+    ],
+  }
 ]
 
 exports.MY_TEST_RULES = [

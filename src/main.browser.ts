@@ -10,7 +10,7 @@ if ('production' === ENV) {
   enableProdMode();
 }
 
-export function main(): Promise<any> {
+export function main (): Promise<any> {
   if (module.hot) {
     module.hot.accept();
   }

@@ -1,3 +1,70 @@
+
+
+$sprite: url("/assets/img/sprite.svg");
+
+@mixin sprite($x:0, $y:0) {
+  background-image: $sprite;
+  background-size: 900px 900px;
+  background-position: #{-$x}px #{-$y}px;
+}
+
+@mixin centeredImage() {
+
+  position: relative;
+  
+  img {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    max-width: 100%;
+    max-height: 100%;
+    margin: auto;
+  }
+}
+
+//Colors
+$dark-grey: #414042;
+$mid-grey: #808285;
+$light-grey: #e6e7e8;
+$pink: #c42695;
+
+@function calculateRem($size) {
+  $remSize: $size / 16px;
+  @return #{$remSize}rem;
+}
+
+@function cR($size) {
+  $remSize: $size / 16;
+  @return #{$remSize}rem;
+}
+
+@mixin fontSize($size) {
+  font-size: $size; //Fallback in px
+  font-size: calculateRem($size);
+}
+
+@mixin no-select {
+   -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
+
+//Bootstrap overrides 
+$primary: $pink;
+
 $break-small: 320px;
 $break-mobile: 800px;
 $break-large: 1200px;
+
+$container-max-widths: (
+    sm: 540px,
+    md: 720px,
+    lg: 960px,
+    xl: 1200px,
+);

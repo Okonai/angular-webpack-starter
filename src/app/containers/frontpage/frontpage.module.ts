@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {RouterModule} from "@angular/router";
-import {FrontpageComponent} from "./frontpage.component";
+import {RouterModule} from '@angular/router';
+import {FrontpageComponent} from './frontpage.component';
 
-import {NewsService} from "../../core/store/services";
-import {FrontpageComponentsModule} from "./components/frontpage.components";
+import {NewsService} from '../../core/store/services';
+import {FrontpageComponentsModule} from './components/frontpage.components';
 import {FormsModule} from '@angular/forms';
 import { MaterialModule } from '@modules/material';
 import { CurrencyFormatPipeModule } from '../../core/pipes/currency.pipe';
@@ -17,11 +17,11 @@ const COMPONENTS = [
 @NgModule({
   imports: [
     CommonModule,
-    FrontpageComponentsModule,    
+    FrontpageComponentsModule,
     MaterialModule,
       RouterModule.forChild([
       { path: '', component: FrontpageComponent }
-    ]),    
+    ]),
     CurrencyFormatPipeModule,
     NgxPermissionsModule.forChild()
   ],

@@ -2,7 +2,6 @@ import * as fromNews from '../actions/news.action';
 import { News, NewsItem } from '../models/news.model';
 import * as _ from 'lodash';
 
-
 export interface NewsState {
   news: NewsItem[][];
   loaded: boolean;
@@ -15,7 +14,7 @@ export const initialState: NewsState = {
   loading: false
 };
 
-export function reducer(
+export function reducer (
   state = initialState,
   action: fromNews.NewsActions
 ): NewsState {

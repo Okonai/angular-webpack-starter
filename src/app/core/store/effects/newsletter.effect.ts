@@ -27,7 +27,6 @@ import * as fromStore from '../index';
 import {ApiResponse} from '@models/apiresponse.model';
 import {HttpErrorResponse} from '@angular/common/http';
 
-
 /**
  * Effects offer a way to isolate and easily test side-effects within your
  * application.

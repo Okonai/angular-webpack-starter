@@ -8,11 +8,6 @@ import { Injectable } from '@angular/core';
 import { Effect, Actions } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
 
-
-
-
-
-
 import * as productActions from '@actions/product.action';
 import * as filterActions from '@actions/filter.action';
 
@@ -33,9 +28,9 @@ export class ProductEffects {
             new filterActions.LoadFilterProductsSuccessAction(response),
           ];
         })
-      )
+      );
     }),
-    catchError(error => observableOf(new productActions.ProductUpdateErrorAction({ error: error }))),);
+    catchError(error => observableOf(new productActions.ProductUpdateErrorAction({ error: error }))));
 
   @Effect()
   loadProduct$ = this.actions$
@@ -44,43 +39,10 @@ export class ProductEffects {
     switchMap(payload => {
       return this.productService.loadProduct(payload.id).pipe(
         map( response => new productActions.LoadProductSuccessAction(response)),
-        catchError(error => observableOf(new productActions.LoadProductErrorAction({ error: error }))),);
-    }),);
+        catchError(error => observableOf(new productActions.LoadProductErrorAction({ error: error }))));
+    }));
 
-/*
-  @Effect()
-  productInfo: Observable<Action> = this.actions$
-    .ofType(productActions.productActionTypes.PRODUCT_BASIC)
-    .map((action: productActions.ProductBasicAction) => action.payload)
-    .switchMap(payload => this.service.getProducts(payload.productIds))
-    .switchMap(res => [
-      new productActions.ProductBasicSuccessAction({ productBasics: res }),
-      // new productActions.ProductUpdateSuccessAction({productVariables: res.variables})
-    ])
-    .catch(error => Observable.of(new productActions.ProductBasicErrorAction({ error: error })));
-
-  @Effect()
-  updateProduct$: Observable<Action> = this.actions$
-    .ofType(productActions.productActionTypes.PRODUCT_UPDATE)
-    .map((action: productActions.ProductActions) => action.payload)
-    .switchMap(payload => this.service.updateProduct(payload.productId))
-    .switchMap(res => [
-      new productActions.ProductUpdateSuccessAction({ productVariables: res }),
-      // new productActions.ProductUpdateSuccessAction({productId: res.productId, productVariable: variable}),
-    ])
-    .catch(error => Observable.of(new productActions.ProductUpdateErrorAction({ error: error })));
-
-  @Effect()
-  extendProduct$: Observable<Action> = this.actions$
-    .ofType(productActions.productActionTypes.EXTEND_PRODUCT)
-    .map((action: productActions.ProductActions) => action.payload)
-    .switchMap(payload => {
-      return this.service.getProduct(payload.productId)
-        .map(extend => new productActions.ExtendProductSuccessAction({ productExtends: extend }))
-        .catch(error => Observable.of(new productActions.ExtendProductErrorAction({ error: error })));
-    });
-*/
-  constructor(
+  constructor (
     private actions$: Actions,
     private service: ProductService,
     private productService: ProductService

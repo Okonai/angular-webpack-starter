@@ -10,14 +10,14 @@ import { ResolvedUrl } from '../store/models/urlresolver.model';
 @Injectable()
 export class SeoResolver implements Resolve<ResolvedUrl> {
 
-  constructor(
+  constructor (
     private _Meta: Meta,
     private _Title: Title,
     private _store: Store < fromStore.MainState > ,
   ) {}
 
-  resolve(route: ActivatedRouteSnapshot): Promise<ResolvedUrl> {
-    const slug = (route.params.slug) ? route.params.slug.toString().replace(/\-([csarp])([0-9]+)$/i, '') : 'alma';
+  resolve (route: ActivatedRouteSnapshot): Promise<ResolvedUrl> {
+    const slug = (route.params.slug) ? route.params.slug.toString().replace(/\-([csarp])([0-9]+)$/i, '') : '/';
     this._store.dispatch(new fromStore.LoadSeoAction({ slug: slug }));
     return new Promise<ResolvedUrl>(resolve => {
       this._store.select(fromStore.getSeo).pipe(skip(1)).subscribe((tags) => {

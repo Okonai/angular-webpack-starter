@@ -22,7 +22,7 @@ export class NavigationEffects {
           );
       }
     ));
-  constructor(
+  constructor (
     private actions$: Actions,
     private navigationService: fromServices.NavigationService
   ) {}

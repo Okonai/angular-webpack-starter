@@ -1,12 +1,9 @@
-import { createSelector } from '@ngrx/store';
+import { createSelector, createFeatureSelector } from '@ngrx/store';
 
 import * as fromFeature from '../reducers';
 import * as fromAuth from '@reducers/auth.reducer';
 
-export const getAuthState = createSelector(
-    fromFeature.getStoreState,
-    (state: fromFeature.MainState) => state.auth
-  );
+  export const getAuthState = createFeatureSelector<fromAuth.AuthState>('auth');
 
   /**
    * Returns The access_token for the current user
@@ -28,8 +25,6 @@ export const getAuthState = createSelector(
   export const saveAccessToken = createSelector(getAuthState, fromAuth.getAuth, (auth) => {
     return auth.authForm.save;
   });
-
-
 
   /**
    * Returns The pages array of products
@@ -140,7 +135,6 @@ export const getAuthState = createSelector(
     return auth.user.access_token != null;
   });
 
-
   /**
    * Returns the Authenticated User data
    * @function getAuthenticatedUser
@@ -158,5 +152,3 @@ export const getAuthState = createSelector(
    * @return {User}
    */
   export const getAuthLoaded = createSelector(getAuthState, fromAuth.getAuthLoaded);
-
-

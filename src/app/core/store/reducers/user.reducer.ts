@@ -80,7 +80,7 @@ const initialState: UserState = {
  * @param {State} state Current state
  * @param {Actions} action Incoming action
  */
-export function reducer(state: any = initialState, action: UserActions): UserState {
+export function reducer (state: any = initialState, action: UserActions): UserState {
 
     switch (action.type) {
 
@@ -125,7 +125,6 @@ export function reducer(state: any = initialState, action: UserActions): UserSta
                 loaded: false,
                 error: action.payload
             };
-
 
         case userActionTypes.SELECT_ADDRESS_TYPE:
             return {
@@ -181,7 +180,6 @@ export function reducer(state: any = initialState, action: UserActions): UserSta
                 loading: true,
             };
 
-
         case userActionTypes.DELETE_ADDRESS_SUCCESS:
             return {
                 ...state,
@@ -192,7 +190,6 @@ export function reducer(state: any = initialState, action: UserActions): UserSta
                     selectedAddressId: 0,
                 }),
             };
-
 
         case userActionTypes.SET_PASSWORD:
             return {

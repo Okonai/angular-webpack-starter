@@ -55,7 +55,7 @@ const initialState: FilterState = {
   }
 };
 
-export function reducer(state = initialState, action: filter.FilterActions): FilterState {
+export function reducer (state = initialState, action: filter.FilterActions): FilterState {
 
   switch (action.type) {
     case filter.filterActionTypes.LOAD_FILTERS:
@@ -96,13 +96,13 @@ export function reducer(state = initialState, action: filter.FilterActions): Fil
           ...state.selected,
           ...{
             category: action.payload.category,
-            'manufacturers[]': selected.manufacturers.reduce(function(filtered, option, index) {
+            'manufacturers[]': selected.manufacturers.reduce(function (filtered, option, index) {
               if (option) {
                  filtered.push(state.filters.manufacturers[index].value);
               }
               return filtered;
             }, []),
-            'stock[]': selected.stock.reduce(function(filtered, option, index) {
+            'stock[]': selected.stock.reduce(function (filtered, option, index) {
               if (option) {
                  filtered.push(state.filters.stock[index].value);
               }
@@ -119,7 +119,6 @@ export function reducer(state = initialState, action: filter.FilterActions): Fil
         }
       };
 
-
     case filter.filterActionTypes.LOAD_FILTER_PRODUCTS_SUCCESS:
       let ids = action.payload.products.map((product) => product.id);
       return {
@@ -132,21 +131,6 @@ export function reducer(state = initialState, action: filter.FilterActions): Fil
         products: ids,
         pager: action.payload.pager
       };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     /*case filter.filterActionTypes.FILTER_TAG_ADD:
       return {

@@ -13,28 +13,28 @@ import { loaderAnimation } from '../../core/animations/loader.animation';
   styleUrls: ['./static.component.scss'],
   animations: [
     loaderAnimation
-  ],  
+  ],
   encapsulation: ViewEncapsulation.None
 })
 
 export class StaticComponent implements OnInit {
 
-  staticPage$: Observable<StaticPage>;  
+  staticPage$: Observable<StaticPage>;
   loadingFinished$: Observable<boolean>;
 
-  constructor(private store: Store<fromStore.MainState>) { }
+  constructor (private store: Store<fromStore.MainState>) { }
 
-  ngOnChanges(changes: SimpleChanges) {    
-    if( changes.resolvedId.currentValue > 0) {
+  ngOnChanges (changes: SimpleChanges) {
+    if ( changes.resolvedId.currentValue > 0) {
       this.store.dispatch(new fromStore.LoadStaticAction({staticId: changes.resolvedId.currentValue}));
-    }    
+    }
   }
 
-  ngOnInit() {
-    this.store.select(fromStore.getResolvedUrl).pipe(take(1),distinctUntilChanged(),)
+  ngOnInit () {
+    this.store.select(fromStore.getResolvedUrl).pipe(take(1), distinctUntilChanged())
     .subscribe(resolvedUrl => {
       this.store.dispatch(new fromStore.LoadStaticAction({staticId: resolvedUrl.id}));
-    })
+    });
     this.staticPage$ = this.store.select(fromStore.getStaticPage);
     this.loadingFinished$ = this.store.select(fromStore.getStaticPageLoaded);
   }

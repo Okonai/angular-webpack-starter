@@ -26,25 +26,27 @@ export class FilterComponent implements OnInit {
   breakpoint$: Observable<String>;
   filterForm: FormGroup;
 
-  constructor(
+  constructor (
     private store: Store<fromStore.MainState>,
     private activatedRoute: ActivatedRoute,
     private fb: FormBuilder,
   ) {}
 
-  ngOnInit() {
+  ngOnInit () {
     this.filterForm = this.fb.group({
       category: [],
       attributes: [],
       page: [],
-      sort:['relevant']
+      sort: ['relevant']
     });
     const resolvedUrl: ResolvedUrl = this.activatedRoute.snapshot.data.resolvedUrl;
     this.breakpoint$ = this.store.select(fromStore.getActiveBreakpoint);
     this.resolvedId = resolvedUrl.id;
 
-    //this.store.dispatch(new fromStore.SelectCategory(resolvedUrl.id));
-    this.store.dispatch(new fromStore.LoadFilterAction({ category: resolvedUrl.id, promotion: resolvedUrl.controllerName === 'promotion' ? resolvedUrl.id : 0 }));
+    // this.store.dispatch(new fromStore.SelectCategory(resolvedUrl.id));
+    this.store.dispatch(new fromStore.LoadFilterAction(
+      { category: resolvedUrl.id, promotion: resolvedUrl.controllerName === 'promotion' ? resolvedUrl.id : 0 }
+    ));
 
     this.activatedRoute.queryParams.subscribe((params: Params) => {
       let tag: String = params['tag'];

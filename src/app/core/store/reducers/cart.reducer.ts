@@ -17,7 +17,7 @@ const initialState: CartState = cartAdapter.getInitialState({
   },
 });
 
-export function reducer(
+export function reducer (
   state = initialState,
   action: fromCart.CartActions
 ): CartState {
@@ -37,8 +37,8 @@ export function reducer(
     case fromCart.cartActionTypes.CART_ADD: {
       const cartProductEntity = state.entities[action.payload.id];
       if (cartProductEntity !== undefined) {
-        const payloadQuantity = action.payload.changes.variable.quantity;
-        _.set(action.payload, 'changes.variable.quantity', cartProductEntity.variable.quantity + payloadQuantity);
+        const payloadQuantity = action.payload.variable.quantity;
+        _.set(action.payload, 'variable.quantity', cartProductEntity.variable.quantity + payloadQuantity);
       }
       return cartAdapter.upsertOne(action.payload,
         {

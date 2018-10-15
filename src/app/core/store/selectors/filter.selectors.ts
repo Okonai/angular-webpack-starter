@@ -1,12 +1,9 @@
-import { createSelector } from '@ngrx/store';
+import { createSelector, createFeatureSelector } from '@ngrx/store';
 
 import * as fromFeature from '@store/reducers';
 import * as fromFilter from '@reducers/filter.reducer';
 
-export const getFilterState = createSelector(
-  fromFeature.getStoreState,
-  (state: fromFeature.MainState) => state.filter
-);
+export const getFilterState = createFeatureSelector<fromFilter.FilterState>('filter');
 
 /*
 export const {
@@ -76,9 +73,8 @@ export const getShowFilterCategory = createSelector(getFilterState, fromFilter.g
     } else {
       return false;
     }
-  } else return false;
+  } else { return false; }
 });
-
 
 /**
  * Returns The Categories of Filter

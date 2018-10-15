@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from "@angular/router";
+import { RouterModule } from '@angular/router';
 import { StaticComponent } from './static.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '@modules/material';
@@ -13,10 +13,10 @@ const COMPONENTS = [
 ];
 
 @NgModule({
-  imports: [    
-    CommonModule,  
+  imports: [
+    CommonModule,
     MaterialModule,
-    FormsModule, 
+    FormsModule,
     StoreModule.forFeature('static', reducer),
     RouterModule.forChild([
       { path: '', component: StaticComponent}

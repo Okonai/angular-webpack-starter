@@ -18,7 +18,7 @@ export const initialState: PromotionState = {
   }
 };
 
-export function reducer(
+export function reducer (
   state = initialState,
   action: fromPromotion.PromotionActions
 ): PromotionState {
@@ -34,7 +34,7 @@ export function reducer(
     }
 
     case fromPromotion.LOAD_FRONTPAGE_PROMOTION_SUCCESS: {
-      const productIds =  _.values(_.mapValues(action.payload.products, 'id'))
+      const productIds =  _.values(_.mapValues(action.payload.products, 'id'));
       return {
         ...state,
         status: {

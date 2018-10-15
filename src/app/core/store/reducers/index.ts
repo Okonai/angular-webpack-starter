@@ -34,6 +34,7 @@ import * as fromBanner from './banner.reducer';
 import * as fromCart from './cart.reducer';
 
 export interface MainState {
+    router: fromRouter.RouterReducerState<RouterStateUrl>;
     layout: fromLayout.LayoutState;
     url: fromUrl.UrlState;
     navigation: fromNavigation.NavigationState;
@@ -53,112 +54,120 @@ export interface MainState {
     cart: fromCart.CartState;
 }
 
-export const reducers: ActionReducerMap<MainState> = {
-    layout: fromLayout.reducer,
-    url: fromUrl.reducer,
-    navigation: fromNavigation.reducer,
-    news: fromNews.reducer,
-    slider: fromSlider.reducer,
-    tiles: fromTiles.reducer,
-    promotion: fromPromotion.reducer,
-    user: fromUsers.reducer,
-    search: fromSearch.reducer,
-    product: fromProduct.reducer,
-    modal: fromModal.reducer,
-    filter: fromFilter.reducer,
-    auth: fromAuth.reducer,
-    static: fromStatic.reducer,
-    seo: fromSeo.reducer,
-    banner: fromBanner.reducer,
-    cart: fromCart.reducer
+export interface RouterStateUrl {
+  url: string;
+  params: Params;
+  queryParams: Params;
+}
+
+const modules = {
+  router: routerReducer,
+  layout: fromLayout.reducer,
+  url: fromUrl.reducer,
+  navigation: fromNavigation.reducer,
+  news: fromNews.reducer,
+  slider: fromSlider.reducer,
+  tiles: fromTiles.reducer,
+  promotion: fromPromotion.reducer,
+  user: fromUsers.reducer,
+  search: fromSearch.reducer,
+  product: fromProduct.reducer,
+  modal: fromModal.reducer,
+  filter: fromFilter.reducer,
+  auth: fromAuth.reducer,
+  static: fromStatic.reducer,
+  seo: fromSeo.reducer,
+  banner: fromBanner.reducer,
+  cart: fromCart.reducer
 };
 
-export const getStoreState = createFeatureSelector<MainState>('store');
+export const syncReducers = {
+  router: routerReducer,
+  layout: fromLayout.reducer,
+  url: fromUrl.reducer,
+  navigation: fromNavigation.reducer,
+  news: fromNews.reducer,
+  slider: fromSlider.reducer,
+  tiles: fromTiles.reducer,
+  promotion: fromPromotion.reducer,
+  user: fromUsers.reducer,
+  search: fromSearch.reducer,
+  product: fromProduct.reducer,
+  modal: fromModal.reducer,
+  filter: fromFilter.reducer,
+  auth: fromAuth.reducer,
+  static: fromStatic.reducer,
+  seo: fromSeo.reducer,
+  banner: fromBanner.reducer,
+  cart: fromCart.reducer
+};
 
-  export interface RouterStateUrl {
-    url: string;
-    params: Params;
-    queryParams: Params;
-  }
-
-  const modules = {
-    'router': routerReducer,
-  };
-
-  export interface AppState {
-    router: fromRouter.RouterReducerState<RouterStateUrl>;
-  }
-
-  export const syncReducers = {
-    router: routerReducer,
-  };
-
-  export class CustomSerializer implements RouterStateSerializer<RouterStateUrl> {
-    serialize (routerState: RouterStateSnapshot): RouterStateUrl {
-      let route = routerState.root;
-      while (route.firstChild) {
-        route = route.firstChild;
-      }
-
-      const { url, root: { queryParams } } = routerState;
-      const { params } = route;
-
-      // Only return an object including the URL, params and query params
-      // instead of the entire snapshot
-      return { url, params, queryParams };
+export class CustomSerializer implements RouterStateSerializer<RouterStateUrl> {
+  serialize (routerState: RouterStateSnapshot): RouterStateUrl {
+    let route = routerState.root;
+    while (route.firstChild) {
+      route = route.firstChild;
     }
-  }
 
-  const deepCombineReducers = (allReducers: any) => {
-    Object.getOwnPropertyNames(allReducers).forEach((prop) => {
-      if (allReducers.hasOwnProperty(prop)
-        && allReducers[prop] !== null
-        && typeof allReducers[prop] !== 'function') {
-        allReducers[prop] = deepCombineReducers(allReducers[prop]);
-      }
-    });
-    return combineReducers(allReducers);
+    const { url, root: { queryParams } } = routerState;
+    const { params } = route;
+
+    // Only return an object including the URL, params and query params
+    // instead of the entire snapshot
+    return { url, params, queryParams };
+  }
+}
+
+const deepCombineReducers = (allReducers: any) => {
+  Object.getOwnPropertyNames(allReducers).forEach((prop) => {
+    if (allReducers.hasOwnProperty(prop)
+      && allReducers[prop] !== null
+      && typeof allReducers[prop] !== 'function') {
+      allReducers[prop] = deepCombineReducers(allReducers[prop]);
+    }
+  });
+  return combineReducers(allReducers);
+};
+
+const createReducer = (asyncReducers = {}) => {
+  let allReducers = { ...syncReducers, ...asyncReducers };
+  return deepCombineReducers(allReducers);
+};
+
+// Generate a reducer to set the root state in dev mode for HMR
+function stateSetter (reducer: ActionReducer<any>): ActionReducer<any> {
+  return function (state: any, action: any) {
+    if (action.type === 'SET_ROOT_STATE') {
+      return action.payload;
+    }
+    return reducer(state, action);
   };
+}
 
-  const createReducer = (asyncReducers = {}) => {
-    let allReducers = { ...syncReducers, ...asyncReducers };
-    return deepCombineReducers(allReducers);
+function logout (reducer: ActionReducer<MainState>): ActionReducer<MainState> {
+  return function (state: MainState, action: any): MainState {
+    if (action.type === '[User] Logout Success') {
+      state = undefined;
+    }
+    return reducer(state, action);
   };
+}
 
-  // Generate a reducer to set the root state in dev mode for HMR
-  function stateSetter (reducer: ActionReducer<any>): ActionReducer<any> {
-    return function (state: any, action: any) {
-      if (action.type === 'SET_ROOT_STATE') {
-        return action.payload;
-      }
-      return reducer(state, action);
-    };
-  }
+export function resetOnLogout (reducer: ActionReducer<MainState>): ActionReducer<MainState> {
+  return function (state, action) {
+    let newState;
+    if (action.type === '[User] Logout Success') {
+      newState = Object.assign({}, state);
+      Object.keys(modules).forEach((key) => {
+        newState[key] = modules[key]['initialState'];
+      });
+    }
+    return reducer(newState || state, action);
+  };
+}
 
-  function logout (reducer: ActionReducer<AppState>): ActionReducer<AppState> {
-    return function (state: AppState, action: any): AppState {
-      if (action.type === '[User] Logout Success') {
-        state = undefined;
-      }
-      return reducer(state, action);
-    };
-  }
-
-  export function resetOnLogout (reducer: ActionReducer<AppState>): ActionReducer<AppState> {
-    return function (state, action) {
-      let newState;
-      if (action.type === '[User] Logout Success') {
-        newState = Object.assign({}, state);
-        Object.keys(modules).forEach((key) => {
-          newState[key] = modules[key]['initialState'];
-        });
-      }
-      return reducer(newState || state, action);
-    };
-  }
-
-  export const DEV_REDUCERS: MetaReducer<AppState>[] = [stateSetter, storeFreeze];
-  // set in constants.js file of project root
-  if (['logger', 'both'].indexOf(STORE_DEV_TOOLS) !== -1) {
-    DEV_REDUCERS.push(storeLogger());
-  }
+export const DEV_REDUCERS: MetaReducer<MainState>[] = [stateSetter, storeFreeze];
+// set in constants.js file of project root
+if (['logger', 'both'].indexOf(STORE_DEV_TOOLS) !== -1) {
+  DEV_REDUCERS.push(storeLogger());
+}

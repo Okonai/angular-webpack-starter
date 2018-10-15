@@ -1,9 +1,3 @@
-export class ProductCard {
-    id: number;
-    category_id: number;
-    longDescription: string;
-}
-
 export interface Product {
     id: number;
     card: ProductCard;
@@ -81,5 +75,3 @@ export interface ProductServiceGroup {
 
 export interface ProductBreadcrumps {
 }
-
-

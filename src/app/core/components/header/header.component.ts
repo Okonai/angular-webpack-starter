@@ -1,11 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 
-import {Store} from "@ngrx/store";
-import {Observable} from "rxjs";
-import * as fromStore from "../../store";
-import {User} from "../../store/models/auth.model";
+import {Store} from '@ngrx/store';
+import {Observable} from 'rxjs';
+import * as fromStore from '../../store';
+import {User} from '../../store/models/auth.model';
 
-import {trigger,state,style,animate,transition,keyframes} from '@angular/animations';
+import {trigger, state, style, animate, transition, keyframes} from '@angular/animations';
 
 @Component({
   selector: 'app-header',
@@ -19,21 +19,19 @@ export class HeaderComponent implements OnInit {
 
   showCart: boolean = false;
 
-  constructor(
+  constructor (
     private store: Store<fromStore.MainState>
   ) {
 
   }
 
-  ngOnInit() {
+  ngOnInit () {
     this.loggedIn$ = this.store.select(fromStore.isAuthenticated);
-    this.siteImage$ = this.store.select(fromStore.getSiteImage);
     this.store.dispatch(new fromStore.AuthLoadUser());
-    this.user$ = this.store.select(fromStore.getAuthenticatedUser)
-  } 
+    this.user$ = this.store.select(fromStore.getAuthenticatedUser);
+  }
 
-  toggleCart() {
+  toggleCart () {
     this.showCart = !this.showCart;
   }
 }
-

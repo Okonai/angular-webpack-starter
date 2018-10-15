@@ -9,7 +9,6 @@ import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
 import { ResolvedUrl } from '@models/urlresolver.model';
 import { ActivatedRoute } from '@angular/router';
 
-
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
@@ -18,21 +17,19 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class SidebarComponent implements OnInit {
 
-  
   @Input() filterForm: FormGroup;
   public priceRange;
   public open;
   filters$: Observable<Filter>;
-  resolvedUrl: ResolvedUrl
-  
+  resolvedUrl: ResolvedUrl;
 
-  constructor(
+  constructor (
     private store: Store<fromStore.MainState>,
     private fb: FormBuilder,
     private activatedRoute: ActivatedRoute,
   ) {}
 
-  ngOnInit() {
+  ngOnInit () {
     this.resolvedUrl = this.activatedRoute.snapshot.data.resolvedUrl;
     this.filterForm.controls['category'].setValue(this.resolvedUrl.id);
 
@@ -40,10 +37,9 @@ export class SidebarComponent implements OnInit {
     this.onChanges();
   }
 
-  onChanges() {
+  onChanges () {
     this.filterForm.valueChanges.pipe(debounceTime(300)).subscribe(filters => {
-      console.log(filters)
       this.store.dispatch(new fromStore.SetFiltersAction(filters));
-    });    
+    });
   }
 }

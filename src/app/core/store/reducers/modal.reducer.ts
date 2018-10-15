@@ -15,7 +15,7 @@ const initialState: ModalState = {
   loaded: false
 };
 
-export function reducer(state: any = initialState, action: ModalActions): ModalState {
+export function reducer (state: any = initialState, action: ModalActions): ModalState {
   const payload = action.payload;
 
   switch (action.type) {

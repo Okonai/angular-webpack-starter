@@ -1,23 +1,20 @@
 
 import {take} from 'rxjs/operators';
-import { Component, OnInit, ViewChild, ElementRef, ViewEncapsulation } from '@angular/core';
-import {SearchCategory, SearchProduct} from "../../store/models/search.model";
+import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import {SearchCategory, SearchProduct} from '../../store/models/search.model';
 
-import {Store} from "@ngrx/store";
-import {Observable} from "rxjs";
-import * as fromStore from "../../store";
+import {Store} from '@ngrx/store';
+import {Observable} from 'rxjs';
+import * as fromStore from '../../store';
 import { Router } from '@angular/router';
 import { Navigation } from '../../store/models/navigation.model';
-
-
-import { Pipe, PipeTransform } from '@angular/core';
 
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss'],
 })
-export class SearchComponent implements OnInit {
+export class SearchComponent implements OnInit, AfterViewInit {
 
   searchQuery$: Observable<string>;
   searchProducts$: Observable<SearchProduct[]>;
@@ -25,20 +22,20 @@ export class SearchComponent implements OnInit {
   searchLoading$: Observable<boolean>;
   searchLoaded$: Observable<boolean>;
   searchOpened$: Observable<boolean>;
-  query: string = "";
+  query: string = '';
   root$: Observable<Navigation[]>;
   searchListLeftOffset: number;
   searchListWidth: number;
-  @ViewChild("searchInput", {read: ElementRef}) tref: ElementRef;
+  @ViewChild('searchInput', {read: ElementRef}) tref: ElementRef;
 
-  constructor(
+  constructor (
     private store: Store<fromStore.MainState>,
     private router: Router,
   ) {
 
   }
 
-  ngOnInit() {
+  ngOnInit () {
     this.searchQuery$ = this.store.select(fromStore.getSearchQuery).pipe(take(1));
     this.searchCategories$ = this.store.select(fromStore.getSearchResultCategories);
     this.searchProducts$ = this.store.select(fromStore.getSearchResultProducts);
@@ -48,29 +45,28 @@ export class SearchComponent implements OnInit {
     this.root$ = this.store.select(fromStore.getNavigation);
   }
 
-  ngAfterViewInit() {
+  ngAfterViewInit () {
     this.searchListLeftOffset = this.tref.nativeElement.offsetLeft;
     this.searchListWidth = this.tref.nativeElement.offsetWidth;
   }
 
-  search(query: string) {
+  search (query: string) {
     this.store.dispatch(new fromStore.Search(query));
   }
 
-  
-  searchByTag() {
-    this.router.navigate(['category'], { queryParams: { tag: this.query } })
+  searchByTag () {
+    this.router.navigate(['category'], { queryParams: { tag: this.query } });
   }
 
-  toggleSearch() {
+  toggleSearch () {
     this.store.dispatch(new fromStore.ToggleSearch());
   }
 
-  openSearch() {
+  openSearch () {
     this.store.dispatch(new fromStore.OpenSearch());
   }
 
-  closeSearch() {
+  closeSearch () {
     this.store.dispatch(new fromStore.CloseSearch());
   }
 

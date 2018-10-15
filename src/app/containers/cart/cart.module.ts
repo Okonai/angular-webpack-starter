@@ -28,7 +28,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   ],
   declarations: [CartComponent, CartContainerComponent, CheckoutComponent, SummaryComponent],
   exports: [
-    CartComponent  
+    CartComponent
   ],
   providers: [
     {
@@ -39,11 +39,10 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
 })
 export class CartModule { }
 
-
 @NgModule({
   imports: [
     CommonModule,
-    CartModule, 
+    CartModule,
     RouterModule.forChild([
       {
           path: '', component: CartContainerComponent, children: [

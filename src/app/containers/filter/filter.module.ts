@@ -4,15 +4,15 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { FilterComponent } from "./filter.component";
-import { MainComponent } from "./components/main/main.component";
-import { SidebarComponent } from "./components/sidebar/sidebar.component";
+import { FilterComponent } from './filter.component';
+import { MainComponent } from './components/main/main.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
 
-import { CategoryComponent } from "./components/sidebar/components/category/category.component";
-import { ManufacturerComponent } from "./components/sidebar/components/manufacturer/manufacturer.component";
-import { PriceComponent } from "./components/sidebar/components/price/price.component";
-import { TagsComponent } from "./components/sidebar/components/tags/tags.component";
-import { StockComponent } from "./components/sidebar/components/stock/stock.component";
+import { CategoryComponent } from './components/sidebar/components/category/category.component';
+import { ManufacturerComponent } from './components/sidebar/components/manufacturer/manufacturer.component';
+import { PriceComponent } from './components/sidebar/components/price/price.component';
+import { TagsComponent } from './components/sidebar/components/tags/tags.component';
+import { StockComponent } from './components/sidebar/components/stock/stock.component';
 
 import { BannerComponent } from './components/main/components/banner/banner.component';
 import { CustomHeaderComponent } from './components/custom-header/custom-header.component';
@@ -40,11 +40,10 @@ const COMPONENTS = [
   StockComponent,
 ];
 
-
 @NgModule({
   imports: [
     CommonModule,
-    FormsModule,    
+    FormsModule,
     ReactiveFormsModule,
     MaterialModule,
     BreadcrumpsModule,

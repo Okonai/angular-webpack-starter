@@ -22,7 +22,7 @@ export class NewsEffects {
           );
       }
     ));
-  constructor(
+  constructor (
     private actions$: Actions,
     private newsService: fromServices.NewsService
   ) {}

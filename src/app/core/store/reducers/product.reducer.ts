@@ -20,7 +20,7 @@ const initialState: ProductState = productAdapter.getInitialState({
   selectedProductId: null
 });
 
-export function reducer(state: any = initialState, action: ProductActions | FilterActions): ProductState {
+export function reducer (state: any = initialState, action: ProductActions | FilterActions): ProductState {
 
   switch (action.type) {
     case productActionTypes.LOAD_PRODUCTS:
@@ -78,11 +78,11 @@ export function reducer(state: any = initialState, action: ProductActions | Filt
 
     case productActionTypes.LOAD_PRODUCT_SUCCESS:
       const product = action.payload.product;
-      const related = product.changes.extend.related;
+      const related = product.extend.related;
 
       // Store only product IDs in the product.extend.related array
-      _.set(product, 'changes.extend.related',
-        _.reduce(product.changes.extend.related, (result, value) => {
+      _.set(product, 'extend.related',
+        _.reduce(product.extend.related, (result, value) => {
           result.push(value.id);
           return result;
         }, [])

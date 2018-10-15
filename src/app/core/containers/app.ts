@@ -17,14 +17,14 @@ import { NgxPermissionsService, NgxRolesService } from 'ngx-permissions';
 })
 export class AppComponent {
 
-  constructor(
+  constructor (
     private store: Store<fromStore.MainState>,
     public nav: NavbarService,
     private router: Router,
     private renderer: Renderer2,
     private permission: NgxPermissionsService,
   ) { }
-  ngOnInit() {
+  ngOnInit () {
 
     let localToken = window.localStorage.getItem('access_token');
     let sessionToken = window.sessionStorage.getItem('access_token');
@@ -36,7 +36,7 @@ export class AppComponent {
       }
       this.store.dispatch(new fromStore.CloseMainMenu());
       this.store.dispatch(new fromStore.RemoveAllFilter());
-      //this.store.dispatch(new fromStore.FilterLoadProduct());
+      // this.store.dispatch(new fromStore.FilterLoadProduct());
       window.scrollTo({
         top: 0,
         behavior: 'smooth'
@@ -46,10 +46,11 @@ export class AppComponent {
     this.router.events.pipe(
       filter((event) => event instanceof NavigationStart))
       .subscribe((event) => {
-        if (event['url'].indexOf('/auth') !== -1)
+        if (event['url'].indexOf('/auth') !== -1) {
           this.nav.hide();
-        else
+        } else {
           this.nav.show();
+        }
       });
 
     // this.nav.show();
@@ -85,7 +86,6 @@ export class AppComponent {
       }
     });
 
-
     this.store.select(fromStore.getStoreSite).subscribe((_site) => {
       this.renderer.addClass(document.body, _site.toLowerCase());
     });
@@ -93,7 +93,7 @@ export class AppComponent {
   }
 
   @HostListener('window:resize', ['$event'])
-  onResize(event) {
+  onResize (event) {
     this.store.dispatch(new fromStore.UpdateCurrentBreakpoint({ windowSize: event.target.innerWidth }));
   }
 }

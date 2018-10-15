@@ -1,12 +1,9 @@
-import { createSelector } from '@ngrx/store';
+import { createSelector, createFeatureSelector } from '@ngrx/store';
 
 import * as fromFeature from '../reducers';
 import * as fromSlider from '../reducers/slider.reducer';
 
-export const getSliderState = createSelector(
-    fromFeature.getStoreState,
-    (state: fromFeature.MainState) => state.slider
-);
+export const getSliderState = createFeatureSelector<fromSlider.SliderState>('slider');
 
 export const getSlider = createSelector(getSliderState, fromSlider.getSlider);
 export const getMainSlider = createSelector(getSliderState, fromSlider.getSlider, (blocks) => {

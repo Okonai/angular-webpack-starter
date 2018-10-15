@@ -1,14 +1,13 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 
-
-import {SliderComponent} from "./slider/slider.component";
-import {ServicesComponent} from "./services/services.component";
-import {TilesComponent} from "./tiles/tiles.component";
-import {NewsComponent} from "./news/news.component";
-import {PromotionComponent} from "./promotion/promotion.component";
-import {MaterialModule} from "@modules/material/";
-import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
+import {SliderComponent} from './slider/slider.component';
+import {ServicesComponent} from './services/services.component';
+import {TilesComponent} from './tiles/tiles.component';
+import {NewsComponent} from './news/news.component';
+import {PromotionComponent} from './promotion/promotion.component';
+import {MaterialModule} from '@modules/material/';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import 'hammerjs';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -25,7 +24,6 @@ export const COMPONENTS = [
     NewsComponent,
     PromotionComponent
 ];
-
 
 @NgModule({
     imports: [

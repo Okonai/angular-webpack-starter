@@ -1,7 +1,6 @@
 import * as seoActions from '../actions/seo.action';
 import { Seo } from '../models/seo.model';
 
-
 export interface SeoState {
   loading: boolean;
   data: Seo;
@@ -13,7 +12,7 @@ export const initialState: SeoState  = {
   data: null,
 };
 
-export function reducer(state = initialState, action: seoActions.SeoActions): SeoState {
+export function reducer (state = initialState, action: seoActions.SeoActions): SeoState {
   switch (action.type) {
     case seoActions.seoActionTypes.LOAD: {
       return {

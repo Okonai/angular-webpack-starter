@@ -13,7 +13,7 @@ export const initialState: BannerState = {
   loading: false,
 };
 
-export function reducer(state = initialState, action: bannerActions.BannerActions): BannerState {
+export function reducer (state = initialState, action: bannerActions.BannerActions): BannerState {
   switch (action.type) {
     case bannerActions.BannerActionTypes.LOAD: {
       return {

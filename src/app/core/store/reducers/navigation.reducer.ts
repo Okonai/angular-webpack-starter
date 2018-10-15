@@ -1,7 +1,6 @@
 import * as fromNavigation from '../actions/navigation.action';
 import { Navigation } from '../models/navigation.model';
 
-
 export interface NavigationState {
   data: Navigation[];
   loaded: boolean;
@@ -14,7 +13,7 @@ export const initialState: NavigationState = {
   loading: false
 };
 
-export function reducer(
+export function reducer (
   state = initialState,
   action: fromNavigation.NavigationActions
 ): NavigationState {

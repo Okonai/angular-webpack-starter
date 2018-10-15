@@ -4,13 +4,7 @@ import * as fromFeature from '@store/reducers';
 import * as fromProduct from '@reducers/product.reducer';
 import * as _ from 'lodash';
 
-export const getProductState = createSelector(
-  fromFeature.getStoreState,
-  (state: fromFeature.MainState) => state.product
-);
-
-
-export const selectProductState = createFeatureSelector<fromProduct.ProductState>('products');
+export const getProductState = createFeatureSelector<fromProduct.ProductState>('product');
 
 export const {
   selectIds: getSelectedProductIds,

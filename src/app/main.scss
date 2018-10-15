@@ -1,6 +1,266 @@
 /* This file is for setting global styles  */
 @import 'variables';
+@import 'shared';
 
-section { 
-  margin-left: 15px; 
+body {
+  font-family: 'Raleway', sans-serif!important;
+  letter-spacing: 0.3px;
+  overflow-x: hidden;
+
+  @include media-breakpoint-down(sm) {
+    padding-top: calculateRem(60px);
+  }
+
+  &.smartsolution {
+    .c-logo {
+      display: block;
+      width: cR(200);
+      height: cR(50);
+      background-size: contain;
+      background: url('../assets/img/smartsolution_logo_color.svg') no-repeat;
+
+      &--white {
+        background: url('../assets/img/smartsolution_logo_white.svg') no-repeat;
+      }
+    }  
+  }
+
+  &.smartparts {
+    .c-logo {
+      display: block;
+      width: cR(200);
+      height: cR(50);
+      background-size: contain;
+      background: url('../assets/img/smartparts_logo_color.svg') no-repeat;
+
+      &--white {
+        background: url('../assets/img/smartparts_logo_white.svg') no-repeat;
+      }
+    }  
+  }
+}
+
+mat-spinner, mat-spinner svg{ width: 40px !important; height: 40px !important; }
+
+span.query {
+  color: #c42695;
+}
+
+a:hover {
+  text-decoration: none!important;
+}
+
+*:focus {
+  outline: none!important;
+}
+
+.l-main-router-outlet {
+  min-height: calc( 100vh - #{cR(100)} );
+  position: relative;
+
+  mat-spinner {
+    position: absolute;
+    top: 0; 
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto!important;
+}
+}
+
+.c-icon-badge {
+  @include fontSize(13px);
+  position: relative;
+  display: block;
+  width: 100%;
+  float: left;
+  text-align: left;
+  padding: calculateRem(5px) 0;
+  padding-left: calculateRem(50px);
+
+  .c-icon-badge__title {
+    display: block;
+    color: $pink;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  .c-icon-badge__sub-title {
+    display: block;
+    color: #414042;
+  }
+
+  &--house-to-house {
+
+    &:before {
+      content: "";
+      background: $sprite;
+      background-size: 900px 900px;
+      content: "";
+      position: absolute;
+      top: 8px;
+      left: 0;
+      width: 35px;
+      height: 35px;
+      background-position: -560px -190px;
+    }
+
+    &:hover, &.active {
+
+      &:before {
+        content: "";
+        background-position: -560px -300px;
+      }
+    }
+  }
+
+  &--plus-garantee {
+
+    &:before {
+
+      content: "";
+      background: $sprite;
+      background-size: 900px 900px;
+      position: absolute;
+      top: 8px;
+      left: 0;
+      width: 35px;
+      height: 35px;
+      background-position: -605px -190px;
+    }
+
+    &:hover, &.active {
+
+      &:before {
+
+        content: "";
+        background-position: -605px -300px;
+      }
+    }
+  }
+
+  &--variantee {
+
+    &:before {
+
+      content: "";
+      background: $sprite;
+      background-size: 900px 900px;
+      position: absolute;
+      top: 8px;
+      left: 0;
+      width: 29px;
+      height: 36px;
+      background-position: -650px -190px;
+    }
+
+    &:hover, &.active {
+
+      &:before {
+
+        content: "";
+        background-position: -650px -300px;
+      }
+    }
+  }
+
+
+  &--free-shipping {
+
+    &:before {
+
+      content: "";
+      background: $sprite;
+      background-size: 900px 900px;
+      position: absolute;
+      top: 13px;
+      left: 0;
+      width: 35px;
+      height: 35px;
+      background-position: -688px -190px;
+    }
+
+    &:hover, &.active {
+
+      &:before {
+
+        content: "";
+        background-position: -688px -300px;
+      }
+    }
+  }
+}
+
+input.mat-input-element {
+  height: 1rem;
+}
+
+.mat-form-field-infix {
+  padding: cR(8) 0;
+}
+.mat-form-field-placeholder{
+  color: #000;
+}
+.mat-form-field {
+  font-size: calculateRem(13px)!important;
+}
+
+.mat-form-field-ripple {
+  background-color: #c42695!important;
+}
+
+.custom-error{
+  font-size: 75%;
+  color: #f44336;
+}
+
+.mat-spinner{
+  margin:auto !important;
+}
+.mat-progress-spinner circle, .mat-spinner circle {
+  stroke: #c42695;
+}
+.smart-pink{
+  color: #c42695 !important;
+}
+.c-user-menu{
+  .login{
+    cursor: pointer;
+  }
+}
+.c-main-menu__wrapper{
+  span{
+    cursor: pointer;
+  }
+}
+.mat-focused .mat-form-field-label {  
+  color: #c42695!important;
+}
+
+.mat-form-field-label {
+  height: 1rem;
+}
+
+.mat-progress-spinner.mat-accent circle, .mat-spinner.mat-accent circle {
+  stroke: #c42695!important;
+}
+
+.mat-progress-bar.mat-accent .mat-progress-bar-fill::after {
+  background-color: #c42695!important;
+}
+
+.mat-progress-bar.mat-accent .mat-progress-bar-buffer {
+  background: white!important;
+}
+
+*[ng-reflect-router-link] {
+  cursor: pointer;
+}
+
+div.mat-checkbox-inner-container {
+  width: cR(16);
+  height: cR(16);
+}
+
+.mat-checkbox-checked .mat-checkbox-background {
+  background: #b7308a;
 }

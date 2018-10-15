@@ -11,7 +11,6 @@ export interface AuthState {
   loaded: boolean;
 }
 
-
 const initialState: AuthState = {
   user: {
     email: null,
@@ -36,7 +35,7 @@ const initialState: AuthState = {
   loaded: false
 };
 
-export function reducer(state = initialState, action: auth.AuthActions): AuthState {
+export function reducer (state = initialState, action: auth.AuthActions): AuthState {
 
   switch (action.type) {
     case auth.authActionTypes.AUTH_SET_ACCESS_TOKEN:
@@ -101,7 +100,6 @@ export function reducer(state = initialState, action: auth.AuthActions): AuthSta
         }),
       };
 
-
     case auth.authActionTypes.AUTH_FORGOT_PASSWORD_UPDATE_ERROR:
       return {
         ...state,
@@ -124,13 +122,13 @@ export function reducer(state = initialState, action: auth.AuthActions): AuthSta
         }),
       };
 
-
     case auth.authActionTypes.AUTH_FORGOT_PASSWORD_UPDATE_SUCCESS:
 
-      if (state.authForm.save)
+      if (state.authForm.save) {
         window.localStorage.setItem('access_token', action.payload.forgot_response.access_token);
-      else
+      } else {
         window.sessionStorage.setItem('access_token', action.payload.forgot_response.access_token);
+      }
       return {
         ...state,
         user: Object.assign({}, state.user, {
@@ -219,10 +217,11 @@ export function reducer(state = initialState, action: auth.AuthActions): AuthSta
       }),
     };
     case auth.authActionTypes.AUTH_LOGIN_SUCCESS:
-      if (state.authForm.save)
+      if (state.authForm.save) {
         window.localStorage.setItem('access_token', action.payload.login_response.access_token);
-      else
+      } else {
         window.sessionStorage.setItem('access_token', action.payload.login_response.access_token);
+      }
       return {
         ...state,
         user: action.payload.login_response,
@@ -282,7 +281,6 @@ export const isAuthenticatedLoaded = (state: AuthState) => state.authForm.loadin
  * @returns {User}
  */
 export const getAuthenticatedUser = (state: AuthState) => state.user;
-
 
 /**
  * Returns true if request is in progress.

@@ -116,7 +116,7 @@ if (!DEV_SERVER) {
   COPY_FOLDERS.push({ from: 'dll' });
 }
 
-const commonConfig = function webpackConfig(): WebpackConfig {
+const commonConfig = function webpackConfig (): WebpackConfig {
   let config: WebpackConfig = Object.assign({});
 
   config.module = {
@@ -222,7 +222,7 @@ const commonConfig = function webpackConfig(): WebpackConfig {
 }();
 
 // type definition for WebpackConfig at the bottom
-const clientConfig = function webpackConfig(): WebpackConfig {
+const clientConfig = function webpackConfig (): WebpackConfig {
 
   let config: WebpackConfig = Object.assign({});
   config.mode = PROD ? 'production' : 'development';
@@ -294,7 +294,7 @@ const clientConfig = function webpackConfig(): WebpackConfig {
       disableDotRule: true,
     },
     stats: 'minimal',
-    host: '0.0.0.0',
+    host: '127.0.0.1',
     watchOptions: DEV_SERVER_WATCH_OPTIONS
   };
 

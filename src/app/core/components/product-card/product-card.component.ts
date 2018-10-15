@@ -3,7 +3,6 @@ import { Component, OnInit, ChangeDetectionStrategy, Input, ViewEncapsulation } 
 import {  } from '@models/filter.model';
 import { ProductCard, ProductVariable, Product, ProductDetail } from '@models/product.model';
 
-
 @Component({
   selector: 'app-product-card',
   templateUrl: './product-card.component.html',
@@ -25,10 +24,9 @@ export class ProductCardComponent implements OnInit {
   variable: ProductVariable;
   details: ProductDetail;
 
+  constructor () { }
 
-  constructor() { }
-
-  ngOnInit() {
+  ngOnInit () {
     this.card = this.product.card;
     this.variable = this.product.variable;
     this.details = this.product.details;

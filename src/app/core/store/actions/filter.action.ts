@@ -42,133 +42,126 @@ export const filterActionTypes = {
 export class LoadFilterAction implements Action {
   readonly type = filterActionTypes.LOAD_FILTERS;
 
-  constructor(public payload?: any) {}
+  constructor (public payload?: any) {}
 }
 export class LoadFilterErrorAction implements Action {
   readonly type = filterActionTypes.LOAD_FILTERS_ERROR;
 
-  constructor(public payload?: any) {}
+  constructor (public payload?: any) {}
 }
 
 export class LoadFilterSuccessAction implements Action {
   readonly type = filterActionTypes.LOAD_FILTERS_SUCCESS;
 
-  constructor(public payload: {filter: Filter}) {}
+  constructor (public payload: {filter: Filter}) {}
 }
 
 export class SetFiltersAction implements Action {
   readonly type = filterActionTypes.SET_FILTERS;
 
-  constructor(public payload?: any) {}
+  constructor (public payload?: any) {}
 }
 
 export class LoadFilterProductsAction implements Action {
   readonly type = filterActionTypes.LOAD_FILTER_PRODUCTS;
 
-  constructor(public payload?: Selected) {}
+  constructor (public payload?: Selected) {}
 }
 
 export class LoadFilterProductsErrorAction implements Action {
   readonly type = filterActionTypes.LOAD_FILTER_PRODUCTS_ERROR;
 
-  constructor(public payload?: { products: Product[]}) {}
+  constructor (public payload?: { products: Product[]}) {}
 }
 
 export class LoadFilterProductsSuccessAction implements Action {
   readonly type = filterActionTypes.LOAD_FILTER_PRODUCTS_SUCCESS;
 
-  constructor(public payload?: any) {}
+  constructor (public payload?: any) {}
 }
-
-
-
-
-
 
 export class FilterTagLoad implements Action {
   readonly type = filterActionTypes.FILTER_TAG_LOAD;
 
-  constructor(public payload?: any) {}
+  constructor (public payload?: any) {}
 }
 
 export class FilterTagAdd implements Action {
   readonly type = filterActionTypes.FILTER_TAG_ADD;
 
-  constructor(public payload?: any) {}
+  constructor (public payload?: any) {}
 }
 
 export class FilterTagRemove implements Action {
   readonly type = filterActionTypes.FILTER_TAG_REMOVE;
 
-  constructor(public payload?: any) {}
+  constructor (public payload?: any) {}
 }
 
 export class FilterChangeStock implements Action {
   readonly type = filterActionTypes.FILTER_CHANGE_STOCK;
 
-  constructor(public payload?: any) {}
+  constructor (public payload?: any) {}
 }
-
-
 
 export class FilterChangeViewMode implements Action {
   readonly type = filterActionTypes.FILTER_CHANGE_VIEW_MODE;
 
-  constructor(public payload?: any) {}
+  constructor (public payload?: any) {}
 }
 
 export class FilterChangeSuccess implements Action {
   readonly type = filterActionTypes.FILTER_CHANGE_SUCCESS;
 
-  constructor(public payload?: any) {}
+  constructor (public payload?: any) {}
 }
 
 export class AddFilterManufacturer implements Action {
   readonly type = filterActionTypes.FILTER_MAN_ADD;
 
-  constructor(public payload?: any) {}
+  constructor (public payload?: any) {}
 }
 
 export class RemoveFilterManufacturer implements Action {
   readonly type = filterActionTypes.FILTER_MAN_REMOVE;
 
-  constructor(public payload?: any) {}
+  constructor (public payload?: any) {}
 }
 
 export class RemoveAllFilterManufacturer implements Action {
   readonly type = filterActionTypes.FILTER_REMOVE_ALL_MAN;
 
-  constructor(public payload?: any) {}
+  constructor (public payload?: any) {}
 }
 
 export class SelectCategory implements Action {
   readonly type = filterActionTypes.SELECT_CATEGORY;
 
-  constructor(public payload: number) {}
+  constructor (public payload: number) {}
 }
 
 export class ChangePrice implements Action {
   readonly type = filterActionTypes.FILTER_CHANGE_PRICE;
 
-  constructor(public payload: any[]) {}
+  constructor (public payload: any[]) {}
 }
 
 export class FilterSetSort implements Action {
   readonly type = filterActionTypes.FILTER_SET_SORT;
 
-  constructor(public payload: string) {}
+  constructor (public payload: string) {}
 }
 
 export class FilterLoadPage implements Action {
   readonly type = filterActionTypes.FILTER_LOAD_PAGE;
 
-  constructor(public payload: number) {}
+  constructor (public payload: number) {}
 }
 
 export class RemoveAllFilter implements Action {
   readonly type = filterActionTypes.FILTER_REMOVE_ALL;
 
-  constructor(public payload?: any) {}
+  constructor (public payload?: any) {}
 }
 
 export type FilterActions
@@ -179,7 +172,6 @@ export type FilterActions
   | LoadFilterProductsAction
   | LoadFilterProductsErrorAction
   | LoadFilterProductsSuccessAction
-
 
   | FilterTagLoad
   | FilterTagAdd

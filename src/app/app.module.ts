@@ -47,9 +47,9 @@ import { AppComponent } from './app.component';
       // preloadingStrategy: PreloadAllModules
     }),
   ],
-  bootstrap: [AppComponent],
   exports: [AppComponent],
-  providers: [APP_PROVIDERS]
+  providers: [APP_PROVIDERS],
+  bootstrap: [AppComponent],
 })
 
 export class AppModule {

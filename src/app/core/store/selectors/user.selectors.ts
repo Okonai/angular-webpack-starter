@@ -1,4 +1,4 @@
-import { createSelector } from '@ngrx/store';
+import { createSelector, createFeatureSelector } from '@ngrx/store';
 
 import * as fromFeature from '../reducers';
 import * as fromUser from '../reducers/user.reducer';
@@ -13,17 +13,12 @@ import * as _ from 'lodash';
  * @param {State} state Top level state.
  * @return {State}
  */
-export const getUserState = createSelector(
-    fromFeature.getStoreState,
-    (state: fromFeature.MainState) => state.user
-);
+export const getUserState = createFeatureSelector<fromUser.UserState>('user');
 
 export const getUserAddressState = createSelector(
-    fromFeature.getStoreState,
-    (state: fromFeature.MainState) => state.user.addresses
+    getUserState,
+    user => user.addresses
 );
-
-
 
 export const getUserAddressEntitiesState = createSelector(
     getUserState,
@@ -55,7 +50,6 @@ export const {
     selectTotal: getUserAddressTotal
 } = addressAdapter.getSelectors(getUserAddressState);
 
-
 export const getUserAddresses = createSelector(
     getUserAddressEntitiesState,
     getSelectedAddressType,
@@ -75,10 +69,9 @@ export const getUserAddress = createSelector(
     }
 );
 
-
 export const getUserOrderState = createSelector(
-    fromFeature.getStoreState,
-    (state: fromFeature.MainState) => state.user.orders
+    getUserState,
+    user => user.orders
 );
 
 export const getUserOrderEntitiesState = createSelector(
@@ -167,6 +160,6 @@ export const getFilteredUserOrders = createSelector(
     }
 );
 
-function sameDay(d1, d2) {
+function sameDay (d1, d2) {
     return d1.getYear() === d2.getYear() && d1.getMonth() === d2.getMonth() && d1.getDate() === d2.getDate();
 }

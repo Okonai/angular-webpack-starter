@@ -9,7 +9,6 @@ import { HttpClient } from '@angular/common/http';
 import { ApplicationHttpClient, applicationHttpClientCreator } from './services/http.service';
 import { NavbarService } from './services/navbar.service';
 
-import { effects, reducers } from './store';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -77,8 +76,6 @@ export const COMPONENTS = [
 
 @NgModule({
   imports: [CommonModule, RouterModule, MaterialModule, BrowserAnimationsModule,
-    StoreModule.forFeature('store', reducers),
-    EffectsModule.forFeature(effects),
     FormsModule,
     ReactiveFormsModule,
     SocialLoginModule,

@@ -1,7 +1,6 @@
 import * as fromStatic from '../actions/static.action';
 import { StaticPage } from '../models/static.model';
 
-
 export interface StaticPageState {
   staticPage: StaticPage;
   loaded: boolean;
@@ -14,7 +13,7 @@ export const initialState: StaticPageState = {
   loading: false
 };
 
-export function reducer(
+export function reducer (
   state = initialState,
   action: fromStatic.StaticActions
 ): StaticPageState {

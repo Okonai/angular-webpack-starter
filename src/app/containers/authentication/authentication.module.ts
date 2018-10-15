@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 
-import { RouterModule } from "@angular/router";
+import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '@modules/material';
@@ -32,7 +32,7 @@ import { AuthGuard } from '../../core/guards/auth/auth.guard';
             data: {
               authGuardConfig: {
                 authenticatedCanLoad: false,
-                redirectTo: "/profil"
+                redirectTo: '/profil'
               }
             }
           },
@@ -44,9 +44,21 @@ import { AuthGuard } from '../../core/guards/auth/auth.guard';
           { path: 'noaccess', component: RegisterNoaccessComponent},
           { path: 'forgot-success', component: ForgotSuccessComponent },
           { path: 'logout', component: LogoutComponent },
-        ]}    		
+        ]}
       ]),
     ],
-  declarations: [AuthenticationComponent, AuthWrapperComponent, RegisterComponent, LoginComponent, ForgotComponent, RegisterDistributorComponent, LoginSuccessComponent, ForgotSuccessComponent, RegisterSuccessComponent, RegisterNoaccessComponent, LogoutComponent]
+  declarations: [
+    AuthenticationComponent,
+    AuthWrapperComponent,
+    RegisterComponent,
+    LoginComponent,
+    ForgotComponent,
+    RegisterDistributorComponent,
+    LoginSuccessComponent,
+    ForgotSuccessComponent,
+    RegisterSuccessComponent,
+    RegisterNoaccessComponent,
+    LogoutComponent
+  ]
 })
 export class AuthenticationModule { }

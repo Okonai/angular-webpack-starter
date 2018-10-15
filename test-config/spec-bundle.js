@@ -30,7 +30,7 @@ require('zone.js/dist/jasmine-patch');
 
 
 // RxJS
-require('rxjs/Rx');
+require('rxjs');
 
 const testing = require('@angular/core/testing');
 const browser = require('@angular/platform-browser-dynamic/testing');
