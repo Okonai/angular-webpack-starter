@@ -1,0 +1,28 @@
+<header class="l-main-nav">
+    <div class="l-top-shelf">
+        <span class="l-top-shelf--info">Üdvözlünk Téged a teljesen megújult Smartsolution.hu weboldalon, ahol hamarosan webáruházunk is elindul.</span>
+        <nav class="c-ineffectual-menu">
+            <span><a routerLink="/dolgozz-velunk" routerLinkActive="active-link">Karrier</a></span>
+            <span><a routerLink="/vasarlastol-valo-elallas" routerLinkActive="active-link">14 napos elállás</a></span>
+            <span><a routerLink="/garancialis-szerviz" routerLinkActive="active-link">Szerviz</a></span>
+        </nav>
+    </div>
+</header>
+<div class="l-bottom-shelf"  #cartOrigin>    
+    <a class="c-bottom-shelf__brand" routerLink="/"><span class="c-logo c-logo--white"></span></a>
+    <ng-template [ngxPermissionsOnly]="['SMARTSOLUTION', 'LOGGED_IN']">       
+        <app-navigation class="c-main-navigation"></app-navigation>
+        <app-search class="c-search"></app-search>
+    </ng-template>    
+    <nav class="c-user-menu">
+        <ul>
+            <li class="contact" [routerLink]="['/kapcsolat']"><span>Kapcsolat</span></li>
+            <li *ngIf="!(loggedIn$ | async)" class="login" [routerLink]="['/auth']"><span>Belépés</span></li>
+            <li *ngIf="(loggedIn$ | async)" class="login" [routerLink]="['/profil/szemelyes']"><span>{{(user$ | async).last_name}}</span></li>
+            <li class="cart contact" (click)="toggleCart()"><span>Kosár</span></li>
+        </ul>
+    </nav>
+    <div class="c-cart" [ngClass]="{'open': showCart}">
+        <app-cart view="sidebar"></app-cart>
+    </div>
+</div>

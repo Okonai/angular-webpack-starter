@@ -1,0 +1,45 @@
+@import '../../../../shared';
+
+
+.l-services {
+
+  .c-services {
+    
+    display: grid;
+    border: 1px solid $light-grey;
+    grid-template-columns: 25% 25% 25% 25%;
+
+    @include media-breakpoint-down(sm) {
+      grid-template-columns: auto;
+    }
+
+    &__item {
+      text-align: center;
+      padding: cR(15);
+      
+      span {        
+        @include fontSize(13px);
+        display: block;
+      }
+
+      &__title {
+        text-transform: uppercase;
+        color: #c42695;
+        font-weight: bold;
+      }
+
+      &__sub-title {
+        color: #414042;
+      }
+    }
+  }
+
+  .c-services__badge__wrapper {
+    @include make-col-ready();
+    @include make-col(3);
+
+    @include media-breakpoint-down(sm) {
+      @include make-col(12);
+    }
+  }
+}

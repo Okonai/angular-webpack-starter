@@ -1,0 +1,71 @@
+@import '../../../../shared';
+
+.c-services.large {
+    @include make-container();
+    margin-bottom: cR(30);  
+    display: flex;
+    justify-content: center;
+
+    .c-service {
+        padding: calculateRem(15px);
+        @include make-col(4);
+        @include make-col-ready();
+        font-size: calculateRem(13px);
+
+        .c-service-radio-button {
+            width: 100%;
+        }
+        
+        span {
+            display: block;
+            text-align: center;
+        }
+
+        .name {
+            text-transform: uppercase;
+            color: #c42695;
+            font-weight: bold;
+            margin-bottom: calculateRem(24px);
+        }
+
+        .icon {
+            width: calculateRem(40px);
+            height: calculateRem(40px);
+            margin: 0 auto;
+            background: $sprite;
+            background-size: 900px 900px;
+            display: block;
+            float: none;
+            margin: auto;
+            background-position: -560px -190px;
+            margin-bottom: calculateRem(20px);
+        }
+    }
+}
+
+.c-services.small {    
+
+    .c-service {
+        padding: calculateRem(30px) 0;
+
+        .name {
+            color: #c42695;
+            font-weight: bold;
+            font-size: calculateRem(13px);
+        }
+
+        .c-service-panel {
+            width: 100%;
+
+            .title {
+                float: left;
+                font-size: calculateRem(13px);
+            }
+
+            .price {
+                float: right;
+                font-size: calculateRem(13px);
+            }
+        }
+    }
+}

@@ -1,0 +1,7 @@
+<form [formGroup]="parentForm">
+	<mat-radio-group class="c-category-list" formControlName="category">
+		<mat-radio-button class="c-category-item" *ngFor="let category of categories" [value]="category.value">
+			{{category.label}}
+		</mat-radio-button>
+	</mat-radio-group>
+</form>

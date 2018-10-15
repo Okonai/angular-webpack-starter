@@ -10,23 +10,23 @@ import { TransferState } from '../modules/transfer-state/transfer-state';
 })
 export class AppComponent implements OnInit {
 
-  constructor(
+  constructor (
     private cache: TransferState,
     public route: ActivatedRoute,
     public router: Router,
   ) { }
 
-  ngOnInit() {
+  ngOnInit () {
     this.cache.set('cached', true);
   }
 
-  activateEvent(event) {
+  activateEvent (event) {
     if (ENV === 'development') {
       console.log('Activate Event:', event);
     }
   }
 
-  deactivateEvent(event) {
+  deactivateEvent (event) {
     if (ENV === 'development') {
       console.log('Deactivate Event', event);
     }

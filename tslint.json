@@ -5,7 +5,7 @@
   "rules": {
     "member-access": false,
     "member-ordering": [
-      true,
+      true, 
       "public-before-private",
       "static-before-instance",
       "variables-before-functions"
@@ -34,7 +34,7 @@
     ],
 
     "ban": false,
-    "curly": false,
+    "curly": true,
     "forin": true,
     "label-position": true,
     "no-arg": true,
@@ -58,10 +58,11 @@
     "no-string-literal": false,
     "no-switch-case-fall-through": true,
     "no-unused-expression": true,
-    "no-use-before-declare": true,
+    //"no-use-before-declare": true,
     "no-var-keyword": true,
+    "prefer-object-spread": false,
     "radix": true,
-    "switch-default": true,
+    //"switch-default": true,
     "triple-equals": [
       true,
       "allow-null-check"
@@ -70,11 +71,12 @@
     "eofline": true,
     "indent": [
       true,
-      "spaces"
+      "spaces",
+      2
     ],
     "max-line-length": [
       true,
-      100
+      150
     ],
     "no-require-imports": false,
     "no-trailing-whitespace": true,
@@ -95,7 +97,7 @@
     ],
     "interface-name": false,
     "jsdoc-format": true,
-    "no-consecutive-blank-lines": false,
+    "no-consecutive-blank-lines": true,
     "one-line": [
       true,
       "check-open-brace",
@@ -124,6 +126,7 @@
       "check-separator",
       "check-type"
     ],
+    "space-before-function-paren": true,
     "directive-selector": [true, "attribute", [], "camelCase"],
     "component-selector": [true, "element", [], "kebab-case"],
     "use-input-property-decorator": true,
@@ -136,7 +139,7 @@
     "no-forward-ref": true,
     "use-life-cycle-interface": true,
     "contextual-life-cycle": true,
-    "trackBy-function": true,
+    "trackBy-function": false,
     "use-pipe-transform-interface": true,
     "pipe-naming": [true, "camelCase"],
     "component-class-suffix": true,

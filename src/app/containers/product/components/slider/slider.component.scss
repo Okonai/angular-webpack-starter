@@ -1,0 +1,138 @@
+@import '../../../../shared';
+
+.c-product-slider { 
+  @include make-col-ready();
+  @include make-col(5);
+
+  @include media-breakpoint-down(sm) {    
+    @include make-col(12);
+    padding: 0;
+  }
+
+  position: relative;
+  float: left;
+  height: calculateRem(400px);
+  margin-bottom: calculateRem(30px);
+
+  &__single-image {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    max-height: 100%;
+    margin: auto;
+  }
+
+  &__carousel {
+    &__image {  
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;   
+      display: none;
+      width: auto;
+      max-width: 100%;
+      height: auto;
+      max-height: 100%;
+      margin: auto;      
+    }
+
+    &__background-image {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center center;
+    }
+
+    &__thumbnails {
+      position: absolute;
+      z-index: 9999;
+      bottom: 0;
+      display: flex;
+      width: 100%;
+      padding: cR(10);
+      background: rgba(white, 0.75);
+      justify-content: center;
+      z-index: 10;
+
+      &__item {
+        position: relative;
+        width: cR(80);        
+        height: cR(80);
+        margin: 0 cR(15);
+
+        img {
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          width: auto;
+          max-width: 100%;
+          height: auto;
+          max-height: 100%;
+          margin: auto;      
+        }
+      }
+    }
+
+    .carousel-inner {
+      display: flex;
+      overflow: visible;
+      width: 100%;
+      height: cR(400);
+      justify-content: center;
+    
+      .carousel-item {
+  
+        @include media-breakpoint-down(sm) {
+          width: 100%;
+        }
+        position: absolute;
+        z-index: -1;
+        display: flex !important;
+        visibility: hidden;
+        overflow: hidden;
+        width: 100%;
+        height: calculateRem(400px);
+        transition: opacity 1.2s ease-in-out, visibility 1.2s;
+        opacity: 0;
+        flex-shrink: 0;
+  
+        a {
+          position: absolute;
+          display: block;
+          width: 100%;
+          height: 100%;
+        }
+    
+        .c-slide__item__layer {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+    
+          img {
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+          }
+        }
+
+        &.active{
+          z-index: 10;
+          visibility: visible;
+          opacity: 1;
+        }      
+      }
+    }
+  }
+}
+
+

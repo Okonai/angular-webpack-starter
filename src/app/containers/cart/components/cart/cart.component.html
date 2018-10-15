@@ -1,0 +1,20 @@
+<div class="c-cart  {{view}}">
+  <div class="c-cart__header">
+    <h2>Kosár tartalma</h2>
+    <div>
+      <span routerLink="/kosar/osszesito">Teljes kosárnézet</span>
+    </div>
+  </div> 
+  <perfect-scrollbar class="c-cart__list" [config]="config">
+    <ng-container *ngFor="let product of (products$ | async)">
+      <app-product-card [product]="product" [viewClass]="viewClass"></app-product-card>
+    </ng-container>
+  </perfect-scrollbar>
+  <div class="c-cart__footer">
+    <div class="c-cart__footer__sum">
+      <label>Végösszeg</label>
+      <span>{{'440000' | currencyFormat }}</span>
+    </div>
+    <span routerLink="../penztar" class="c-cart__footer__button">Pénztárhoz</span>
+  </div>
+</div>

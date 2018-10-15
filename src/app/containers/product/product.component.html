@@ -1,0 +1,37 @@
+<div [ngClass]="{
+    'd-none': (loadingFinished$ | async) === false
+  }" [@loader]="loadingFinished$ | async">
+    <app-banner type="inner" page="product"></app-banner>
+    <div class=" c-product">
+        <div class="container clearfix">
+            <app-product-slider [data]="(product$ | async)?.extend.images"></app-product-slider>
+            <div class="l-details">
+                <h1>{{(product$ | async)?.card.name}}</h1>        
+                <app-product-details [data]="(product$ | async)?.details"></app-product-details>
+                <div class="c-product__info">
+                    <div class="c-product__price">
+                        <span class="c-product__price--brutto">                
+                            {{(product$ | async)?.variable.price.price | currencyFormat}}
+                        </span>
+                        <span class="c-product__price--netto">                    
+                            {{(product$ | async)?.variable.price.price | currencyFormat}} + ÁFA
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <app-product-highlighted-attributes [data]="(product$ | async)?.extend.highlighted"></app-product-highlighted-attributes>        
+        <div class="container c-product__long-description">
+            <div class="l-long-description" [innerHTML]="longDescription"></div>
+        </div>
+        <app-product-attributes [data]="(product$ | async)?.extend.attributes"></app-product-attributes>
+        <app-related [data]="(product$ | async)?.extend.related" [viewClass]="'box'"></app-related>
+    </div>
+</div>
+<mat-spinner 
+    [ngClass]="{
+        'd-none': (loadingFinished$ | async) === true
+    }" 
+    [@loader]="loadingFinished$ | async"
+    [color]="'accent'">
+</mat-spinner>

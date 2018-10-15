@@ -1,0 +1,48 @@
+<div class="c-search" [ngClass]="{'open': (searchOpened$ | async) === true}">
+    <span [style.left.px]="searchListLeftOffset + searchListWidth - 106" (click)="searchByTag()" class="c-search__button">Keresés</span>
+    <input #searchInput placeholder="Milyen terméket keresel?" [(ngModel)]="query" [ngModelOptions]="{standalone: true}" (keyup)="search($event.target.value)" (click)="openSearch()" (mouseleave) ="closeSearch()" />
+    <div class="c-search__result" (mouseenter) ="openSearch()">
+        <div class="c-search__result--wrapper" (mouseleave) ="closeSearch()" [style.left.px]="searchListLeftOffset" [style.width.px]="searchListWidth">
+            <div class="c-search__result-list products" *ngIf="query.length > 0 && !(searchLoading$ | async) && searchProducts$ | async as searchProducts">
+                <ng-container *ngIf="searchProducts && searchProducts[0];else noResults">
+                    <div class="item product" *ngFor="let product of searchProducts">
+                        <a routerLink="/{{product.slug}}-p{{product.id}}">
+                            <div class="thumbnail">
+                                <img src="{{product.image}}">
+                            </div>
+                            <span class="name" [innerHTML]="product.name | highlightQuery:query"></span>
+                            <span class="price">{{product.price | currencyFormat}}</span>
+                        </a>
+                    </div>             
+                </ng-container>
+                <span class="c-search__result-list__no-items" *ngIf="query.length > 0 && (searchLoaded$ | async) && (searchProducts$ | async)?.length == 0">Nincs a keresésnek megfelelő találat</span>
+            </div>        
+            <div class="c-search__result-list categories" *ngIf="!(searchLoading$ | async) && searchCategories$ | async as searchCategories">
+                <ng-container *ngIf="searchCategories&&searchCategories[0];else noResults">
+                    <div class="container">
+                        <div class="item category" *ngFor="let category of searchCategories">
+                            <a routerLink="/{{category.slug}}-c{{category.id}}">
+                                <span class="name"><span class="query">{{query}}</span>{{category.name}}</span>
+                            </a>
+                        </div>
+                    </div>
+                </ng-container>                
+            </div>
+            <mat-progress-bar *ngIf="query.length > 0 && searchLoading$ | async" mode="query" color="accent"></mat-progress-bar>
+            <div class="c-search__result-list categories">
+                <ng-container *ngIf="query.length == 0 && root$ | async as root">
+                    <div class="container" *ngIf="root&&root[0]">
+                        <ng-container *ngFor="let category of root[0].children">
+                            <div class="item category">
+                                <a routerLink="/{{category.slug}}-c{{category.id}}">
+                                    <span class="name">{{category.name}}</span>
+                                </a>
+                            </div>
+                        </ng-container>
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+</div>
+<span class="searchOpen" (click)="toggleSearch()"></span>

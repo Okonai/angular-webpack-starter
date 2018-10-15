@@ -1,0 +1,8 @@
+<div class="c-custom-header">
+    <a *ngIf="(header$ | async)?.image" routerLink="{{ (header$ | async)?.url }}">
+    	<img *ngIf="(header$ | async)?.image" class="c-custom-header__image" src="{{ (header$ | async)?.image }}" class="margin-bottom">
+    </a>
+    <br>
+    <h1 *ngIf="(header$ | async)?.title" class="c-custom-header__header">{{ (header$ | async)?.title }}</h1>
+    <p *ngIf="(header$ | async)?.custom" class="c-custom-header__text">{{ (header$ | async)?.custom }}</p>
+</div>

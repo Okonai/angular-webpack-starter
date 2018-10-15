@@ -1,0 +1,46 @@
+@import "../../../shared.scss";
+
+.c-404 {
+    @include clearfix();
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &--left, &--right {
+        @include make-col(6);
+        width: 100%;
+        float: left;
+
+        h1 {
+            @include fontSize(54px);
+            color: #c42695;
+            font-weight: 900;
+            text-transform: uppercase;
+        }
+
+        p, li {
+            color: #414042;
+        }
+
+        p {
+            @include fontSize(20px);
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        ul {
+            padding-left: cR(20);
+        }
+    }
+
+    @include media-breakpoint-down(sm) {
+        &--left {
+            @include make-col(12);
+            padding: cR(60) 0;
+        }
+
+        &--right {
+            display: none;
+        }
+    }
+}

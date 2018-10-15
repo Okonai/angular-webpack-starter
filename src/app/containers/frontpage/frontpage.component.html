@@ -1,0 +1,18 @@
+<div [ngClass]="{
+    'd-none': (loadingFinished | async) === false
+  }" [@loader]="loadingFinished | async">
+    <app-slider class="c-frontpage__block"></app-slider>
+    <app-tiles class="c-frontpage__block"></app-tiles>    
+    <app-services class="c-frontpage__block"></app-services>
+    <app-news class="c-frontpage__block"></app-news>
+    <ng-template [ngxPermissionsOnly]="['SMARTSOLUTION', 'LOGGED_IN']">       
+        <app-promotion class="c-frontpage__block"></app-promotion>
+    </ng-template>
+</div>
+<mat-spinner 
+    [ngClass]="{
+        'd-none': (loadingFinished | async) === true
+    }" 
+    [@loader]="loadingFinished | async"
+    [color]="'accent'">
+</mat-spinner>

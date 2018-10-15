@@ -1,0 +1,11 @@
+<ng-container *ngIf="productBreadcrumps$ | async as productBreadcrumps">
+    <ng-container *ngIf="productBreadcrumps && productBreadcrumps[0]">
+        <div class="l-breadcrumps">
+            <div class="c-breadcrumbps">
+                <span class="c-breadcrump" *ngFor="let breadcrump of productBreadcrumps">
+                    <a routerLink="{{breadcrump.slug}}">{{breadcrump.name}}</a>
+                </span>
+            </div>
+        </div>
+    </ng-container>
+</ng-container>

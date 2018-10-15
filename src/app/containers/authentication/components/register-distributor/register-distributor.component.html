@@ -1,0 +1,58 @@
+<form [formGroup]="form" (ngSubmit)="onFormSubmit()">			
+	<p class="c-authentication__header-message">
+		Első találkozásunk örömére hozd létre fiókod a lenti adatok megadásával, az alábbi e-mail címhez:<br>
+		<span class="smart-pink">{{ email }}</span><br>
+		Kérjük, add meg az alábbi adataidat!
+	</p>
+	<mat-form-field>
+		<input matInput formControlName="distName" placeholder="Cégnév" >
+		<mat-icon matSuffix matTooltip="Teljes cégnév szükséges." matTooltipPosition="after">help_outline</mat-icon>
+		<mat-error *ngIf="(form.get('distName').touched || form.submitted) && form.get('distName').status == 'INVALID'">Kérjük, adja meg a cég nevét.</mat-error>
+	</mat-form-field>
+	<mat-form-field>
+		<input matInput formControlName="distVat" placeholder="Cég Adószám" >
+		<mat-icon matSuffix matTooltip="A cég adószáma szükséges." matTooltipPosition="after">help_outline</mat-icon>
+		<mat-error *ngIf="(form.get('distVat').touched || form.submitted) && form.get('distVat').status == 'INVALID'">Kérjük, adja meg a cég adószámát.</mat-error>
+	</mat-form-field>
+	<mat-form-field>
+		<input matInput formControlName="firstName" placeholder="Vezetéknév" >
+		<mat-icon matSuffix matTooltip="Kapcsolattartó vezetékneve." matTooltipPosition="after">help_outline</mat-icon>
+		<mat-error *ngIf="(form.get('firstName').touched || form.submitted) && form.get('firstName').status == 'INVALID'">Kérjük, adja meg a kapcsolattartó vezetéknevét.</mat-error>
+	</mat-form-field>
+	<mat-form-field>
+		<input matInput formControlName="lastName" placeholder="Keresztnév" >
+		<mat-icon matSuffix matTooltip="Kapcsolattartó keresztneve." matTooltipPosition="after">help_outline</mat-icon>
+		<mat-error *ngIf="(form.get('lastName').touched || form.submitted) && form.get('lastName').status == 'INVALID'">Kérjük, adja meg a kapcsolattartó keresztnevét.</mat-error>
+	</mat-form-field>
+	<!--
+	<mat-form-field>
+		<input matInput formControlName="email" placeholder="E-mail">
+		<mat-icon matSuffix matTooltip="Kapcsolattartó e-mail címe." matTooltipPosition="after">help_outline</mat-icon>
+	</mat-form-field>
+	-->
+	<mat-form-field>
+		<input matInput formControlName="phone" placeholder="Telefonszám">
+		<span matPrefix>+36 &nbsp;</span>
+		<mat-icon matSuffix matTooltip="Kapcsolattartó telefonszáma." matTooltipPosition="after">help_outline</mat-icon>
+		<mat-error *ngIf="(form.get('phone').touched || form.submitted) && form.get('phone').status == 'INVALID'">Kérjük, valós telefonszámot adjon meg</mat-error>
+	</mat-form-field>
+
+	<mat-form-field>
+		<input matInput type="password" formControlName="password" placeholder="Válasszon egy megjegyezhető jelszót" >
+		<mat-icon matSuffix matTooltip="A jelszóknak legalább 6 karakterből kell állnia." matTooltipPosition="after">help_outline</mat-icon>
+		<mat-error *ngIf="(form.get('password').touched || form.submitted) && form.get('password').status == 'INVALID'">A jelszóknak legalább 6 karakterből kell állnia.</mat-error>
+	</mat-form-field>
+
+	<mat-form-field>
+		<input matInput type="password" formControlName="passwordConfirm" placeholder="Jelszó megerősítése" [errorStateMatcher]="matcher">
+		<mat-error *ngIf="form.get('passwordConfirm').errors || ((form.get('passwordConfirm').touched || form.submitted) && form.errors?.mismatch)">A jelszavaknak meg kell egyeznie.</mat-error>
+	</mat-form-field>
+
+	<mat-slide-toggle matInput formControlName="aszf">Elfogadom a <a href="/aszf">szerződési feltételeket</a>.</mat-slide-toggle>
+	<mat-error class="custom-error" *ngIf="(form.get('aszf').touched || form.submitted )&& form.get('aszf').value !== true">Kérjük, fogadja el az Általános Szerződési Feltételeket.</mat-error>
+	<!--
+		<mat-slide-toggle matInput formControlName="newsletter">Feliratkozom a hírlevélre</mat-slide-toggle>
+	-->
+	<button class="button-pink button">Tovább</button>
+	<mat-divider></mat-divider>
+</form>

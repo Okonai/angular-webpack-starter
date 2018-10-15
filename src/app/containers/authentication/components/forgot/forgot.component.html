@@ -1,0 +1,42 @@
+<form *ngIf="!(isLoading$ | async)" [formGroup]="form" (ngSubmit)="onFormSubmit()">
+	<div class="c-auth-card card"> 
+		<ng-container *ngIf="email">
+			<div class="c-authentication__header-message">
+				<small class="text-center">
+					Pár percen belül egy kódot fogsz kapni emailben a(z) <b>{{ email }}</b> címre. 
+					<br>
+					Akár <b>5 perc</b> is lehet, amíg megérkezik a levél.
+					<br>
+					Kérjük ellenőrizd a <b>SPAM</b> vagy Gmail esetén a <b>Promociók</b> mappát is. 
+				</small>
+			</div>
+		</ng-container>
+		<ng-container *ngIf="!email">
+			<div class="c-forgot-div">
+				<h5>Jelszó helyreállítás</h5>
+				<br>
+			</div>
+		</ng-container>
+		<mat-form-field>
+			<input matInput type="text" formControlName="code" placeholder="Emailben kapott kód">
+			<mat-error *ngIf="(form.get('code').touched || form.submitted) && form.get('code').status == 'INVALID'">A Kód kitöltése kötelező.</mat-error>
+		</mat-form-field>
+		<p class="custom-error" *ngIf="(authForgotError$ | async) != null && (authForgotError$ | async) == false">Helytelen kód, kérlek próbáld meg újra.</p>
+
+		<mat-form-field>
+			<input matInput type="password" formControlName="password" placeholder="Válasszon egy megjegyezhető jelszót" >
+			<mat-error *ngIf="(form.get('password').touched || form.submitted) && form.get('password').status == 'INVALID'">A jelszóknak legalább 6 karakterből kell állnia.</mat-error>
+		</mat-form-field>
+
+		<mat-form-field>
+			<input matInput type="password" formControlName="passwordConfirm" placeholder="Jelszó megerősítése" [errorStateMatcher]="matcher">
+			<mat-error *ngIf="form.get('passwordConfirm').errors || ((form.get('passwordConfirm').touched || form.submitted) && form.errors?.mismatch)">A jelszavaknak meg kell egyeznie.</mat-error>
+		</mat-form-field>
+
+		<button type="submit" class="button-pink button">
+			Jelszó változatás
+		</button>
+		<hr/>
+		<a class="c-forgot-no-access smart-pink" (click)="nullForm()" [routerLink]="['/auth/noaccess']">Már nem férek hozzá az e-mail címhez.</a>
+	</div>
+</form>

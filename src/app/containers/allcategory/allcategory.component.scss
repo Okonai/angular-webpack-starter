@@ -1,0 +1,82 @@
+@import '../../shared';
+
+.l-allcategory {
+    padding: cR(30) 0;
+
+    ul {
+        padding: 0;
+        list-style-type: none;
+    }
+
+    .c-allcategory {
+        @include media-breakpoint-down(sm) {
+            @include make-col(12);
+        }
+        @include make-col(9);
+        @include make-col-ready();
+        @include clearfix();
+
+       
+
+        
+        &__item {
+            &--level1 {                
+                & > a {
+                    @include fontSize(13px);
+                    display: inline-block;
+                    width: 100%;
+                    margin-bottom: cR(30);
+                    padding: cR(12) cR(30);     
+                    text-transform: uppercase;
+                    color: white;
+                    color: white;
+                    background: #c6329a;
+                    font-weight: bold;
+                }
+
+                & > ul {
+                    @include media-breakpoint-down(sm) {
+                        @include make-col(12);
+                    }
+                    @include make-col(4);
+                    @include make-col-ready();
+                  
+                    float: left;
+                    margin-bottom: cR(30);
+                }
+            }
+
+            &--level2 {
+                @include fontSize(13px);
+                margin-top: cR(10);
+                text-transform: uppercase;
+                font-weight: bold;
+
+                &:first-child {
+                    margin-top: 0;
+                }
+                
+                a {
+                    color: #414042;
+                }
+            }
+            &--level3 {
+                @include fontSize(13px);
+                
+                a {
+                    color: #414042;
+                }
+            }
+            &--level4 {
+                @include fontSize(13px);
+                padding-left: cR(30);
+                text-transform: uppercase;
+                font-weight: bold;
+                
+                a {
+                    color: #414042;
+                }
+            }
+        }
+    }
+}

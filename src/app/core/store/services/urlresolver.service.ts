@@ -1,0 +1,20 @@
+import { Injectable } from '@angular/core';
+
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/throw';
+
+import { ResolvedUrl, ParentCrumb } from '@models/urlresolver.model';
+import { ApplicationHttpClient } from '@core/services/http.service';
+import { API_PATH } from '@core/constants';
+
+@Injectable()
+export class UrlResolverService {
+
+  constructor(private http: ApplicationHttpClient) { }
+
+  resolveUrl(slug: string): Observable<ResolvedUrl> {
+    return this.http
+      .Get<ResolvedUrl>(API_PATH.base + `resolve-url?slug=/${slug}`);
+      // .map(response => response);
+  }
+}

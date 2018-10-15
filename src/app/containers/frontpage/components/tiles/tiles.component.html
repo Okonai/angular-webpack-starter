@@ -1,0 +1,9 @@
+<div class="c-tiles container">
+  <figure *ngFor="let tile of tiles$ | async" class="c-tiles__item c-tiles__item--position-{{tile.position}}" >
+    <a routerLink="{{tile.url}}" >
+      <img class="c-tiles__item__image" src="http://www.smartshop.hu{{tile.image}}"/>
+      <figcaption class="c-tiles__item__label">{{tile.title}}</figcaption>
+    </a>
+  </figure>
+</div>
+

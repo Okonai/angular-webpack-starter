@@ -1,0 +1,5 @@
+<div class="l-promotion">
+  <ng-container *ngFor="let product of products$ | async">
+    <app-product-card [product]="product" [viewClass]="'compact'"></app-product-card>
+  </ng-container>
+</div>

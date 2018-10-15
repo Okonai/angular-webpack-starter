@@ -1,0 +1,7 @@
+<form class="c-price" [formGroup]="parentForm">
+  <div class="c-price--slider">
+    <ng-container *ngIf="pricesLoaded">
+      <nouislider [config]="priceRangeConfig" [formControl]="priceForm"></nouislider>
+    </ng-container>
+  </div>
+</form>

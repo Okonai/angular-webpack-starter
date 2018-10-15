@@ -1,0 +1,26 @@
+<div class="c-product-card c-product-card--{{viewClass}}">
+    <div class="c-product-card__image image">
+        <div class="c-product-card__image--tumbnail">
+            <img src="{{card.thumbnail.link}}">
+        </div>
+        <div class="c-product-card__image--stamp">
+            <img src="{{ card.thumbnail.stamp }}">
+        </div>
+    </div>
+    <div class="c-product-card__title title">
+        <span routerLink="{{card.slug}}-p{{product.id}}">{{card.name_custom ? card.name_custom : card.name}}</span>
+    </div>
+    <div class="c-product-card__info info">
+        <label class="c-product-card__info--stock-info" [ngClass]="{'instock': variable.quantity.local, 'nostock': variable.quantity.storage}">
+            {{ variable.local ? "Készleten" : "Rendelésre" }}
+        </label>
+        <label class="c-product-card__info--sku" *ngIf="card.sku">
+            SKU: {{card.sku}}
+        </label>
+        <label class="c-product-card__info--warranty" *ngIf="card.warranty">
+            Garancia: {{card.warranty}}
+        </label>
+    </div>
+    <app-add-to-cart [product]="product"></app-add-to-cart>
+
+</div>

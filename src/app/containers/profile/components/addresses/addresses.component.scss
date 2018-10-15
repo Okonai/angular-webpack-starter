@@ -1,0 +1,98 @@
+@import '../../../../shared.scss';
+
+.c-addresses {
+    @include clearfix;
+    @include make-row();
+    display:flex;
+    margin: 0 calculateRem(-10px);   
+    margin-bottom: cR(15);
+}
+
+.c-address {
+    @include make-col(4);   
+    @include media-breakpoint-down(sm) {
+        @include make-col(6);
+    }
+    float: left; 
+    width: 100%;
+    padding: calculateRem(10px);
+
+    &-card.mat-card {
+        height: 100%;
+        padding: cR(10);
+    }
+
+    &-delete, &-edit {
+        position: absolute;
+        top: calculateRem(5px);
+        width: calculateRem(22px);
+        height: calculateRem(22px);
+    }
+
+    &-delete {        
+        @include sprite(860, 328);
+        left: calculateRem(5px);
+    }
+
+    &-edit {        
+        @include sprite(856, 295);
+        right: calculateRem(5px);
+    }
+
+    &-icon {
+        @include sprite(566, 357);
+        display: block;
+        width: cR(35);
+        height: cR(35);
+        margin: cR(10) auto!important;
+    }
+
+    &-info {
+        @include fontSize(13px);
+        padding: cR(20) 0;
+        text-align: center;
+    }
+
+    &-label {
+        @include fontSize(13px);
+        display: block;
+        margin-bottom: calculateRem(15px);
+        text-align: center;
+        text-transform: uppercase;
+        font-weight: bold;
+    }
+
+    &-select {
+        @include button-outline-variant(#c42695, white);
+        @extend .btn;
+        @extend .btn-block;
+        @include fontSize(13px);
+        box-shadow: none!important;
+
+        &.selected {
+            @include button-variant(#7ac043, #7ac043, white, #7ac043);
+            color: white;
+
+            &:hover {
+                color: #7ac043;
+            }
+        }
+    }
+
+    &--addnew {
+
+        .c-address-icon{
+            @include sprite(514, 300);
+            margin: cR(48.5) auto!important;
+        }
+
+        .c-address-select {
+            @include button-outline-variant(#7ac043, white);
+            @extend .btn;
+            @extend .btn-block;            
+            @include fontSize(13px);
+        }
+    }
+}
+
+

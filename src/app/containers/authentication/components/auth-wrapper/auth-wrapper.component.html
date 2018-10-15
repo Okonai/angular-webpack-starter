@@ -1,0 +1,10 @@
+<div class="l-authentication">
+  <div class="c-authentication">
+    <a href="/" class="c-logo"></a>
+    <div class="c-authentication-form" *ngIf="!(isLoading$ | async)">
+      <router-outlet></router-outlet>
+      <button class="button" (click)="back()">Vissza</button>
+    </div>
+    <mat-spinner *ngIf="(isLoading$ | async)"></mat-spinner>
+  </div>
+</div>

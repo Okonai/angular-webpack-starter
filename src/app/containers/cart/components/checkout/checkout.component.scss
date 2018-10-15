@@ -1,0 +1,112 @@
+@import "../../../../shared";
+
+.c-checkout {
+    @extend .container;
+    max-width: cR(850);
+    padding-top: cR(30);
+
+    &__step {
+        margin-bottom: cR(30)!important;
+
+        &__title {
+            @include fontSize(13px);
+            letter-spacing: cR(1);
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        &__subtitle {
+            @include fontSize(13px);
+            display: block;
+            margin-top: cR(5);
+            margin-bottom: cR(15);
+        }
+
+        &__cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-column-gap: cR(30);
+            grid-row-gap: cR(30);
+
+            
+        }
+    }
+
+    &__card {
+        border: 1px solid #e6e7e8;
+        padding: cR(30) cR(45);
+        position: relative;
+
+        &__title {
+            color: $pink;
+            @include fontSize(13px);
+            margin-bottom: cR(15);
+            display: block;
+            text-align: center;
+        }
+
+        &__button {
+            display: block;
+            @include fontSize(13px);
+            padding: cR(10) cR(30);
+            text-align: center;
+            color: white;
+            background: $pink;
+            margin: 0 auto;
+        
+            .c-checkout__card--selected {
+                color: $pink;
+                background: white;
+                border: 1px solid $pink;
+            }
+        }
+
+        &__help-icon {
+            position: absolute;
+            cursor: pointer;
+            color: $pink;
+            @include fontSize(13px);
+            border: 1px solid $pink;
+            border-radius: 100px;
+            right: cR(10);
+            top: cR(10);
+            width: cR(15);
+            height: cR(15);
+            display: block;
+            line-height: cR(13);
+            padding: 0 cR(4);
+        }
+    }
+
+    .mat {
+
+        &-expansion {
+
+            &-indicator {
+                display: none;
+            }
+
+            &-panel {
+                box-shadow: none!important;
+
+                &-header {
+                    padding: 0;
+                    border-bottom: 1px solid #e6e7e8;
+                    background: none!important;
+
+                    &.mat-expanded {
+                        border-color: $pink;
+                    }
+
+                    &:hover {
+                        background: none!important;
+                    }
+                }
+
+                &-body {
+                    padding: 0!important;
+                }
+            }
+        }
+    }
+}

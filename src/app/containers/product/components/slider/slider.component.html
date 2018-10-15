@@ -1,0 +1,18 @@
+<div class="c-product-slider">
+    <ng-container *ngIf="data.length == 1">
+        <img class="c-product-slider__single-image" [src]="data[0]" />      
+    </ng-container>        
+    <ng-container *ngIf="data.length > 1">
+        <ngb-carousel class="c-product-slider__carousel" #productCarousel>
+            <ng-template ngbSlide *ngFor="let image of data;let i = index" [id]="i">
+                <div class="c-product-slider__carousel__background-image" [ngStyle]="{'background-image': 'url(' + image + ')'}"></div>
+                <img class="c-product-slider__carousel__image" [src]="image">
+            </ng-template>
+        </ngb-carousel>
+        <div class="c-product-slider__carousel__thumbnails">
+            <div class="c-product-slider__carousel__thumbnails__item" *ngFor="let image of data; let i = index" (click)="productCarousel.select(i)">
+                <img [src]="image" >
+            </div>
+        </div>
+    </ng-container>
+</div>

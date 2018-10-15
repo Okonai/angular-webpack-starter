@@ -1,0 +1,73 @@
+@import '../../shared';
+
+.l-filter {
+    @include clearfix();
+
+    & &__sidebar-toggle {
+        @include media-breakpoint-down(sm) {        
+            display: block;
+            margin: 0;
+            padding: 0;
+            position: absolute;
+            z-index: 9;
+            right: 0;
+        }
+        display: none;
+    }
+
+    .c-filter {
+        @include media-breakpoint-up(md) {        
+            display: flex;
+        }
+        width: 100%;
+        background: none;
+
+        &__sidebar {
+            @include media-breakpoint-up(md) {        
+                position: relative;
+                width: 100%;
+                max-width: cR(360);
+                flex: 0 0 cR(360);
+            }
+            width: 100%;
+            border-right: 1px solid #e6e7e8;
+            box-shadow: none!important;
+            overflow-x: hidden;
+        }
+
+        &__main {
+            @include media-breakpoint-up(md) { 
+                margin: 0 auto!important;
+            }
+            align-self: flex-start;
+            max-width: cR(1200);
+            width: 100%;
+            padding: 0 cR(15);
+        }
+
+        app-custom-header {
+            @include make-col-ready();            
+            @include make-col(12);
+            @include clearfix();
+            margin-bottom: calculateRem(15px);
+        }
+        
+        app-sidebar {
+            @include clearfix();  
+            @include media-breakpoint-down(md) {
+              @include make-col(12);
+            }
+            display: block;
+        }
+        
+        app-main {
+            @include make-col(12);
+            @include clearfix();
+        }
+
+        .mat-drawer-backdrop {
+            display: none;
+        }
+    }
+}
+

@@ -1,0 +1,39 @@
+<h4 class="title">Termékek szűrése</h4>
+<div class="categories" *ngIf="(filters$ | async)?.categories.length > 0">
+    <span class="title">Válassz kategóriát</span>
+    <app-category [parentForm]="filterForm" [categories]="(filters$ | async)?.categories"></app-category>    
+</div>
+<mat-accordion multi="true" displayMode="flat">
+    <mat-expansion-panel [expanded]="true">
+        <mat-expansion-panel-header expandedHeight="40px" collapsedHeight="40px">
+            <mat-panel-title>                
+                <span class="title">Kulcsszó</span>
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+        <app-tags></app-tags>
+    </mat-expansion-panel>
+    <mat-expansion-panel [expanded]="true" >
+        <mat-expansion-panel-header  expandedHeight="40px" collapsedHeight="40px">
+            <mat-panel-title>
+                <span class="title">Átvételi idő</span>
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+        <app-stock  [parentForm]="filterForm" [stock]="(filters$ | async)?.stock"></app-stock>
+    </mat-expansion-panel>
+    <mat-expansion-panel [expanded]="true">
+        <mat-expansion-panel-header expandedHeight="40px" collapsedHeight="40px">
+            <mat-panel-title>
+                <span class="title">Ár</span>
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+        <app-price [parentForm]="filterForm" [prices]="(filters$ | async)?.price"></app-price>
+    </mat-expansion-panel>
+    <mat-expansion-panel [expanded]="true">
+        <mat-expansion-panel-header expandedHeight="40px" collapsedHeight="40px">
+            <mat-panel-title>
+                <span class="title">Gyártó</span>
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+        <app-manufacturer [parentForm]="filterForm" [manufacturers]="(filters$ | async)?.manufacturers"></app-manufacturer>
+    </mat-expansion-panel>
+</mat-accordion>

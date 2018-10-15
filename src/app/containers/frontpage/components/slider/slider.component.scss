@@ -1,0 +1,140 @@
+@import '../../../../shared';
+
+@keyframes right-overlay {
+  0% {
+    left: 100%;
+  }
+  100% {
+    left: 0;
+  }
+}
+
+@keyframes left-overlay {
+  0% {
+    right: 100%;
+  }
+  100% {
+    right: 0;
+  }
+}
+
+.l-slider {
+
+  @include media-breakpoint-down(sm) {
+    padding: 0!important;
+  }
+  position: relative;
+  overflow: hidden;
+  height: cR(480);
+
+  .size-initializer {
+    position: relative;
+    z-index: -99;
+    visibility: hidden;
+  }
+
+  .c-slider {
+    width: 100%;
+    height: 100%;
+  
+    .carousel-indicators {
+      display: none;
+    }
+    .carousel-control-prev, .carousel-control-next {
+      width: 5%;
+    }
+  
+    .carousel-control-prev-icon, .carousel-control-next-icon {
+      width: cR(20);
+      height: cR(40);
+    }
+  
+    .carousel-control-prev-icon {
+      @include sprite(520, 150);
+    }
+  
+    .carousel-control-next-icon {
+      @include sprite(490, 150);
+    }
+  }
+  
+  
+  .carousel-inner {
+    display: flex;
+    overflow: visible;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+  
+    .carousel-item {
+
+      @include media-breakpoint-down(sm) {
+        width: 100%;
+      }
+      position: absolute;
+      z-index: -1;
+      display: flex !important;
+      visibility: hidden;
+      overflow: hidden;
+      width: cR(1920);
+      height: 100%;
+      transition: opacity 1.2s ease-in-out, visibility 1.2s;
+      opacity: 0;
+      flex-shrink: 0;
+
+      a {
+        position: absolute;
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+  
+      .c-slide__item__layer {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+  
+        img {
+          width: 100%;
+          height: 100%;
+          pointer-events: none;
+        }
+      }
+    }
+  }
+  
+  
+  
+  .carousel-item.active{
+    z-index: 10;
+    visibility: visible;
+    opacity: 1;
+  
+    .c-slide__item__layer {
+  
+      &--left {
+        animation: left-overlay 1.2s;
+      }
+  
+      &--right {
+        animation: right-overlay 1.2s;
+      }
+    }
+  }
+  
+  .carousel-control-prev {
+    z-index: 20;    
+    display: none;
+  }
+  
+  
+  .carousel-control-next {
+    z-index: 20;
+    display: none;
+  }
+  
+  .carousel-indicators{
+    z-index: 20;
+  }
+}
+

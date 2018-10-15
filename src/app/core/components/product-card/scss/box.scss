@@ -1,0 +1,36 @@
+@import '../../../../shared';
+
+.c-product-card {
+    &--box {
+        grid-template-areas: 
+            "thumbnail"
+            "title"
+            "info"
+            "cart"
+        ;
+        grid-template-columns: auto;
+        grid-template-rows: auto cR(75) auto auto;
+        grid-row-gap: cR(5);
+    }
+
+    &__image {
+       
+        .c-product-card--box & {
+            width: 100%;
+            height: auto;
+            
+            &:after {
+                display: block;
+                padding-bottom: 100%;
+                content: "";
+            }
+        }
+    }
+
+    &__cart {
+     
+        .c-product-card--box & {
+            justify-content: space-between;
+        }
+    }
+}

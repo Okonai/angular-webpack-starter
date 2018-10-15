@@ -1,0 +1,32 @@
+@import '../../../../shared';
+
+.c-product-card {
+
+    &--compact {       
+        
+        @include media-breakpoint-down(sm) {
+            grid-template-areas: 
+                "thumbnail title"
+                "thumbnail info"
+                "thumbnail cart"
+            ;
+            grid-template-columns: cR(90) auto;
+            grid-template-rows: cR(60) auto auto;
+            grid-row-gap: 0;    
+        }
+        grid-template-areas: 
+            "thumbnail title title"
+            "thumbnail info cart"
+        ;
+        grid-template-columns: cR(90) auto auto;
+        grid-template-rows: cR(60) auto;
+        grid-row-gap: 0;
+    }
+
+    &__cart {
+
+        .c-product-card--compact & {
+            justify-content: flex-end;            
+        }
+    }
+}

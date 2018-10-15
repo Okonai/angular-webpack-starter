@@ -1,0 +1,11 @@
+<div class="c-product-card__cart cart">
+    <span class="c-product-card__cart__price" matTooltip="Bruttó ár: {{ (product.variable.price.price ? product.variable.price.price : product.variable.price.promotion) * 1.27 | currencyFormat }}">{{product.variable.price.price | currencyFormat }}</span>
+    <div class="c-product-card__cart__add">
+        <div class="c-product-card__cart__add__quantity-selector">
+            <span class="button button--minus" matRipple (click)="modifyQuantity('minus')">-</span>
+            <span class="value">{{quantity}}</span>
+            <span class=" button button--plus" matRipple (click)="modifyQuantity('plus')">+</span>
+        </div>
+        <div class="c-product-card__cart__add__button" (click)="addtocart()">Kosárba</div>
+    </div>
+</div>

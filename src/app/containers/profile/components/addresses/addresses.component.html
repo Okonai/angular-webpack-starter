@@ -1,0 +1,36 @@
+<h1 class="title">{{title}}
+    <mat-progress-bar class="c-loading-bar" [color]="'accent'" mode="indeterminate" *ngIf="(loading$ | async) === true"></mat-progress-bar>
+</h1>
+<div class="c-addresses">
+    <div class="c-address" *ngFor="let address of (addresses$ | async)">
+        <mat-card class="c-address-card">
+            <mat-card-content>
+                <span class="c-address-delete" (click)="deleteAddress(address.id)"></span>
+                <span class="c-address-edit" (click)="editAddress(address.id)"></span>
+                <span class="c-address-icon"></span>
+                <div class="c-address-info">
+                    <span class="c-address-zip">{{address.zip_code}}</span>
+                    <span class="c-address-city">{{address.city}}</span>
+                    <br>
+                    <span class="c-address-street">{{address.street}}</span>
+                    <span class="c-address-extra_address">{{address.extra_address}}</span>                   
+                </div>  
+                <button [class.selected]="address.is_default" class="c-address-select" (click)="setAsDefault(address)">
+                    <span>Alapértelmezett</span>
+                </button>        
+            </mat-card-content>           
+        </mat-card>
+    </div>
+    <div class="c-address" (click)="newAddress()">
+        <mat-card class="c-address-card c-address--addnew">
+            <mat-card-content>
+                <span class="c-address-icon"></span>               
+                <button class="c-address-select">Új cím hozzáadása</button>        
+            </mat-card-content>           
+        </mat-card>
+    </div>
+</div>
+<div [ngSwitch]="type" *ngIf="(addressFormOpened$ | async)">
+    <app-billing *ngSwitchCase="'billing'"></app-billing>
+    <app-shipping *ngSwitchCase="'shipping'"></app-shipping>
+</div>

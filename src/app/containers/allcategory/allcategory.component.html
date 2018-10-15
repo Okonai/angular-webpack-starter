@@ -1,0 +1,28 @@
+<div class="l-allcategory container">
+  <ng-container *ngIf="root$ | async as root">
+      <ng-container *ngIf="root&&root[0]">
+        <ul class="c-allcategory" *ngFor="let root of root$ | async"> 
+          <ng-container *ngFor="let level1 of root.children">
+            <li class="c-allcategory__item c-allcategory__item--level1">
+              <a routerLink="{{level1.slug}}-c{{level1.id}}" >{{level1.name}}</a>
+              <ul *ngFor="let level2 of level1.children">
+                  <li  class="c-allcategory__item c-allcategory__item--level2">
+                    <a routerLink="{{level2.slug}}-c{{level2.id}}" >{{level2.name}}</a>
+                  </li>
+                  <ul *ngFor="let level3 of level2.children">
+                      <li  class="c-allcategory__item c-allcategory__item--level3">
+                          <a routerLink="{{level3.slug}}-c{{level3.id}}" >{{level3.name}}</a>
+                      </li>
+                      <ul *ngFor="let level4 of level3.children">
+                        <li  class="c-allcategory__item c-allcategory__item--level4">      
+                          <a routerLink="{{level4.slug}}-c{{level4.id}}" >{{level4.name}}</a>
+                        </li>  
+                      </ul>    
+                  </ul>
+                </ul>
+              </li>                
+            </ng-container>                                              
+        </ul>
+      </ng-container>
+    </ng-container>
+</div>

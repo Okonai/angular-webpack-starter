@@ -1,0 +1,122 @@
+@import '../../shared.scss';
+@import "node_modules/bootstrap/scss/buttons";
+
+.l-profile {
+    @extend .container;
+    padding-top: calculateRem(60px);
+
+    .c-profile {
+        display: flex;
+        
+        &__sidebar {
+            @include make-col-ready();
+            @include make-col(3);
+            @include media-breakpoint-down(sm) {
+                @include make-col(12);
+                padding: calculateRem(15px);
+            }
+
+            &:after {
+                position: absolute;
+                top: 0;
+                right: cR(15);
+                display: block;
+                width: 1px;
+                height: cR(500);
+                content: "";
+                background: #e6e7e8;
+            }
+        }
+
+        &__content {
+            @include make-col-ready();
+            @include make-col(9);
+            @include media-breakpoint-down(sm) {
+                @include make-col(12);
+            }
+            margin-bottom: cR(30);
+        }
+
+        &__navigation {    
+
+            ul {
+                @include list-unstyled();
+                padding: 0;
+
+                li {
+                    @include fontSize(13px);
+                    margin-bottom: cR(7.5);
+                    font-weight: 400;
+                    
+                    a {
+                        transition: color 0.3s;
+                        color: #414042;
+
+                        &:hover {
+                            text-decoration: none;
+                            color: #c42695;
+                        }
+
+                        &.active-link {
+                            color: #c42695;
+                        }
+                    }
+                }
+            }
+        }
+
+       
+
+        &__user-info {
+            @include fontSize(20px);
+            margin-bottom: calculateRem(45px);
+            text-transform: uppercase;
+            color: #414042;
+            font-weight: 500;
+            line-height: 1.2;
+        }        
+
+        &-input, &-submit {
+            @include make-col(6);
+            float: left;
+            width: 100%;
+            padding: 0 calculateRem(10px);
+        }
+
+        &-input {
+            margin-bottom: cR(5);
+        }
+    
+        &-submit {
+            float: right;
+    
+            button {
+                @include button-outline-variant(#c42695, white);
+                @extend .btn;
+                @extend .btn-block;
+                box-shadow: none!important;
+            }
+        }
+    }
+}
+
+h1.title {
+    @include fontSize(20px);
+    position: relative;
+    margin-bottom: calculateRem(45px);
+    text-transform: uppercase;
+    color: #c42695;
+    font-weight: 500;
+
+    .c-loading-bar {
+        position: absolute;
+        bottom: cR(-15);
+    }
+}
+
+h4.title {
+    @include fontSize(13px);
+    margin-bottom: calculateRem(20px);
+    color: #414042;
+}
+

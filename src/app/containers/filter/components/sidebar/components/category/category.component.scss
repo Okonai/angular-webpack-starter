@@ -1,0 +1,16 @@
+@import '../../../../../../shared';
+
+.c-category {
+    
+    .title {
+        margin-bottom: cR(15);
+    }
+    
+    &-item {
+        @include fontSize(13px);
+        display: block;
+        cursor: pointer;
+        margin-bottom: cR(5);
+        color: #414042;
+    }
+}

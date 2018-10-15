@@ -1,0 +1,10 @@
+<div class="l-highlighted-attributes" *ngIf="data.length > 0">
+    <div class="container c-attributes">
+      <div class="c-attribute" *ngFor="let attribute of data">
+        <span class="icon"><img src="https://smartshop.hu/static/media/attributes/{{attribute.icon}}.svg" /></span>
+        <span class="name">{{attribute.name}}</span>
+        <span class="value">{{attribute.value}}</span>
+      </div>
+    </div>
+</div>
+  

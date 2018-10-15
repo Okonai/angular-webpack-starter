@@ -1,0 +1,36 @@
+<div class="c-services {{template}}" *ngIf="(productServices$ | async)?.length">
+    <div class="c-service">
+        <ng-container *ngFor="let service of productServices$ | async">
+            <mat-card class="c-service-card" *ngIf="(template == 'large')">            
+                <span class="icon"></span>
+                <span class="name">{{service.name}}</span>
+                <mat-radio-group class="c-service-radio-group" [(ngModel)]="favoriteSeason">
+                    <mat-radio-button class="c-service-radio-button" *ngFor="let serviceOption of service.services" [value]="serviceOption.id">
+                        <span class="title">
+                            {{serviceOption.title}}
+                        </span>
+                        <span class="price">
+                            {{serviceOption.sale_price}} Ft
+                        </span>
+                    </mat-radio-button>
+                </mat-radio-group>       
+                <span class="description">{{service.description}}</span>               
+            </mat-card>
+            <mat-expansion-panel class="c-service-panel" *ngIf="(template == 'small')">
+                <mat-expansion-panel-header>
+                   <span class="name">{{service.name}}</span>
+                </mat-expansion-panel-header>
+                <mat-radio-group class="c-service-radio-group" [(ngModel)]="favoriteSeason">
+                    <mat-radio-button class="c-service-radio-button" *ngFor="let serviceOption of service.services" [value]="serviceOption.id">
+                        <span class="title">
+                            {{serviceOption.title}}
+                        </span>
+                        <span class="price">
+                            {{serviceOption.sale_price}} Ft
+                        </span>
+                    </mat-radio-button>
+                </mat-radio-group>
+            </mat-expansion-panel>
+        </ng-container> 
+    </div>
+</div>

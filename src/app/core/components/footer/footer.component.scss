@@ -1,0 +1,67 @@
+@import '../../../shared.scss';
+
+.scroll-to-top {  
+  @include fontSize(13px);
+  display: block;
+  width: 100%;
+  padding: cR(10);
+  cursor: pointer;
+  text-align: center;
+  text-transform: uppercase;
+  color: white;
+  background: #bb258e;
+}
+
+footer {
+  @include fontSize(13px);
+  padding-top: calculateRem(30px);
+  background: #e6e7e8;
+
+ 
+
+  h2 {
+    @include fontSize(13px);
+    display: block;
+    margin-bottom: calculateRem(15px);
+    padding-bottom: calculateRem(15px);
+    text-transform: uppercase;
+    color: $pink;
+    border-bottom: 1px solid $pink;
+    font-weight: bold;
+  }
+
+  ul {
+    padding: 0;
+    list-style: none;
+    color: #414042;
+
+    a {
+      text-decoration: none;
+      color: #414042;
+
+      &.read-more {
+        color: #bb258e;
+        text-decoration: underline;
+        font-style: italic;
+      }
+
+      &:hover {
+        color: #bb258e;
+      }
+    }
+  }
+
+  p {
+    @include fontSize(13px);
+    text-align: center;
+    color: #414042;
+
+  }
+
+  .img {
+    background: url('../../../../assets/img/footer.png');
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    background-size: contain;
+  }
+}

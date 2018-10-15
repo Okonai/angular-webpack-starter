@@ -1,0 +1,18 @@
+<p class="c-authentication__header-message">
+	Üdvözlünk! Jelentkezz be fiókodba!
+</p>
+<mat-form-field>
+	<input matInput type="email" placeholder="e-mail cím" [formControl]="email" (keydown)="keyDownFunction($event)">
+	<mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+</mat-form-field>
+<button class="button-pink button" (click)="nextStep()">Tovább</button>
+<small class="c-authentication-footer">
+	Még nincs fiókod? Add meg azt az e-mail címet, amivel regisztrálni szeretnél.
+</small>
+<h5 class="c-authentication-or" *ngIf="isSmartShop">
+	<span class="c-authentication-text">Vagy</span>
+</h5>
+<div class="c-authentication-login-button c-authentication-fullwidth" *ngIf="isSmartShop">
+	<button mat-raised-button (click)="socialSignIn('facebook')" class="c-authentication-fullwidth c-authentication-facebook">JELENTKEZZ BE FACEBOOK FIÓKODDAL</button>
+	<button mat-raised-button (click)="socialSignIn('google')" class="c-authentication-fullwidth c-authentication-gmail">JELENTKEZZ BE GOOGLE FIÓKODDAL</button>
+</div>

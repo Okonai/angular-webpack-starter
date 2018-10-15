@@ -1,0 +1,20 @@
+<form class="c-manufacturers" [formGroup]="parentForm">
+	<div class="c-manufacturers__list">
+		<div class="c-manufacturers__selected">
+			<ng-container *ngFor="let manufacturer of manufacturersForm.controls; let i=index">
+				<mat-checkbox 		
+				*ngIf="manufacturer.value"
+				[formControl]="manufacturer"
+				>{{manufacturers[i].label}}</mat-checkbox>
+			</ng-container>			
+		</div>
+		<div class="c-manufacturers__unselected">
+			<ng-container *ngFor="let manufacturer of manufacturersForm.controls; let i=index">
+				<mat-checkbox 		
+				*ngIf="!manufacturer.value"
+				[formControl]="manufacturer"
+				>{{manufacturers[i].label}}</mat-checkbox>
+			</ng-container>			
+		</div>		
+	</div>
+</form>

@@ -1,0 +1,26 @@
+@import '../../../../shared';
+
+.c-details {
+    @include make-col(7);
+    width: 100%; 
+    float: left;
+
+    .c-detail {
+        font-size: calculateRem(14px);
+        margin-bottom: calculateRem(15px);
+
+        span {
+            display: block;
+
+            &.c-detail__additional {
+                color: #7ac043;
+            }
+        }
+
+        &:nth-child(n+3) {
+            .c-detail__additional {
+                color: #808285!important;
+            }
+        }
+    }
+}

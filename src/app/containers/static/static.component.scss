@@ -1,0 +1,67 @@
+@import '../../shared';
+
+.c-static {
+    color: #414042;
+    padding-top: cR(30);
+
+    h1 {
+        @include fontSize(16px);
+        text-transform: uppercase;
+        font-weight: bold;
+    }
+
+    &-content {
+        @include fontSize(13px);
+        margin-bottom: cR(30);
+    }
+
+    &-widgets {
+
+        .c-static-widget {
+            margin-bottom: cR(30);
+        }
+
+        mat-expansion-panel-header {            
+            background: #c42695!important;
+
+            &:hover {
+                background: #c42695!important;
+            }
+
+            mat-panel-title {
+                text-align: center;
+                display: block;
+                width: 100%;
+
+                .c-static-widget-title {
+                    @include fontSize(16px);
+                    font-weight: bold;
+                    color: white;
+                    text-transform: uppercase;
+                }         
+            }
+        }
+
+        .mat-expansion-panel-body {
+            padding: 0;
+            
+            .c-static-widget-content {
+                color: #414042;
+                padding: cR(25);
+
+                p:last-child {
+                    margin-bottom: 0;
+                }
+            }
+        } 
+    
+        &.two-column {
+            @include make-row();
+
+            .c-static-widget {
+                @include make-col(6);
+                @include make-col-ready();
+            }
+        } 
+    }
+}

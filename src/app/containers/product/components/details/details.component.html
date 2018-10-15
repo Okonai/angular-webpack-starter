@@ -1,0 +1,6 @@
+<div class="c-details">
+  <div class="c-detail" *ngFor="let detail of data">
+    <span class="c-detail__name c-datail--{{detail.title | lowercase }}">{{detail.title}}</span>
+    <span class="c-detail__additional">{{detail.additional}}</span>
+  </div>
+</div>

@@ -1,0 +1,137 @@
+@import '../../../../shared';
+
+:host {
+    @include make-col-ready();
+    @include make-col(9);
+    @include clearfix();  
+    @include media-breakpoint-down(sm) {
+      @include make-col(12);
+    }
+
+    &.no-filter {
+    	@include make-col(12);
+
+    	app-product, app-product-compact{
+    		@include make-col(12);
+    	}
+    }
+}
+
+.c-products {
+
+  app-product-card {
+    display: block;
+  }
+
+  &__list {
+    grid-column-gap: cR(30);
+    grid-row-gap: cR(30);
+    display: grid;
+    margin-bottom: cR(60);
+  }
+
+  &__list.compact {
+    grid-template-columns: 1fr 1fr;
+
+
+    @include media-breakpoint-down(sm) {
+      grid-template-columns: 1fr;
+      @include make-col(12);
+    }
+  }
+
+  &__list.box {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    
+    @include media-breakpoint-down(sm) {
+      grid-template-columns: 1fr 1fr;
+      @include make-col(12);
+    }
+  }
+
+  &__list.list, &__list.list-2 {
+    grid-template-columns: 1fr;
+  }
+}
+
+.l-products {
+  @include clearfix();
+  
+  .c-product-card {
+    @include make-col-ready();
+    @include make-col(6);
+  }
+
+  &__header {
+    display: grid;
+    margin-bottom: cR(15);
+    grid-template-columns: 50px auto 200px;
+    grid-template-areas: "viewselector pagination sort";
+
+    @include media-breakpoint-down(sm) {
+      grid-template-columns: 1fr 1fr;
+      grid-template-areas: "pagination sort";    
+    }
+  }
+
+  &__viewClass-selector {
+    grid-area: viewselector;
+    @include media-breakpoint-down(sm) {
+        display: none;
+    }
+  }
+
+  &__sortType-selector {
+    grid-area: sort;
+
+    &__form-field {
+      float: right;
+    }
+
+  }
+
+  &__pagination {
+    @include media-breakpoint-down(sm) {
+      text-align: left;
+    }
+    grid-area: pagination;
+    @include fontSize(16px);
+    margin: 0;
+    padding: cR(12) 0;
+    list-style-type: none;
+    cursor: pointer;
+    text-align: center;
+    &--bottom {
+      padding: cR(10) 0 cR(30) 0!important;
+    }
+
+    .ngx-pagination {
+      margin: 0;
+      padding: 0;
+    }
+
+    li {
+      display: inline-block;
+      margin: 0 cR(10);
+
+      &:hover {
+        color: #c42695;
+        font-weight: bold;
+      }
+
+      a {
+        position: relative;
+
+        &.active:after {
+          content: "";
+          position: absolute;
+          bottom: -3px;
+          display: block;
+          width: 100%;
+          left: 0;
+          border-bottom: 1px solid #414042;
+        }
+      }
+    }
+  }
+}

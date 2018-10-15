@@ -1,0 +1,60 @@
+@import '../../../../shared';
+
+.c-product-card {
+
+    &--cart-sidebar {
+        grid-template-areas: 
+            "thumbnail title"
+            "thumbnail cart"
+        ;
+        grid-template-columns: cR(90) auto;
+        grid-template-rows: cR(55);
+        border: none;
+        border-bottom: 1px solid #e6e7e8;
+
+        &:hover {
+            border-color: #e6e7e8;
+        }
+    }
+
+    &--cart-full {
+        grid-template-areas: 
+            "thumbnail title cart"
+            "thumbnail services services"
+        ;
+        grid-template-columns: cR(125) auto cR(250);
+        grid-template-rows: cR(55);
+        border: none;
+        border-bottom: 1px solid #e6e7e8;
+
+        &:hover {
+            border-color: #e6e7e8;
+        }
+    }
+
+    &__info {
+        .c-product-card--cart-sidebar &, .c-product-card--cart-full & {
+            display: none;
+        }
+    }
+
+    &__cart {
+       
+        &__add {
+        
+            &__quantity-selector {
+
+                .c-product-card--cart-sidebar & {
+                    display: flex;
+                    align-items: center;
+                }
+            }
+
+            &__button {
+                .c-product-card--cart-sidebar & {
+                    display: none;
+                }
+            }
+        }
+    }
+}

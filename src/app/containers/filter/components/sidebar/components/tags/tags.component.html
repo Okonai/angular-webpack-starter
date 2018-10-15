@@ -1,0 +1,13 @@
+<div class="c-tags">
+	<mat-form-field class="c-tags--input">
+		<input matInput placeholder="Szűkítsd a keresést!" (keyup.enter)="addTag()" [(ngModel)]="tagInput">
+	</mat-form-field>
+	<div class="c-tags--keyword-list">
+		<ng-container *ngFor="let item of (tags$ | async)">
+			<span class="c-tags--keyword-list--item">
+				<span class="name">{{item}}</span>
+				<span class="remove-button" (click)="removeTag(item)"></span>
+			</span>
+		</ng-container>
+	</div>
+</div>

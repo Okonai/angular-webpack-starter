@@ -1,0 +1,18 @@
+<p class="c-authentication__header-message">
+	Üdvözlünk {{lastName}}!
+</p>
+<form [formGroup]="form" (ngSubmit)="onFormSubmit()">
+	<mat-form-field>
+		<input matInput type="password" formControlName="password" placeholder="Jelszó" >
+		<mat-error *ngIf="(form.get('password').touched || form.submitted) && form.get('password').status == 'INVALID'">A jelszó kitöltése kötelező.</mat-error>
+	</mat-form-field>
+	<p class="custom-error" *ngIf="(authLoginError$ | async)">Helytelen jelszó, kérlek próbáld meg újra.</p>
+	<button type="submit" class="button-pink button">
+		Belépés
+	</button>
+		<mat-checkbox class="c-login-checkbox" formControlName="save"><i>Bejelentkezve maradok</i></mat-checkbox>
+	<hr/>
+	<a [routerLink]="['/auth/forgot']" class="c-login-forgot-link smart-pink" (click)="forgot()">
+		Elfelejtettem a jelszavam
+	</a>
+</form>

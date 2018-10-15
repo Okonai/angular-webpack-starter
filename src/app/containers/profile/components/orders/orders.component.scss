@@ -1,0 +1,297 @@
+@import '../../../../shared.scss';
+
+.c-profile {
+
+    &__orders {
+
+        .orders {
+            &__filter {
+                margin-bottom: cR(30);
+                
+                .filter {
+                    &__title {
+                        @include fontSize(13px);
+                        margin-bottom: cR(15);
+                        color: #414042;
+                    }
+
+                    &__form {
+                        @include clearfix();
+                        display: grid;
+                        grid-template-columns: 1fr 1fr 1fr;
+                        grid-column-gap: cR(30);
+
+                        .c-profile-input {
+                            display: block;
+                            max-width: 100%;
+                            padding: 0;
+                            font-style: italic;
+                        }
+                    }
+                }
+            }
+
+            &__order {
+                .mat-expanded .order__header {
+                    color: #c42695;
+                }
+                .order {
+                    &__header {
+                        @include fontSize(13px);
+                        display: grid;
+                        width: 100%;
+                        grid-template-columns: cR(85) cR(85) cR(100) 1fr 1fr 1fr;
+                        grid-column-gap: 30px;
+
+                       
+                    }
+
+                    &__details {
+                        min-height: cR(500);
+                        
+                        .details {
+                            &__products {
+                                
+                                .products {
+                                    &__list {
+                                        padding: cR(15) 0;
+                                        border-bottom: 1px solid #e6e7e8;
+                                    }
+
+                                    &__product {
+                                        display: grid;
+                                        grid-template-areas: 
+                                            "image name price"
+                                            "image services services"
+                                        ;
+                                        grid-template-columns: cR(90) auto cR(120);
+                                        grid-template-rows: minmax(20px, max-content);
+                                        grid-column-gap: cR(30);
+                                        margin-bottom: cR(15);
+
+                                        .product {
+                                            &__image {
+                                                @include centeredImage;
+                                                width: cR(90);
+                                                height: cR(90);
+                                                grid-area: image;
+                                            }
+
+                                            &__name {
+                                                @include fontSize(13px);
+                                                display: block;
+                                                overflow: hidden;
+                                                max-height: cR(40);
+                                                color: #414042;
+                                                grid-area: name;
+                                            }
+
+                                            &__price {                                                
+                                                @include fontSize(13px);
+                                                max-height: cR(40);
+                                                text-align: right;                                                
+                                                color: #414042;
+
+                                                span {
+                                                    display: block;
+                                                }
+                                                .price {
+                                                    &--detailed {
+                                                        color: #808285;
+                                                    }
+                                                }
+                                            }
+
+                                            &__services {
+                                                @include fontSize(13px);
+                                                margin: 0;
+                                                padding: 0;
+                                                list-style-type: none;
+                                                color: #c42695;
+                                                grid-area: services;
+
+
+                                                span {
+                                                    display: block;
+                                                }
+
+                                                li {
+                                                    @include clearfix();
+                                                    display: block;
+                                                }
+
+                                                .service{
+                                                    &__name{
+                                                        float: left;
+
+                                                        &:before {
+                                                            margin-right: cR(5);
+                                                            content: "+";
+                                                        }
+                                                    }
+                                                    &__price {
+                                                        float:right;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+
+                                    &__shipping {
+                                        @include fontSize(13px);
+
+                                        .shipping{
+                                            &__price {                                                
+                                                display: block;
+                                                float: right;
+
+                                                &--free {
+                                                    color: #7ac043;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
+                            &__price { 
+                                @include fontSize(16px);
+                                display: block;
+                                padding: cR(30) 0;
+                                text-align: right;
+                                color: #c42695;
+                                border-bottom: 1px solid #e6e7e8;
+                                font-weight: bold;
+                            }
+
+                            &__address {
+                                display: grid;
+                                padding: cR(30) 0;                                
+                                border-bottom: 1px solid #e6e7e8;
+                                grid-template-columns: 1fr 1fr 0.5fr;
+                                grid-column-gap: cR(60);
+
+                                .address {
+                                    &__title {
+                                        display: block;
+                                        margin-bottom: cR(5);
+                                        color: #c42695;
+                                    }
+
+                                    &__line {
+                                        display: block;
+                                        margin-bottom: cR(5);
+                                    }
+                                }
+                            }
+
+                            &__history {
+                                padding: cR(30) 0;
+
+                                .history {
+                                    &__header {
+                                        display: grid;
+                                        margin-bottom: cR(30);
+                                        text-transform: uppercase;
+                                        grid-template-columns: cR(150) cR(150) auto;
+                                        grid-column-gap: cR(60);
+                                    }
+
+                                    &__list {                                        
+
+                                        .list {
+                                            &__item {
+                                                display: grid;
+                                                margin-bottom: cR(5);
+                                                text-align: left;
+                                                grid-template-columns: cR(150) cR(150) auto;
+                                                grid-column-gap: cR(60);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            &__pagination {
+                @include fontSize(13px);
+                padding: cR(30);
+                
+                ul {
+                    margin: 0;
+                    padding: 0;
+                    text-align: center;
+
+                    li {
+                        border: 1px solid #e6e7e8;
+                        margin: cR(7.5);
+
+                        &.ellipsis {
+                            border: none;
+                        }
+
+                        &.current {
+                            background: #e6e7e8;
+                            color: #414042;
+                        }
+                    }
+                }
+            }
+        }
+
+        .mat {
+
+            &-icon {
+                cursor: pointer;
+            }
+
+            &-expansion-panel {
+                margin-bottom: -1px;
+                transition: border-color 0.3s;
+                border-top: 1px solid #e6e7e8;
+                border-bottom: 1px solid #e6e7e8;
+                box-shadow: none!important;
+
+                &.mat-expanded {
+                    position: relative;
+                    z-index: 9;
+                    border-color: #c42695;
+                }
+        
+                &-header {
+                    padding: 0;
+                }
+
+                &-body {
+                    padding: 0;
+                }
+            }           
+        }      
+    }   
+}
+
+.filter__date-picker {
+
+    .mat-calendar-body {
+
+        &-cell {
+            &-content {
+                border: 1px solid #c42695;
+                border-radius: cR(100);
+            }
+        }
+
+        &-disabled {
+            div {
+                border: none;
+            }
+        }
+        
+        &-selected {
+            background:#c42695;
+        }
+    }
+}

@@ -1,0 +1,10 @@
+@import '../../../../shared';
+
+.l-promotion {
+  @extend .container;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-rows: 1fr;
+  grid-column-gap: cR(30);
+  grid-row-gap: cR(30);
+}

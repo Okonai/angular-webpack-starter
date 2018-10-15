@@ -1,0 +1,86 @@
+@import "../../../../shared";
+
+.c-cart {
+
+    &.sidebar {
+        width: cR(340);
+        height: 100vh;
+        border-left: 1px solid #e6e7e8;
+        background: white;
+    }
+
+    &.full {
+        @extend .container;
+    }
+
+    &__header {
+        padding: cR(30);
+        border-bottom: 1px solid #e6e7e8;
+
+        .full & {
+            padding: cR(15);
+
+            h2 {
+                margin-bottom: 0;
+            }
+
+            span {
+                display: none;
+            }
+        }
+
+        h2 {
+            @include fontSize(13px);
+            margin-bottom: cR(30);
+            text-transform: uppercase;
+            color: #c42695;
+            font-weight: bold;
+        }
+
+        span {
+            @include fontSize(13px);
+            text-transform: lowercase;
+        }
+    }
+
+    &__list {
+       max-height: cR(500);
+
+       .full & {
+           max-height: none;
+       }
+    }
+
+    &__footer {
+        @include clearfix();
+        padding: cR(15);
+        border-top: 1px solid #e6e7e8;
+        border-bottom: 1px solid #e6e7e8;
+
+        &__sum {
+            @include fontSize(13px);
+            float: left;
+
+            label {
+                display: block;
+                margin: 0;
+                text-transform: lowercase;
+            }
+            span {
+                display: block;
+                color: #c42695;
+                font-weight: bold;
+            }
+        }
+
+        &__button {
+            @include fontSize(13px);
+            float: right;
+            margin-left: cR(15);
+            padding: cR(10) cR(30);
+            text-align: center;
+            color: white;
+            background: $pink;
+        }
+    }
+}

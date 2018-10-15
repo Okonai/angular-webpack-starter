@@ -1,0 +1,61 @@
+@import '../../../../shared';
+
+.l-attributes {
+
+    .c-attributes {
+        @include clearfix();
+        font-size: calculateRem(13px);            
+        padding: calculateRem(50px) 0;
+        padding-top: calculateRem(20px);
+        -webkit-columns: 2; /* Chrome, Safari, Opera */
+        -moz-columns: 2; /* Firefox */
+        columns: 2;        
+        margin: 0 cR(-15);
+
+        @include media-breakpoint-down(sm) {
+            -webkit-columns: 1; /* Chrome, Safari, Opera */
+            -moz-columns: 1; /* Firefox */
+            columns: 1;
+            padding: 0 cR(15);
+        }  
+       
+        h3 {
+            font-size: calculateRem(13px);
+            color: #c42695;
+            font-weight: bold;
+            text-transform: uppercase;
+            border-bottom: 1px dotted #808285;
+            padding-bottom: calculateRem(10px);
+            margin-bottom: calculateRem(15px);
+            margin-top: calculateRem(30px);
+            -webkit-column-span: all; 
+            column-span: all; 
+            position: relative;
+        }
+
+        
+        .c-attribute {
+            @include clearfix();
+            margin-bottom: calculateRem(10px);
+            
+            .name {
+                @include make-col(5);
+                width: 100%;
+                float: left;
+                color: #808285;
+            }
+            
+            .value {
+                @include make-col(7);
+                width: 100%;
+                float: right;
+                color: #414142;
+                word-break: break-word;
+
+                &.link {
+                    text-transform: lowercase;
+                }
+            }
+        }
+    }
+}

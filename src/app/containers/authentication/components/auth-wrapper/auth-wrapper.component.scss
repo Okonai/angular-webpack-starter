@@ -1,0 +1,44 @@
+@import '../../../../shared';
+
+.l-authentication {
+    @extend .container;
+    text-align: center;
+    
+
+    .c-authentication {
+        @include media-breakpoint-up(sm) {           
+            @include make-col(4);
+        }
+        margin: 0 auto;
+
+        &__header-message {
+            @include fontSize(16px);
+            color: #c42695;
+            font-style: italic;
+        }
+        .mat-form-field, .button {
+            width: 100%;
+        }
+
+        .button {
+            margin: cR(10) auto;
+            padding: cR(3);
+            text-transform: capitalize;
+            color: #c42695;
+            border: 1px solid #c42695 !important;
+            outline: 0 !important;
+            background: white;
+            box-shadow: initial !important;
+
+            &.button-pink {
+                color: white;
+                background: #c42695;               
+            }
+        }
+        
+
+        .c-logo {
+            margin: cR(50) auto;
+        }
+    }
+}

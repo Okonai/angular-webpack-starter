@@ -13,7 +13,22 @@
     "sourceMap": true,
     "typeRoots": [
       "node_modules/@types"
-    ]
+    ],
+    "baseUrl": "src",
+    "paths": {
+      "@actions/*": ["app/core/store/actions/*"],
+      "@effects/*": ["app/core/store/effects/*"],
+      "@models/*": ["app/core/store/models/*"],
+      "@reducers/*": ["app/core/store/reducers/*"],
+      "@services/*": ["app/core/store/services/*"],
+      "@selectors/*": ["app/core/store/selectors/*"],
+
+      "@modules/*": ["modules/*"],
+
+      "@core/*": ["app/core/*"],
+
+      "@store/*": ["app/core/store/*"],
+    },
   },
   "exclude": [
     "node_modules",

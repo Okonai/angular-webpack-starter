@@ -1,0 +1,75 @@
+@import '../../../../../../shared';
+@import "~nouislider/distribute/nouislider.min.css";
+
+.c-price {
+
+    &--slider {
+        @include clearfix();
+        margin-top: cR(35);
+    
+        .noUi-target {
+            height: 1px;
+            background: #808285;
+    
+            .noUi-connects {
+                overflow: visible;
+    
+                .noUi-connect {
+                    height: 3px;
+                    margin-top: -1px;
+                    background: #c42695;
+                }
+            }
+    
+            .noUi-handle {
+                top: -7.5px!important;
+                right: -7.5px!important;
+                width: cR(15);
+                height: cR(15);
+                border: none;                
+                border: 1px solid #c42695;
+                border-radius: 50%;
+                background: white;
+                box-shadow: none;
+
+                &-upper {
+                    background: #c42695;
+
+                    .noUi-tooltip {
+                        z-index: 9;
+                    }
+                }
+
+                &:after, &:before {
+                    display: none;
+                }
+            }
+        }
+
+        .noUi-tooltip {
+            @include fontSize(13px);
+            color: #c42695;
+            bottom: cR(-30);
+            background: none;
+            border: none;
+            padding: 0;
+            background: white
+        }
+    }
+
+    &--label {
+        @include fontSize(13px);
+        color: #c42695;
+
+        &__min {
+            float: left;
+            margin-left: cR(-5);
+        }
+
+        &__max {
+            float: right;
+            margin-right: cR(-5);
+
+        }
+    }
+}

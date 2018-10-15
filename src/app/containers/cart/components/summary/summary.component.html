@@ -1,0 +1,37 @@
+<div class="c-summary">
+  <h1>Rendelés összegzése</h1>
+  <h2>Minden adatod rendben van?</h2>
+  <div class="c-summary__options">
+    <div class="c-summary__cards">
+      <div class="c-checkout__card">
+        <span class="c-checkout__card__title">Személyes átvétel</span>
+        <span class="c-checkout__card__button">Módosítom</span>
+        <span class="c-checkout__card__help-icon">?</span>
+      </div>
+    </div>
+    <div class="c-summary__address">
+      <div class="address--shipping">
+        <span class="address__title">Szállítási adatok</span>
+        <span class="address__line">Test János</span>
+        <span class="address__line">1073 Budapest, Erzsébet körút 16.}</span>
+        <span class="address__line">06 30 123 5432</span>
+        <span class="address__line">kobi@stux.hu</span>
+      </div>
+      <div class="address--billing">
+        <span class="address__title">Számlázási adatok</span>
+        <span class="address__line">Test János</span>
+        <span class="address__line">1073 Budapest, Erzsébet körút 16.}</span>
+        <span class="address__line">06 30 123 5432</span>
+        <span class="address__line">kobi@stux.hu</span>
+      </div>
+    </div>
+    <div class="details__products">
+      <div class="products__list">
+        <ng-container *ngFor="let product of (products$ | async)">
+          <app-product-card [product]="product" viewClass="cart-full"></app-product-card>
+        </ng-container>
+      </div>
+      
+    </div>
+  </div>
+</div>

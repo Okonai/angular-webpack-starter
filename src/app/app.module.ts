@@ -53,13 +53,13 @@ import { AppComponent } from './app.component';
 })
 
 export class AppModule {
-  constructor(
+  constructor (
     public appRef: ApplicationRef,
     // private _store: Store<AppState>
   ) { }
 
-  hmrOnInit(store) {
-    if (!store || !store.rootState) return;
+  hmrOnInit (store) {
+    if (!store || !store.rootState) { return; }
 
     // restore state by dispatch a SET_ROOT_STATE action
     /*
@@ -76,14 +76,14 @@ export class AppModule {
     Object.keys(store).forEach(prop => delete store[prop]);
   }
 
-  hmrOnDestroy(store) {
+  hmrOnDestroy (store) {
     const cmpLocation = this.appRef.components.map(cmp => cmp.location.nativeElement);
     // this._store.pipe(take(1)).subscribe(s => store.rootState = s);
     store.disposeOldHosts = createNewHosts(cmpLocation);
     store.restoreInputValues = createInputTransfer();
     removeNgStyles();
   }
-  hmrAfterDestroy(store) {
+  hmrAfterDestroy (store) {
     store.disposeOldHosts();
     delete store.disposeOldHosts;
   }

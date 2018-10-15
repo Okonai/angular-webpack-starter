@@ -1,0 +1,24 @@
+@import '../../../../shared';
+
+
+.c-custom-header {
+
+	&__header {
+		@include fontSize(16px);
+		color: #414042;
+		font-weight: bold;
+	}
+
+	&__text {
+		@include fontSize(13px);
+		color: #808285;
+	}
+
+	img{
+		width: 100%;
+	}
+	.margin-bottom{
+		margin-bottom: 20px;
+	}
+	
+}

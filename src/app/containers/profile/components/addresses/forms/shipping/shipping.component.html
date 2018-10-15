@@ -1,0 +1,42 @@
+<div class="c-address-form" [formGroup]="shippingForm">
+    <input type="hidden" formControlName="id">
+    <input type="hidden" formControlName="country">
+    <mat-form-field class="c-profile-input">
+      <input matInput placeholder="Város" formControlName="city" required>
+      <mat-error *ngIf="city.invalid && city.touched">
+        Kérjük, adjon meg városnevet.
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="c-profile-input">
+      <input matInput placeholder="Irányítószám" formControlName="zip_code" required>
+      <mat-error *ngIf="zip_code.invalid && zip_code.touched">
+        Kérjük, adjon meg valós irányítószámot.
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="c-profile-input">
+      <input matInput placeholder="Utca"  formControlName="street" required>
+      <mat-error *ngIf="street.invalid && street.touched">
+        Kérjük, adjon meg címet.
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="c-profile-input">
+      <input matInput placeholder="Házszám"  formControlName="extra_address" required>
+      <mat-error *ngIf="extra_address.invalid && extra_address.touched">
+        Kérjük, adjon meg házszámot.
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="c-profile-input">
+      <input matInput placeholder="Komment"  formControlName="comment" >
+    </mat-form-field>
+    <mat-form-field class="c-profile-input">
+      <input matInput placeholder="Telefonszám" formControlName="phone" required>
+      <span matPrefix>+36&nbsp;</span>
+      <mat-error *ngIf="phone.invalid && phone.touched">
+        Kérjük, valós telefonszámot adjon meg
+      </mat-error>
+    </mat-form-field>
+    <mat-slide-toggle [color]="'accent'" formControlName="is_default">Alapértelmezett</mat-slide-toggle>
+    <div class="c-profile-submit">
+        <button (click)="submitForm()" [disabled]="shippingForm.invalid || (loading$ | async) === true" >Mentés</button>
+    </div>
+  </div>

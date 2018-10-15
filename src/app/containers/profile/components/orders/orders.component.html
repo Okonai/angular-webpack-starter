@@ -1,0 +1,134 @@
+<h1 class="title">Rendeléseim
+	<mat-progress-bar class="c-loading-bar" [color]="'accent'" mode="indeterminate" *ngIf="(loading$ | async) === true"></mat-progress-bar>
+</h1>
+<div class="c-profile__orders">
+	<div class="orders__filter">
+		<span class="filter__title">Szűkítsd a keresést</span>
+		<form class="filter__form" [formGroup]="filterForm">
+      <mat-form-field class="c-profile-input order_number">
+        <input matInput placeholder="Rendelésszám" formControlName="order_number" autocomplete="off" type="text" [matAutocomplete]="order_number_autocomplete">
+        <mat-icon matSuffix (click)="order_number.reset()">clear</mat-icon>
+        <mat-autocomplete autoActiveFirstOption #order_number_autocomplete="matAutocomplete">
+          <mat-option *ngFor="let option of orderIds$ | async" [value]="option">
+            {{option}}
+          </mat-option>
+        </mat-autocomplete>	
+      </mat-form-field>		
+			<mat-form-field class="c-profile-input date" color="accent">
+        <input matInput [matDatepicker]="picker" [max]="maxDate" [min]="minDate" [matDatepickerFilter]="dateFilter" placeholder="Dátum" (click)="picker.open()" formControlName="date"  >
+        <mat-icon matSuffix (click)="date.reset()">clear</mat-icon>
+				<mat-datepicker #picker [startAt]="startDate" panelClass="filter__date-picker"></mat-datepicker>
+			</mat-form-field>			
+			<mat-form-field class="c-profile-input status">
+        <input matInput placeholder="Státusz" formControlName="status" autocomplete="off" type="text" [matAutocomplete]="order_statuses">
+        <mat-icon matSuffix (click)="status.reset()">clear</mat-icon>	
+        <mat-autocomplete autoActiveFirstOption #order_statuses="matAutocomplete">
+          <mat-option *ngFor="let option of statuses$ | async" [value]="option">
+            {{option}}
+          </mat-option>
+        </mat-autocomplete>		
+			</mat-form-field>
+		</form>
+  </div>
+	<ng-container *ngIf="(orders$ | async)?.length > 0">
+		<mat-accordion [multi]="false" [displayMode]="'flat'">
+			<mat-expansion-panel
+				class="orders__order"
+				*ngFor="let order of orders$ | async | paginate: { itemsPerPage: 20, currentPage: page };trackBy: trackByFn" 
+				(opened)="panelOpened(order.id)" 
+				[expanded]="selectedOrderId === order.id" 
+				[hideToggle]="true"
+			>
+				<mat-expansion-panel-header
+					[collapsedHeight]="'70px'"
+          [expandedHeight]="'70px'"
+        >
+          <div class="order__header">
+            <span class="header__cell">{{order.order_submitted_at | date:'yyyy. MM. dd' }}</span>
+            <span class="header__cell">#{{order.order_number}}</span>
+            <span class="header__cell">{{order.grand_total | currencyFormat}}</span>
+            <span class="header__cell">{{order.status}}</span>
+            <span class="header__cell">{{order.shipment}}</span>
+            <span class="header__cell">{{order.payment}}</span>
+          </div>
+        </mat-expansion-panel-header>
+        <div class="order__details">
+          <ng-container *ngIf="(loading$ | async) === false && selectedOrderId === order.id">
+            <div class="details__products">
+              <div class="products__list">
+                <div class="products__product" *ngFor="let product of order.order_items">
+                  <div class="product__image">
+                    <img [src]="product.image" />
+                  </div>
+                  <div class="product__name">
+                    {{product.name}}
+                  </div>
+                  <div class="product__price">
+                    <span class="price--base">{{product.price | currencyFormat}}</span>
+                    <span *ngIf="product.qty > 1" class="price--detailed">{{product.qty}} x {{product.price | currencyFormat}}</span>
+                  </div>
+                  <ul class="product__services">
+                    <li class="services__service" *ngFor="let service of product.order_item_services">
+                      <span class="service__name">{{service.name}}</span>
+                      <span class="service__price">{{service.price | currencyFormat}}</span>
+                    </li>
+                  </ul>							
+                </div>
+                <div class="products__shipping">
+                  <span>Szállítási költség</span>
+                  <span class="shipping__price">
+                    <span *ngIf="order.shipping_price > 0">{{order.shipping_price | currencyFormat}}</span>
+                    <span class="shipping__price--free" *ngIf="order.shipping_price == 0">Ingyenes</span>
+                  </span>
+                </div>
+              </div>
+              <div class="details__price">
+                <span class="price--brutto">Végösszeg {{order.grand_total | currencyFormat}}</span>
+                <span class="price--netto"></span>
+              </div>
+            </div>
+            <div class="details__address">
+              <div class="address--shipping">
+                <span class="address__title">Szállítási adatok</span>
+                <span class="address__line">{{order.shipping_address.first_name}} {{order.shipping_address.first_name}}</span>
+                <span class="address__line">{{order.shipping_address.zip_code}} {{order.shipping_address.city}}, {{order.shipping_address.street}}</span>
+                <span class="address__line">{{order.shipping_address.phone}}</span>
+                <span class="address__line">{{order.shipping_address.email}}</span>
+              </div>
+              <div class="address--billing">
+                <span class="address__title">Számlázási adatok</span>
+                <span class="address__line">{{order.shipping_address.first_name}} {{order.shipping_address.first_name}}</span>
+                <span class="address__line">{{order.shipping_address.zip_code}} {{order.shipping_address.city}}, {{order.shipping_address.street}}</span>
+                <span class="address__line">{{order.shipping_address.phone}}</span>
+                <span class="address__line">{{order.shipping_address.email}}</span>
+              </div>
+            </div>
+            <div class="details__history">
+              <div class="history__header">
+                <span>Dátum</span>
+                <span>Státusz</span>
+                <span>Megjegyjzés</span>
+              </div>
+              <div class="history__list">
+                <div class="list__item" *ngFor="let item of order.history">
+                  <span>{{item.created_at | date:'yyyy. MM. dd  hh:mm:ss' }}</span>
+                  <span>{{item.status}}</span>
+                  <span>{{item.description}}</span>
+                </div>
+              </div>
+            </div> 
+          </ng-container>           
+        </div>
+			</mat-expansion-panel>
+		</mat-accordion>
+    <pagination-controls 
+      class="orders__pagination" 
+      (pageChange)="paginationEvent($event)"
+      directionLinks="false"
+      responsive="true"
+      ></pagination-controls>
+	</ng-container>
+</div>
+
+
+

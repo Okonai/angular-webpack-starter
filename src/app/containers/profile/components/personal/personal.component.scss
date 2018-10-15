@@ -1,0 +1,6 @@
+@import '../../../../shared.scss';
+
+.c-personal {
+    @include clearfix;
+    margin: 0 calculateRem(-10px);
+}

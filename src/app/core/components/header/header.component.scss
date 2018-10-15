@@ -1,0 +1,237 @@
+@import '../../../shared.scss';
+
+:host {
+  @include clearfix();
+}
+
+.l-top-shelf {
+  @include media-breakpoint-down(sm) {
+    display: none;
+  }
+  height: calculateRem(50px);
+  padding: 0 cR(15);  
+  padding-right: cR(40);
+
+  @media only screen and (max-width:87.5rem) {
+    &--info, .c-ineffectual-menu {
+      width: 100%;
+      text-align: center;
+    }
+    .c-ineffectual-menu {
+      margin-bottom: cR(15);
+    }
+  }
+
+  &--info {
+    @include fontSize(13px);
+    @include media-breakpoint-down(sm) {
+      display: none;
+    }
+    float: left;
+    padding: cR(15) 0;
+    text-transform: uppercase;
+    color: #414042;
+    font-weight: bold;
+  }
+
+  .c-ineffectual-menu {
+    position: relative;
+    float: right;
+    padding-top: calculateRem(12px);
+
+    span {
+      @include fontSize(13px);
+      margin-left: calculateRem(40px);
+      text-transform: uppercase;
+
+      a {
+        position: relative;
+        text-decoration: none;
+        color: #414042;
+        
+        &:hover {
+          color: #c42695;
+        }
+
+        &.active-link:after {
+          position: absolute;
+          bottom: -5px;
+          left: 0;
+          display: block;
+          width: 100%;
+          content: "";
+          border-bottom: 1px solid #414042;
+        }
+      }
+    }
+  }
+}
+
+.l-bottom-shelf {
+  @include clearfix();
+
+  @include media-breakpoint-up(sm) {
+    position: sticky;    
+    grid-template-areas: 'brand navigation search user'; 
+    grid-template-columns: 200px 270px auto 390px;
+    grid-column-gap: 50px;
+  }
+
+  position: fixed;
+  z-index: 999;
+  top: -1px;
+  display: grid;
+  width: 100%;
+  padding: cR(10) cR(15);
+  background-color: #c42695;
+  grid-template-areas: 'brand navigation search user';  
+  grid-template-columns: 50px auto 50px 80px;
+
+  @media only screen and (max-width:87.5rem) and (min-width: 34em) {     
+    grid-template-columns: 50px 270px auto 130px;
+    grid-column-gap: 20px;
+  }
+
+  .c-bottom-shelf__brand {
+    grid-area: brand;
+  }
+
+  .c-main-navigation {
+    grid-area: navigation;
+  }
+
+  .c-search {
+    grid-area: search;
+  }
+
+  .c-user-menu {
+    grid-area: user;
+  } 
+
+  .c-search {
+    grid-column-start: 3;
+  }
+
+  .c-bottom-shelf {
+    
+
+    &__brand {
+      display: block;
+
+      .c-logo {
+        display: block;
+        float: left;
+        width: cR(200);
+        height: cR(50);
+    
+        @media only screen and (max-width: 87.5rem){     
+          background: url('../../../../assets/img/smart_logo_small.svg') no-repeat;
+        }
+
+        @media only screen and (max-width: 34em){     
+          width: cR(40);
+          height: cR(40);
+        }
+      }
+    }
+  }
+
+  .container {
+    position: relative;
+  }
+
+  .c-user-menu {
+
+    @include media-breakpoint-down(sm) {
+      width: auto;
+    }
+    
+    float: right;
+    width: 100%;
+    font-weight: bold;
+
+    ul {
+
+      @include media-breakpoint-up(sm) {        
+        padding-right: cR(25);  
+      }
+      display: grid;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      grid-template-columns: 1fr 1fr 1fr;
+
+      li {
+        @include fontSize(13px);
+        @include media-breakpoint-up(sm) {          
+          padding: calculateRem(15px) 0;
+        }
+        position: relative;
+        float: right;
+        text-align: right;
+        text-transform: uppercase;
+        color: #ffffff;
+
+        @media only screen and (max-width:87.5rem) and (min-width: 35em){     
+          span {
+            top: -10px;
+            font-size: 0;
+
+            &:before {
+              text-indent: 0;
+            }
+          }
+        }
+
+        span {
+          @include media-breakpoint-down(sm) {
+            font-size: 0;
+          }
+          position: relative;
+        }
+
+        & span:before {
+          @include media-breakpoint-up(sm) {        
+            top: -5px;
+          }
+          position: absolute;
+          top: -7px;
+          content: "";
+          background: $sprite;
+          background-size: 900px 900px;
+        }
+
+        &.login span:before {
+          left: -25px;
+          width: 21px;
+          height: 25px;
+          background-position: -10px -10px;
+        }
+
+        &.contact span:before {
+          left: -25px;
+          width: 21px;
+          height: 25px;
+          background-position: -80px -10px;
+        }
+      }
+    }
+  }
+  
+  .c-cart {
+    position: absolute;
+    top: 100%;
+    right: 0;
+
+    -webkit-transform: translateX(340px);
+    transform: translateX(340px);
+    transition: 0.3s cubic-bezier(0.250, 0.460, 0.450, 0.940);
+
+    &.open {
+     /* -webkit-animation: translateX(-340px) 0.3s cubic-bezier(0.250, 0.460, 0.450, 0.940) forwards;
+      animation: translateX(-340px) 0.3s cubic-bezier(0.250, 0.460, 0.450, 0.940) forwards;*/
+      -webkit-transform: translateX(0);
+      transform: translateX(0);
+    }
+  }
+}

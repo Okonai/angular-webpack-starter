@@ -1,0 +1,51 @@
+@import '../../../../../../shared';
+
+
+.c-tags {
+    
+    &--input {
+        width: 100%;
+    }
+
+    &--keyword-list {
+        width: 100%;
+
+        &--item {
+            display: inline-block;
+            padding: cR(3) cR(5);
+            margin-right: cR(10);
+            border: 1px dotted #e6e7e8;
+            padding-right: cR(25);
+            position: relative;
+
+            .remove-button {               
+                width: cR(20);
+                height: 100%;
+                display: block;
+                position: absolute;
+                cursor: pointer;
+                top: 0;
+                right: 0;
+                display: flex;
+
+                &:after {
+                    @include sprite(390, 185);
+                    right: 0;
+                    top: 0;
+                    left: 0;
+                    bottom: 0;
+                    margin: auto;
+                    width: 10px;
+                    height: 10px;
+                    content: '';
+                    display: block;
+                }
+                
+            }
+
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+    }
+}

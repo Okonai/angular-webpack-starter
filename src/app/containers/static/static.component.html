@@ -1,0 +1,27 @@
+<div [ngClass]="{
+  'd-none': (loadingFinished$ | async) === false
+}" [@loader]="loadingFinished$ | async">
+  <div class="c-static container">
+      <h1>{{(staticPage$ | async)?.title}}</h1>
+      <div class="c-static-content" [innerHTML]="(staticPage$ | async)?.content"></div>
+      <mat-accordion multi="true" [ngClass]="{'two-column': (staticPage$ | async)?.columns == 2, 'c-static-widgets': true}">
+        <div class="c-static-widget" *ngFor="let widget of (staticPage$ | async)?.contentWidgets">
+            <mat-expansion-panel [expanded]="widget.is_open == '1'" [hideToggle]="true">
+                <mat-expansion-panel-header expandedHeight="50px" collapsedHeight="50px">
+                    <mat-panel-title>
+                        <span class="c-static-widget-title">{{widget.title}}</span>
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <div class="c-static-widget-content" [innerHTML]="widget.content"></div>
+            </mat-expansion-panel>
+          </div>     
+    </mat-accordion>
+  </div>
+</div>
+<mat-spinner 
+  [ngClass]="{
+      'd-none': (loadingFinished$ | async) === true
+  }" 
+  [@loader]="loadingFinished$ | async"
+  [color]="'accent'">
+</mat-spinner>

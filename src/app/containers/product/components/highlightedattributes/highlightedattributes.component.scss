@@ -1,0 +1,56 @@
+@import '../../../../shared';
+
+.l-highlighted-attributes {
+    @include media-breakpoint-down(sm) {              
+        padding: 0 cR(15);
+    }
+
+    .c-attributes {
+        @include media-breakpoint-down(sm) {              
+            padding: cR(15) 0;
+        }
+        
+        display: flex;
+        color: #c42695;
+        border: 1px solid #e6e7e9;
+        font-size: calculateRem(14px);
+        justify-content: center;
+        flex-wrap: wrap;
+
+        .c-attribute {
+
+            @include media-breakpoint-down(sm) {              
+                width: 50%;
+                margin: cR(15) 0;
+            }
+            display: block;
+            width: calculateRem(120px);
+            margin: calculateRem(15px);
+            text-align: center;
+
+            span {
+                display: block;
+            }
+
+            .icon {
+                width: calculateRem(40px);
+                height: calculateRem(40px);
+                margin: 0 auto;
+                margin-bottom: calculateRem(15px);
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+
+            .name {
+                font-weight: bold;
+            }
+
+            .value {
+                color: #808285;
+            }
+        }
+    }
+}

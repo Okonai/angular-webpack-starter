@@ -1,0 +1,35 @@
+<h1 class="title">Személyes adatok
+  <mat-progress-bar class="c-loading-bar" [color]="'accent'" mode="indeterminate" *ngIf="(loading$ | async) === true"></mat-progress-bar>
+</h1>
+
+<div class="c-personal" [formGroup]="personalForm">
+  <mat-form-field class="c-profile-input">
+    <input matInput placeholder="Vezetéknév" formControlName="first_name" required>
+    <mat-error *ngIf="first_name.invalid && first_name.touched">
+      Kérjük, adja meg a vezetéknevét.
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field class="c-profile-input">
+    <input matInput placeholder="Keresztnév" formControlName="last_name" required>
+    <mat-error *ngIf="last_name.invalid && last_name.touched">
+      Kérjük, adja meg a keresztnevét.
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field class="c-profile-input">
+    <input matInput placeholder="E-mail"  formControlName="email" required>
+    <mat-error *ngIf="email.invalid && email.touched">
+      Kérjük, valós emailcímet adjon meg
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field class="c-profile-input">
+    <input matInput placeholder="Telefonszám" formControlName="phone" required>
+    <span matPrefix>+36&nbsp;</span>
+    <mat-error *ngIf="phone.invalid && phone.touched">
+      Kérjük, valós telefonszámot adjon meg
+    </mat-error>
+  </mat-form-field>
+    
+  <div class="c-profile-submit">
+      <button (click)="submitForm()" [disabled]="personalForm.invalid || (loading$ | async) === true" >Mentés</button>
+  </div>
+</div>

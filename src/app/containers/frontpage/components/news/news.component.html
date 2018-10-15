@@ -1,0 +1,17 @@
+<div class="l-news">
+  <div class="c-news">
+    <ng-container *ngIf="(news$ | async)?.length > 0">
+      <ng-container *ngFor="let news_item of (news$ | async)">
+        <div class="c-news__item">
+          <img class="c-news__item__image" src="https://smartshop.hu{{news_item.image}}"/>
+          <h4 class="c-news__item__title">
+            {{news_item.title}}
+          </h4>
+          <div class="c-news__item__tags">
+            Újdonságok
+          </div>
+        </div>
+      </ng-container>
+    </ng-container>
+  </div>
+</div>

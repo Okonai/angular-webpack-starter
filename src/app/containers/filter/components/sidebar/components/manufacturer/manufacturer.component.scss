@@ -1,0 +1,22 @@
+@import '../../../../../../shared';
+
+.c-manufacturers {
+    &__list { 
+        
+        .c-manufacturer {
+            display: block;
+            width: 100%;
+            margin: calculateRem(5px) 0;
+    
+            &--selected {
+                align-self: flex-start;
+            }
+            
+            .mat-checkbox-layout {
+                display: block;            
+                width: 100%;
+                margin-bottom: 0;
+            }
+        }
+    }
+}

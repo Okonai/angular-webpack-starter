@@ -1,0 +1,32 @@
+<div [ngClass]="{
+  'd-none': (loadingFinished$ | async) === false
+}" [@loader]="loadingFinished$ | async"><div class="l-profile">
+  <div class="c-profile">
+    <div class="c-profile__sidebar">
+        <div class="c-profile__user-info">
+          {{(user$ | async)?.first_name}} {{(user$ | async)?.last_name}}
+        </div>
+        <div class="c-profile__navigation">  
+          <ul>
+            <li><a routerLink="szemelyes" routerLinkActive="active-link">Szemelyes adataiam</a></li>
+            <li><a routerLink="szamlazas" routerLinkActive="active-link">Számlázási címek</a></li>
+            <li><a routerLink="szallitas" routerLinkActive="active-link">Szállítási címek</a></li>
+            <li><a routerLink="jelszomodositas" routerLinkActive="active-link">Jelszavam módosítása</a></li>
+            <li><a routerLink="rendeleseim" routerLinkActive="active-link">Rendeléseim</a></li>
+            <li><a routerLink="/auth/logout">Kijelentkezés</a></li>
+          </ul>
+        </div>
+    </div>    
+    <div class="c-profile__content">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
+</div>
+<mat-spinner 
+  [ngClass]="{
+      'd-none': (loadingFinished$ | async) === true
+  }" 
+  [@loader]="loadingFinished$ | async"
+  [color]="'accent'">
+</mat-spinner>

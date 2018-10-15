@@ -1,0 +1,46 @@
+<!--
+    @TODO: Fixálni a linkeket.
+-->
+<ng-container *ngIf="(slideshow$ | async) || (slideshow_mobile$ | async) else loader">
+    <ng-container *ngIf="slideshow$ | async as slideshow">
+        <ng-container *ngIf="slideshow && slideshow[0]">
+            <div *ngIf="showDesktopSlider" class="l-slider" (swipeleft)="mainCarousel.next()"
+                (swiperight)="mainCarousel.prev()">
+                <ngb-carousel class="c-slider container" #mainCarousel>
+                    <ng-template ngbSlide class="c-slide__item" *ngFor="let slide of slideshow">
+                        <a routerLink="{{slide.url}}" onmousedown="return false">
+                            <div class="c-slide__item__layer c-slide__item__layer--base">
+                                <img src="http://www.smartshop.hu{{slide.image}}"/>
+                            </div>
+                            <div class="c-slide__item__layer c-slide__item__layer--left">
+                                <img src="http://www.smartshop.hu{{slide.image2}}"/>
+                            </div>
+                            <div class="c-slide__item__layer c-slide__item__layer--right">
+                                <img src="http://www.smartshop.hu{{slide.image3}}"/>
+                            </div>
+                        </a>
+                    </ng-template>
+                </ngb-carousel>
+            </div>
+        </ng-container>
+    </ng-container>
+    <ng-container *ngIf="slideshow_mobile$ | async as slideshow_mobile">
+        <ng-container *ngIf="slideshow_mobile && slideshow_mobile[0]">
+            <div *ngIf="showMobileSlider" class="l-slider container" (swipeleft)="mainCarousel.next()"
+                (swiperight)="mainCarousel.prev()">
+                <ngb-carousel class="c-slider contaier" #mainCarousel>
+                    <ng-container *ngFor="let slide of slideshow_mobile">
+                        <ng-template ngbSlide class="c-slide__item" *ngIf="slide.image != ''">
+                            <a class="c-slide__item__layer c-slide__item__layer--base" onmousedown="return false">
+                                <img src="http://www.smartshop.hu{{slide.image}}"/>
+                            </a>
+                        </ng-template>
+                    </ng-container>
+                </ngb-carousel>
+            </div>
+        </ng-container>
+    </ng-container>
+</ng-container>
+<ng-template #loader>
+    <mat-spinner></mat-spinner>
+</ng-template>

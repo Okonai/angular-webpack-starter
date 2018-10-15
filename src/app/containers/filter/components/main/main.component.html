@@ -1,0 +1,43 @@
+<div class="l-products l-products__header">
+	<div class="l-products__viewClass-selector">
+		<mat-form-field>
+			<mat-select [(ngModel)]="viewClass">
+				<mat-option [value]="'compact'">Kompakt nézet</mat-option>
+				<mat-option [value]="'box'">Dobozos nézet</mat-option>
+				<mat-option [value]="'list'">Lista nézet</mat-option>
+				<mat-option [value]="'list-2'">Lista nézet 2</mat-option>
+			</mat-select>
+		</mat-form-field>
+	</div>
+	<pagination-controls 
+		class="l-products__pagination" 
+		(pageChange)="paginationEvent($event)"
+		directionLinks="false"
+		responsive="true"
+	></pagination-controls>
+	<div class="l-products__sortType-selector">
+		<mat-form-field class="l-products__sortType-selector__form-field">
+			<mat-select [formControl]="sort">
+				<mat-option [value]="'relevant'">Releváns</mat-option>
+				<mat-option [value]="'price'">Ár szerint növekvő</mat-option>
+				<mat-option [value]="'-price'">Ár szerint csökkenő</mat-option>
+				<mat-option [value]="'name'">Név szerint növekvő</mat-option>
+				<mat-option [value]="'-name'">Név szerint csökkenő</mat-option>
+			</mat-select>
+		</mat-form-field>
+	</div>
+</div>
+
+<mat-progress-bar *ngIf="loading$ | async" mode="query" color="accent"></mat-progress-bar>
+<div class="c-products c-products__list {{viewClass}}" [@products]="(products$ | async)?.length" [ngClass]="{'no-filter': !filter}" *ngIf="(loading$ | async) === false">
+	<ng-container *ngFor="let product of (products$ | async) | paginate: { itemsPerPage: 12, currentPage: (pager$ | async)?.page, totalItems: (pager$ | async)?.totalCount }">
+		<app-product-card [product]="product" [viewClass]="viewClass"></app-product-card>
+	</ng-container>
+</div>
+
+<pagination-controls 
+	class="l-products__pagination" 
+	(pageChange)="paginationEvent($event)"
+	directionLinks="false"
+	responsive="true"
+></pagination-controls>

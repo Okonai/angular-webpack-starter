@@ -1,0 +1,12 @@
+@import "../../shared.scss";
+
+.c-frontpage {
+    &__block {
+        @include media-breakpoint-down(sm) {
+            padding-bottom: cR(15);
+        }
+        
+        display: block;
+        padding-bottom: cR(60);
+    }
+}

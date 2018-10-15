@@ -1,0 +1,18 @@
+<div class="l-attributes" *ngIf="data.length > 0">
+    <div class="container">        
+        <div class="c-attributes">
+          <ng-container *ngFor="let category of data">
+            <h3>{{category.categoryName}}</h3>
+            <div class="c-attribute" *ngFor="let attribute of category.categoryItems">
+              <span class="name">{{attribute.name}}</span>
+              <a class="value link" *ngIf="isURL(attribute.value)" href="{{attribute.value}}">                
+                {{attribute.value}}
+              </a>
+              <span *ngIf="!isURL(attribute.value)" class="value">
+                  {{attribute.value}}
+              </span>
+            </div>
+          </ng-container>
+        </div>
+    </div>
+</div>

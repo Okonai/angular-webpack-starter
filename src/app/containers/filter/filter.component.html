@@ -1,0 +1,23 @@
+<div [ngClass]="{
+    'd-none': (loadingFinished | async) === false
+  }" [@loader]="loadingFinished | async">
+    <div class="l-filter">
+        <button class="l-filter__sidebar-toggle" mat-button (click)="drawer.toggle()">
+            <i class="material-icons">
+                view_list
+            </i>
+        </button>      
+        <mat-drawer-container class="c-filter">
+            <mat-drawer class="c-filter__sidebar" #drawer mode="over" [opened]="(breakpoint$ | async) != 'small'">
+                <app-sidebar [filterForm]="filterForm"></app-sidebar>
+            </mat-drawer>
+            <mat-drawer-content class="c-filter__main">
+                <app-breadcrumps [productCategoryId]="resolvedId"></app-breadcrumps>
+                <div class="product-list">
+                    <app-custom-header></app-custom-header>           
+                    <app-main [filterForm]="filterForm"></app-main>
+                </div>        
+            </mat-drawer-content>
+        </mat-drawer-container>                
+    </div>
+</div>

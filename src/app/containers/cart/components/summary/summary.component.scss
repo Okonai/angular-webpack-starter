@@ -1,0 +1,99 @@
+@import "../../../../shared";
+
+.c-summary {
+    @extend .container;
+    max-width: cR(850);
+    padding: cR(30) 0;
+
+    h1 {
+        @include fontSize(13px);
+        margin-bottom: cR(10);
+        padding-bottom: cR(10);
+        text-transform: uppercase;
+        border-bottom: 1px solid #e6e7e8;
+        font-weight: bold;
+    }
+
+    h2 {
+        @include fontSize(13px);
+    }
+      
+        
+    .c-summary__cards {
+        padding: cR(30) 0;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-column-gap: cR(30);
+        grid-row-gap: cR(30);
+    }
+    
+
+    &__address {
+        padding: cR(30) 0;
+        border-top: 1px solid #e6e7e8;
+        border-bottom: 1px solid #e6e7e8;
+        display: grid;
+        padding: cR(30) 0;
+        grid-template-columns: 1fr 1fr 0.5fr;
+        grid-column-gap: cR(60);
+
+        .address {
+            &__title {
+                display: block;
+                margin-bottom: cR(5);
+                color: #c42695;
+            }
+
+            &__line {
+                display: block;
+                margin-bottom: cR(5);
+            }
+        }
+    }
+
+    .c-checkout__card {
+        border: 1px solid #e6e7e8;
+        padding: cR(30) cR(45);
+        position: relative;
+
+        &__title {
+            color: $pink;
+            @include fontSize(13px);
+            margin-bottom: cR(15);
+            display: block;
+            text-align: center;
+        }
+
+        &__button {
+            display: block;
+            @include fontSize(13px);
+            padding: cR(10) cR(30);
+            text-align: center;
+            color: white;
+            background: $pink;
+            margin: 0 auto;
+        
+            .c-checkout__card--selected {
+                color: $pink;
+                background: white;
+                border: 1px solid $pink;
+            }
+        }
+
+        &__help-icon {
+            position: absolute;
+            cursor: pointer;
+            color: $pink;
+            @include fontSize(13px);
+            border: 1px solid $pink;
+            border-radius: 100px;
+            right: cR(10);
+            top: cR(10);
+            width: cR(15);
+            height: cR(15);
+            display: block;
+            line-height: cR(13);
+            padding: 0 cR(4);
+        }
+    }
+}
