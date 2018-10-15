@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import {Observable} from "rxjs";
-import {Store} from "@ngrx/store";
-import {Slide} from "../../../../core/store/models/slider.model";
-import * as fromStore from "../../../../core/store/index";
+import {Observable} from 'rxjs';
+import {Store} from '@ngrx/store';
+import {Slide} from '../../../../core/store/models/slider.model';
+import * as fromStore from '../../../../core/store/index';
 
 @Component({
   selector: 'app-slider',
@@ -17,20 +17,20 @@ export class SliderComponent implements OnInit {
   showDesktopSlider: boolean;
   showMobileSlider: boolean;
 
-  constructor(private store: Store<fromStore.MainState>) { }
+  constructor (private store: Store<fromStore.MainState>) { }
 
-  ngOnInit() {
+  ngOnInit () {
     this.slideshow$ = this.store.select(fromStore.getMainSlider);
     this.slideshow_mobile$ = this.store.select(fromStore.getMobileSlider);
     this.store.dispatch(new fromStore.LoadSlider);
     this.store.select(fromStore.getActiveBreakpoint).subscribe((breakpoint: string) => {
-      if( breakpoint === "small") {
+      if ( breakpoint === 'small') {
         this.showDesktopSlider = false;
         this.showMobileSlider = true;
       } else {
         this.showDesktopSlider = true;
         this.showMobileSlider = false;
       }
-    });
+    }).unsubscribe();
   }
 }

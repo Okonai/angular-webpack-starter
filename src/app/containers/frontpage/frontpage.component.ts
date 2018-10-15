@@ -26,9 +26,9 @@ export class FrontpageComponent implements OnInit {
 
   loadingFinished: Observable<boolean>;
 
-  constructor(private store: Store<fromStore.MainState>) { }
+  constructor (private store: Store<fromStore.MainState>) { }
 
-  ngOnInit() {
+  ngOnInit () {
 
     this.loadingFinished = observableCombineLatest(
       this.store.select(fromStore.getSliderLoaded),
@@ -37,24 +37,5 @@ export class FrontpageComponent implements OnInit {
       (slider, tiles, news) => {
         return slider && tiles && news;
       });
-
-
-
-    this.store.select(fromStore.getSliderLoaded).subscribe((loaded: boolean) => {
-      this.states.slider = loaded;
-    });
-
-    this.store.select(fromStore.getTilesLoaded).subscribe((loaded: boolean) => {
-      this.states.tiles = loaded;
-    });
-
-    this.store.select(fromStore.getNewsLoaded).subscribe((loaded: boolean) => {
-      this.states.news = loaded;
-    });
-
-    this.store.select(fromStore.getPromotionLoaded).subscribe((loaded: boolean) => {
-      this.states.promotion = true;
-    });
   }
-
 }

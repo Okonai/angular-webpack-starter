@@ -5,7 +5,7 @@ const ip = require('ip');
 exports.HOST = ip.address();
 exports.DEV_PORT = 3000;
 exports.E2E_PORT = 4201;
-exports.PROD_PORT = 8088;
+exports.PROD_PORT = 3000;
 exports.UNIVERSAL_PORT = 8000;
 
 exports.SHOW_WEBPACK_BUNDLE_ANALYZER = false;
@@ -68,6 +68,7 @@ exports.MY_VENDOR_DLLS = [
   // list vendors that you want to be included in your dlls files
   // this will speed up initial dev server build and incremental builds.
   // Be sure to run `npm run build:dll` if you make changes to this array.
+  '@angular/material',
 ]
 
 exports.MY_CLIENT_PLUGINS = [

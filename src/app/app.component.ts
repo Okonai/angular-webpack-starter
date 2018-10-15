@@ -45,18 +45,6 @@ export class AppComponent implements OnInit {
       });
     });
 
-    this.router.events
-      .pipe(
-        filter((event) => event instanceof NavigationStart)
-      )
-      .subscribe((event) => {
-        if (event['url'].indexOf('/auth') !== -1) {
-          this.nav.hide();
-        } else {
-          this.nav.show();
-        }
-      });
-
     // this.nav.show();
     let site = 'SMARTSHOP';
     if (window['location'].host.indexOf('parts') !== -1) {
@@ -67,6 +55,7 @@ export class AppComponent implements OnInit {
       site = 'SMARTCARE';
     }
     this.permission.addPermission(site);
+    this.renderer.addClass(document.body, site.toLowerCase());
 
     this.store.dispatch(new fromStore.UpdateCurrentBreakpoint({ windowSize: window.innerWidth }));
     this.store.dispatch(new fromStore.UpdateStoreSite({ site: site }));
@@ -88,10 +77,6 @@ export class AppComponent implements OnInit {
       if (a === 'code') {
         this.store.dispatch(new fromStore.AuthForgotAddCode({ forgot_form: { code: result[a] } }));
       }
-    });
-
-    this.store.select(fromStore.getStoreSite).subscribe((_site) => {
-      this.renderer.addClass(document.body, _site.toLowerCase());
     });
   }
 

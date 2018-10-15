@@ -1,25 +1,18 @@
-@import 'variables';
+.c-layout {
 
-* {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+  &__cart {
+      width: cR(300);
+  }
 
-.nav>li {
-    position: relative;
-    display: block;
-    float: left;
-}
+  &__main {
 
+  }
 
-#my-app-title, #my-nav-menu{
-  float: left;
-}
-
-#my-nav-menu {
-  @media screen and (min-width: $break-large) {
-    position: relative;
-    left: 14px;
+  .mat-drawer-backdrop {
+      display: none;
   }
 }
 
+.mat-drawer-backdrop {
+  display:  none;
+}

@@ -17,50 +17,49 @@ export class NavigationComponent implements OnInit {
   menuOpened$: Observable<boolean>;
   breakpoint: String;
 
-  constructor(
+  constructor (
     private store: Store<fromStore.MainState>,
     public dialog: MatDialog,
   ) {
 
   }
 
-  ngOnInit() {
+  ngOnInit () {
     this.root$ = this.store.select(fromStore.getNavigation);
     this.store.dispatch(new fromStore.LoadNavigation());
     this.menuOpened$ = this.store.select(fromStore.getShowMenu);
 
     this.store.select(fromStore.getActiveBreakpoint).subscribe((breakpoint: string) => {
       this.breakpoint = breakpoint;
-    });
+    }).unsubscribe();
   }
 
-  toggleMenu() {
+  toggleMenu () {
     if (this.breakpoint === 'small') {
       this.store.dispatch(new fromStore.ToggleMainMenu());
     }
   }
 
-  openMenu() {
+  openMenu () {
     if (this.breakpoint !== 'small') {
       this.store.dispatch(new fromStore.OpenMainMenu());
     }
   }
 
-  closeMenu() {
+  closeMenu () {
     if (this.breakpoint !== 'small') {
       this.store.dispatch(new fromStore.CloseMainMenu());
     }
   }
 
-  openSubLevel(event) {
+  openSubLevel (event) {
     let subpanel = event.target.parentElement.parentElement.childNodes[3];
     subpanel.classList.add('open');
 
   }
 
-  closeSubLevel(event) {
+  closeSubLevel (event) {
     let subpanel = event.target.parentElement.parentElement.parentElement;
     subpanel.classList.remove('open');
   }
 }
-
