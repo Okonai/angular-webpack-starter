@@ -32,7 +32,7 @@ export class SeoResolver implements Resolve<ResolvedUrl> {
         resolve(
           null
         );
-      });
+      }).unsubscribe();
     });
   }
 }

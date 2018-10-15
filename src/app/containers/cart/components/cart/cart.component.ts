@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Product } from '@models/product.model';
 import { Store } from '@ngrx/store';
@@ -9,26 +9,25 @@ import * as fromStore from '@core/store/index';
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.scss']
 })
-export class CartComponent implements OnInit {
+export class CartComponent implements OnInit, OnChanges {
 
   @Input() view: string = 'full';
   products$: Observable<Product[]>;
-  viewClass: string = "cart-full";
-  
+  viewClass: string = 'cart-full';
 
-  constructor(
+  constructor (
     private store: Store<fromStore.MainState>
-  ) { 
+  ) {
     console.log(this.view);
   }
 
-  ngOnChanges(changes) {
-    if( changes.view.currentValue == "sidebar") {
-      this.viewClass = "cart-sidebar";
-    }    
+  ngOnChanges (changes) {
+    if ( changes.view.currentValue === 'sidebar') {
+      this.viewClass = 'cart-sidebar';
+    }
   }
 
-  ngOnInit() {
+  ngOnInit () {
     this.products$ = this.store.select(fromStore.getCartProductEntities);
   }
 

@@ -33,6 +33,8 @@ export interface ProductCard {
     sku: string;
     pcs: number;
     thumbnail: ProductImage;
+    name_custom?: string;
+    warranty?: string;
 }
 
 export interface Quantity {

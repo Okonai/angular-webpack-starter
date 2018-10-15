@@ -5,7 +5,7 @@
       <span routerLink="/kosar/osszesito">Teljes kosárnézet</span>
     </div>
   </div> 
-  <perfect-scrollbar class="c-cart__list" [config]="config">
+  <perfect-scrollbar class="c-cart__list">
     <ng-container *ngFor="let product of (products$ | async)">
       <app-product-card [product]="product" [viewClass]="viewClass"></app-product-card>
     </ng-container>

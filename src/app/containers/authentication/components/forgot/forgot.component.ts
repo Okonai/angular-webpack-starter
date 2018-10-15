@@ -2,10 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators, FormGroup, FormBuilder, AbstractControl, FormGroupDirective, NgForm } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 
-
 import { Observable } from 'rxjs';
 import { AuthForm } from '../../../../core/store/models/auth.model';
-import * as fromStore from "../../../../core/store/index";
+import * as fromStore from '../../../../core/store/index';
 import { Store } from '@ngrx/store';
 import { Router, ActivatedRoute, ParamMap, NavigationEnd } from '@angular/router';
 
@@ -21,7 +20,6 @@ export class ForgotComponent implements OnInit {
     code: string;
     email: string;
     matcher = new MyErrorStateMatcher();
-
 
   constructor (
     private store: Store<fromStore.MainState>,

@@ -1,10 +1,10 @@
 <p class="c-authentication__header-message">
-	Üdvözlünk {{lastName}}!
+	Üdvözlünk!
 </p>
 <form [formGroup]="form" (ngSubmit)="onFormSubmit()">
 	<mat-form-field>
 		<input matInput type="password" formControlName="password" placeholder="Jelszó" >
-		<mat-error *ngIf="(form.get('password').touched || form.submitted) && form.get('password').status == 'INVALID'">A jelszó kitöltése kötelező.</mat-error>
+		<mat-error *ngIf="(form.get('password').touched) && form.get('password').status == 'INVALID'">A jelszó kitöltése kötelező.</mat-error>
 	</mat-form-field>
 	<p class="custom-error" *ngIf="(authLoginError$ | async)">Helytelen jelszó, kérlek próbáld meg újra.</p>
 	<button type="submit" class="button-pink button">

@@ -12,7 +12,7 @@
     </div>
     <div class="c-product-card__info info">
         <label class="c-product-card__info--stock-info" [ngClass]="{'instock': variable.quantity.local, 'nostock': variable.quantity.storage}">
-            {{ variable.local ? "Készleten" : "Rendelésre" }}
+            {{ variable.quantity.local ? "Készleten" : "Rendelésre" }}
         </label>
         <label class="c-product-card__info--sku" *ngIf="card.sku">
             SKU: {{card.sku}}
